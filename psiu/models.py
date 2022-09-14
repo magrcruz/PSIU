@@ -6,9 +6,6 @@ class Usuario(models.Model):
   sobrenome = models.CharField(max_length=30)
   email = models.EmailField(max_length = 254)
   
-  def __str__(self):
-    return self.usuarioId
-  
 #Cada classe abaixo é uma "many to one relationship" com um usuario
 #Isso é, um usuario pode ter diversas caronas, mas a carona só pode ter um "criador"
 class Carona(models.Model):
