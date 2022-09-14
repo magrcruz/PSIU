@@ -20,9 +20,6 @@ class Carona(models.Model):
   vagas = models.IntegerField()
   adicionais = models.CharField(max_length=254, blank=True, default='')
   
-  def __str__(self):
-    return self.caronaId
-  
 class Estudos(models.Model):
   estudosId = models.BigAutoField(primary_key=True)
   criador = models.ForeignKey(Usuario, on_delete=models.CASCADE)
@@ -31,9 +28,6 @@ class Estudos(models.Model):
   dataHora = models.DateTimeField()
   vagas = models.IntegerField(blank=True, default=-1)
   adicionais = models.CharField(max_length=254, blank=True, default='')
-  
-  def __str__(self):
-    return self.estudosId
   
 class Extra(models.Model):
   extraId = models.BigAutoField(primary_key=True)
@@ -44,9 +38,6 @@ class Extra(models.Model):
   vagas = models.IntegerField(blank=True, default=-1)
   adicionais = models.CharField(max_length=254, blank=True, default='')
   
-  def __str__(self):
-    return self.extraId
-  
 class Conhecer(models.Model):
   conhecerId = models.BigAutoField(primary_key=True)
   criador = models.ForeignKey(Usuario, on_delete=models.CASCADE)
@@ -55,15 +46,9 @@ class Conhecer(models.Model):
   dataHora = models.DateTimeField(blank=True)
   vagas = models.IntegerField(blank=True, default=-1)
   adicionais = models.CharField(max_length=254, blank=True, default='')
-  
-  def __str__(self):
-    return self.conhecerId
  
 class Ligas(models.Model):
   ligasId = models.BigAutoField(primary_key=True)
   criador = models.ForeignKey(Usuario, on_delete=models.CASCADE)
   nomeLiga = models.CharField(max_length=30)
   adicionais = models.CharField(max_length=254, blank=True, default='')
-  
-  def __str__(self):
-    return self.ligasId
