@@ -10,4 +10,5 @@ urlpatterns = [
     path('extracurriculares/', views.extracurriculares, name='extracurriculares'),
     path('ligas_academicas/', views.ligas_academicas, name='ligas_academicas'),
     path('conhecer_pessoas/', views.conhecer_pessoas, name='conhecer_pessoas'),
+    path('teste/', views.teste, name='teste'),
 ]
