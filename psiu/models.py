@@ -40,7 +40,7 @@ class Conhecer(models.Model):
   criador = models.ForeignKey(Usuario, on_delete=models.CASCADE)
   interesses = models.CharField(max_length=30)
   local = models.CharField(max_length=30, blank=True, default='')
-  dataHora = models.DateTimeField(blank=True, default=0)
+  dataHora = models.DateTimeField(blank=True)
   vagas = models.IntegerField(blank=True, default=-1)
   adicionais = models.CharField(max_length=254, blank=True, default='')
  
