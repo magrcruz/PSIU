@@ -20,33 +20,32 @@
     
   </head>
   <body>
-    <!-- BOOTSTRAP NAVBAR CODE -->
-    <nav class="navbar navbar-expand-lg navbar-dark bg-dark">
-        https://towardsdatascience.com/django-first-steps-for-the-total-beginners-a-quick-tutorial-5f1e5e7e9a8c
-        <div class="d-flex justify-content-between px-5 mx-auto" style="width: 90%;">
-            <span class="navbar-text text-white">FIRST DJANGO APP</span>
-            <ul class="navbar-nav mr-auto">
-                <li class="nav-item active">
-                    <a class="nav-link active" href="{% url 'home' %}">Home</a>
-                </li>
-                <li class="nav-item active">
-                    <a class="nav-link active" href="{% url 'psiu:main' %}">Films</a>
-                </li>
-                <li class="nav-item active">
-                    <a class="nav-link active" href="{% url 'psiu:user_info' %}">UserInfo</a>
-                </li>
-            </ul>
+    <!-- NAVBAR -->
+    <div style="background-color: #6FA8FF;" class="container-fluid p-4 text-black text-center">
+        <h1>Psiu!</h1>
+        <p>_</p>
+        <div class="position-relative">
+            {% block image-page %}
+            <a href="{% url 'psiu:main' %}">
+              <img src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAOEAAADhCAMAAAAJbSJIAAAAMFBMVEXp7vG6vsG3u77s8fTCxsnn7O/f5OfFyczP09bM0dO8wMPk6ezY3eDd4uXR1tnJzdBvAX/cAAACVElEQVR4nO3b23KDIBRA0ShGU0n0//+2KmO94gWZ8Zxmr7fmwWEHJsJUHw8AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAwO1MHHdn+L3rIoK6eshsNJ8kTaJI07fERPOO1Nc1vgQm2oiBTWJ+d8+CqV1heplLzMRNonED+4mg7L6p591FC+133/xCRNCtd3nL9BlxWP++MOaXFdEXFjZ7r8D9l45C8y6aG0cWtP/SUGhs2d8dA/ZfGgrzYX+TVqcTNRRO9l+fS5eSYzQs85psUcuzk6igcLoHPz2J8gvzWaH/JLS+95RfOD8o1p5CU5R7l5LkfKEp0mQ1UX7hsVXqDpRrifILD/3S9CfmlUQFhQfuFu0STTyJ8gsP3PH7GVxN1FC4t2sbBy4TNRTu7LyHJbqaqKFw+/Q0ncFloo7CjRPwMnCWqKXQZ75El4nKC9dmcJaou9AXOE5UXbi+RGeJygrz8Uf+GewSn9uXuplnWDZJ7d8f24F/s6iq0LYf9olbS3Q8i5oKrRu4S9ybwaQ/aCkqtP3I28QDgeoK7TBya/aXqL5COx67PTCD2grtdOwH+pQV2r0a7YVBgZoKwwIVFQYG6ikMDVRTGByopjD8ATcKb0UhhRTe77sKs2DV7FKSjId18TUEBYVyLhUThWfILHTDqmI85/2RWWjcE/bhP6OD7maT3h20MHsA47JC3PsW0wcwLhv9t0OOPOIkCn21y2bXXwlyylxiYMPk1SuCSmpfK8bNQvIrpAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAADwNX4BCbAju9/X67UAAAAASUVORK5CYII=" class="mx-auto d-block rounded-circle position-absolute top-100 start-50 translate-middle" height="100" width="100" style="margin-top:23px">
+            </a>
+
+            {% endblock %}
         </div>
-    </nav>
-    <!-- END OF NAVBAR CODE-->
-
-
-    <div class="container-fluid mt-5" style="max-width: 80%">    
-    <!-- INSERT THE CONTENT FROM SPECIFIC PAGES HERE-->
-        {% block content %}
-        {% endblock  %}
     </div>
-    
+    <div style="height: 50px;"></div>
+    <!-- END OF NAVBAR-->
+
+    {% if title %}
+    <div class="content">
+        <h1>{{title}}'s page</h1>
+    </div>
+    {% endif %}
+    <!--<div class="container-fluid mt-5" style="max-width: 80%">-->
+    <!-- INSERT THE CONTENT FROM SPECIFIC PAGES HERE-->
+    {% block content %}
+    {% endblock  %}
+
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/js/bootstrap.bundle.min.js"></script>
   </body>
 </html>
