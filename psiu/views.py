@@ -19,3 +19,5 @@ def ligas_academicas(request):
     return render(request, 'base.html',{'title':'Ligas Academicas'})
 def conhecer_pessoas(request):
     return render(request, 'base.html',{'title':'Conhecer Pessoas'})
+def teste(request):
+    return render(request, 'teste.html')
