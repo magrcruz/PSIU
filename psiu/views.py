@@ -1,5 +1,5 @@
 from django.shortcuts import render
-from django.http import HttpResponse 
+from django.http import HttpResponse
 
 # Create your views here.
 def home(request):
@@ -8,6 +8,9 @@ def main(request):
     return render(request, 'home.html')
 def user_info(request):
     return render(request, 'psiu/user_info.html')
+
+def criar(request):
+    return render(request, 'psiu/criar.html')
 
 def carona(request):
     return render(request, 'base.html',{'title':'Carona'})
