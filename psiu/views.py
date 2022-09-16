@@ -1,5 +1,6 @@
 from django.shortcuts import render
 from django.http import HttpResponse
+from .forms import CriarUsuarioForm
 
 # Create your views here.
 def home(request):
@@ -10,7 +11,14 @@ def user_info(request):
     return render(request, 'psiu/user_info.html')
 
 def criar(request):
-    return render(request, 'psiu/criar.html')
+    context ={}
+    form = CriarUsuarioForm(request.POST or None, request.FILES or None)
+    if form.is_valid():
+        form.save()
+ 
+    context['form']= form
+    return render(request, 'psiu/criar.html', context)
+
 
 def carona(request):
     return render(request, 'base.html',{'title':'Carona'})

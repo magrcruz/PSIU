@@ -1,3 +1,7 @@
-<h1>This is the films USER_INFO page.</h1>
-<p>Username: Fabrício</p>
-<h3>Link to the website pages:</h3>
+<h1>Criar usuario.</h1>
+
+<form method="POST">
+    {% csrf_token %}
+    {{ form.as_p }}
+    <input type="submit" value="Submit">
+</form>
