@@ -1,6 +1,6 @@
 from django.shortcuts import render
 from django.http import HttpResponse
-from .forms import CriarUsuarioForm
+#from .forms import CriarUsuarioForm
 
 # Create your views here.
 def home(request):
@@ -11,13 +11,13 @@ def user_info(request):
     return render(request, 'psiu/user_info.html')
 
 def criar(request):
-    context ={}
-    form = CriarUsuarioForm(request.POST or None, request.FILES or None)
-    if form.is_valid():
-        form.save()
- 
-    context['form']= form
-    return render(request, 'psiu/criar.html', context)
+#    context ={}
+#    form = CriarUsuarioForm(request.POST or None, request.FILES or None)
+#    if form.is_valid():
+#        form.save()
+# 
+#    context['form']= form
+    return render(request, 'psiu/criar.html', {'title':'Criar'})
 
 
 def carona(request):
@@ -30,3 +30,6 @@ def ligas_academicas(request):
     return render(request, 'base.html',{'title':'Ligas Academicas'})
 def conhecer_pessoas(request):
     return render(request, 'base.html',{'title':'Conhecer Pessoas'})
+
+
+
