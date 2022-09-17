@@ -1,0 +1,12 @@
+{% extends 'base.html' %}
+{% block content %}
+
+<form action="" method="post">
+    {% csrf_token %}
+    <input type="text" name="nomeCarona" value="{{carona_temp.nomeCarona}}"> <!-- Botar no "name" o nome do campo no banco de dados-->
+    <!--Fields: NomeCarona LocalSaida LocalChegada DataHora Vagas Adicionais-->
+    
+    <button>Criar</button>
+</form>
+
+{% endblock  %}

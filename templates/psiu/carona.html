@@ -1,0 +1,20 @@
+{% extends 'base.html' %}
+{% block content %}
+
+<a href="{% url 'psiu:criar_carona' %}">Adicionar carona</a>
+
+
+Fitrar por
+
+Barra de busquedas
+
+{% if carona_list %}
+    {% for carona in carona_list %}
+        {{carona.title}} <br>
+    {% endfor %}
+{% else %}
+
+{% endif %}
+
+
+{% endblock  %}

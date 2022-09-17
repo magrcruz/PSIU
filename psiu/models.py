@@ -51,6 +51,7 @@ class User(AbstractUser):
 #Isso é, um usuario pode ter diversas caronas, mas a carona só pode ter um "criador"
 class Carona(models.Model):
   criador = models.ForeignKey(User, on_delete=models.CASCADE)
+  nomeCarona = models.CharField(max_length=254,blank=False,default='Minha carona')
   localSaida = models.CharField(max_length=30)
   localChegada = models.CharField(max_length=30)
   dataHora = models.DateTimeField()
