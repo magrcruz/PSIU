@@ -7,13 +7,14 @@
 Fitrar por
 
 Barra de busquedas
-
+<br>
 {% if carona_list %}
     {% for carona in carona_list %}
-        {{carona.title}} <br>
+    <!--You need to change the content here, to access the values you just need to place carona.<the attribute you want to, the name is the same from de database-->
+        {{carona.nomeCarona}} <br>
     {% endfor %}
 {% else %}
-
+    No se encontraron caronas
 {% endif %}
 
 

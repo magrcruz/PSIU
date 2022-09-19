@@ -50,13 +50,16 @@ class User(AbstractUser):
 #Cada classe abaixo é uma "many to one relationship" com um usuario
 #Isso é, um usuario pode ter diversas caronas, mas a carona só pode ter um "criador"
 class Carona(models.Model):
-  criador = models.ForeignKey(User, on_delete=models.CASCADE)
+  criador = models.ForeignKey(User, on_delete=models.CASCADE,null=True)
   nomeCarona = models.CharField(max_length=254,blank=False,default='Minha carona')
-  localSaida = models.CharField(max_length=30)
-  localChegada = models.CharField(max_length=30)
-  dataHora = models.DateTimeField()
-  vagas = models.IntegerField()
+  localSaida = models.CharField(max_length=30,null=True)
+  localChegada = models.CharField(max_length=30,null=True)
+  dataHora = models.DateTimeField(auto_now_add=True, blank=True)#Just to prove it
+  vagas = models.IntegerField(default=4,null=True)
   adicionais = models.CharField(max_length=254, blank=True, default='')
+
+  def get_readonly_fields(self, request, obj=None):
+    return [f.name for f in self._meta.get_fields()]
   
 class Estudos(models.Model):
   criador = models.ForeignKey(User, on_delete=models.CASCADE)

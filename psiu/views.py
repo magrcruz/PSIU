@@ -3,7 +3,7 @@ from django.urls import reverse
 
 from django.http import HttpResponse
 
-from psiu.models import Carona
+from psiu.models import *
 #from .forms import CriarUsuarioForm
 
 # Create your views here.
@@ -25,7 +25,7 @@ def criar(request):
 
 
 def carona(request):
-    carona_list = [{'title':'titleCarona'},{'title':'titleCarona2'}]
+    carona_list = Carona.objects.all().values() #to update with filters
     return render(request, 'psiu/carona.html',{'title':'Carona', 'carona_list':carona_list})
 
 def criar_carona(request):
@@ -35,15 +35,21 @@ def criar_carona(request):
         return render(request, 'psiu/criar_carona.html', {'carona_temp':carona_temp})
 
     elif request.method == "POST":
-        
         carona = Carona()
+
+        # there is a better way to do this with forms.py
+        form = request.POST.dict()
+        fields = carona.get_readonly_fields(request)
+        content = {} 
+        for field in fields:
+            if field in form:
+                content[field] = form.get(field)
+
+        carona = Carona(**content)
         carona.save()
-        print(request.POST)
-        #carona.add_to_class()
-        #carona.save()
+
         return redirect(reverse('psiu:carona'))
-        
-    
+
 
 def grupo_estudos(request):
     return render(request, 'base.html',{'title':'Grupo de estudos'})
