@@ -10,6 +10,7 @@ urlpatterns = [
     path('extracurriculares/', views.extracurriculares, name='extracurriculares'),
     path('ligas_academicas/', views.ligas_academicas, name='ligas_academicas'),
     path('conhecer_pessoas/', views.conhecer_pessoas, name='conhecer_pessoas'),
-    path('criar/', views.criar_conta, name='criar'),
+    path('criar/', views.register_request, name='criar'),
+    path('login/', views.login_request, name='login'),
     path('criar_carona/',views.criar_carona, name='criar_carona'),
 ]

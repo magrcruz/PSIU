@@ -5,6 +5,9 @@
 </a>
 {% endblock %}
 {% block content %}
+
+{% if user.is_authenticated %}
+<p>Welcome {{ user.username }} !!!</p>   
 <!doctype html>
 <html lang="pt-br">
     <div class="container text-center">
@@ -84,4 +87,11 @@
         </div>
     </div>
 </html>
+
+{% else %}
+<p>NAO LOGADO !!!</p>   
+<meta http-equiv="refresh" content="0;{% url 'psiu:login' %}">
+{% endif %}
+
+
 {% endblock %}
