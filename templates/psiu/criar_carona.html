@@ -1,0 +1,14 @@
+{% extends 'base.html' %}
+{% block content %}
+
+<form action="" method="post">
+    {% csrf_token %}
+    <!--Instructions: build the form to create carona, when its ready make sure to add the field "name" with the value corresponding to the model, I left the list of fields in the next line-->
+    <!--Fields: NomeCarona LocalSaida LocalChegada DataHora Vagas Adicionais-->
+
+    <input type="text" name="nomeCarona" value="{{carona_temp.nomeCarona}}"> <!-- This is the example -->
+    
+    <button>Criar</button>
+</form>
+
+{% endblock  %}
