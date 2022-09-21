@@ -38,7 +38,7 @@ INSTALLED_APPS = [
     'django.contrib.sessions',
     'django.contrib.messages',
     'django.contrib.staticfiles',
-
+    'crispy_forms',
     'psiu.apps.PsiuConfig',
 ]
 
@@ -131,5 +131,3 @@ DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
 
 # User substitution
 # https://docs.djangoproject.com/en/1.11/topics/auth/customizing/#auth-custom-user
-
-AUTH_USER_MODEL = 'psiu.User'

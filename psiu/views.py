@@ -1,10 +1,11 @@
 from django.shortcuts import render, redirect
 from django.urls import reverse
-
+from .forms import NewUserForm
+from django.contrib.auth import login
+from django.contrib import messages
 from django.http import HttpResponse
-
 from psiu.models import *
-#from .forms import CriarUsuarioForm
+from django.contrib.auth.forms import UserCreationForm  
 
 # Create your views here.
 def home(request):
@@ -13,16 +14,6 @@ def main(request):
     return render(request, 'home.html')
 def user_info(request):
     return render(request, 'psiu/user_info.html')
-
-def criar(request):
-#    context ={}
-#    form = CriarUsuarioForm(request.POST or None, request.FILES or None)
-#    if form.is_valid():
-#        form.save()
-# 
-#    context['form']= form
-    return render(request, 'psiu/criar.html', {'title':'Criar'})
-
 
 def carona(request):
     carona_list = Carona.objects.all().values() #to update with filters
@@ -60,5 +51,12 @@ def ligas_academicas(request):
 def conhecer_pessoas(request):
     return render(request, 'base.html',{'title':'Conhecer Pessoas'})
 
-
-
+def criar_conta(request):
+	if request.method == "POST":
+		form = NewUserForm(request.POST)
+		if form.is_valid():
+			user = form.save()
+			login(request, user)
+			return redirect("home")
+	form = NewUserForm()
+	return render (request=request, template_name="psiu/criar.html", context={"criar_form":form})
