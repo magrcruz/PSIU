@@ -3,16 +3,23 @@ from django.urls import reverse
 from .forms import *
 from django.contrib.auth import login, authenticate
 from django.contrib import messages
-from django.http import HttpResponse
 from psiu.models import *
-from django.contrib.auth.forms import UserCreationForm  
 from django.contrib.auth.forms import AuthenticationForm
+from django.contrib.auth import logout
+from django.contrib.auth.decorators import login_required
 
 # Create your views here.
 def home(request):
-    return render(request, 'home.html')
+    if request.user.is_authenticated:
+        return render(request, 'home.html')
+    else:
+        return redirect(reverse('psiu:login'))
+
 def main(request):
-    return render(request, 'home.html')
+    if request.user.is_authenticated:
+        return render(request, 'home.html')
+    else:
+        return redirect(reverse('psiu:login'))
 
 def user_info(request):
     return render(request, 'psiu/user_info.html')
@@ -89,3 +96,9 @@ def login_request(request):
 			messages.error(request,"Invalid username or password.")
 	form = AuthenticationForm()
 	return render(request, "psiu/login.html", {"login_form":form})
+
+
+def logout_request(request):
+    if request.user.is_authenticated:
+        logout(request)
+    return redirect(reverse('psiu:login'))
