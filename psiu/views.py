@@ -1,6 +1,6 @@
 from django.shortcuts import render, redirect
 from django.urls import reverse
-from .forms import NewUserForm
+from .forms import *
 from django.contrib.auth import login, authenticate
 from django.contrib import messages
 from django.http import HttpResponse
@@ -13,6 +13,7 @@ def home(request):
     return render(request, 'home.html')
 def main(request):
     return render(request, 'home.html')
+
 def user_info(request):
     return render(request, 'psiu/user_info.html')
 
@@ -55,15 +56,20 @@ def conhecer_pessoas(request):
 def register_request(request):
     if request.method == "POST":
         form = NewUserForm(request.POST)
-        if form.is_valid():
+        profile_form = PerfilForm(request.POST, request.FILES)
+        if form.is_valid() and profile_form.is_valid():
             user = form.save()
             login(request, user)
+            profile = profile_form.save(commit=False)
+            profile.user = request.user
+            profile.save()
             messages.success(request, "Registration successful." )
             return redirect("home")
 
         messages.error(request, "Unsuccessful registration. Invalid information.")
     form = NewUserForm()
-    return render (request=request, template_name="psiu/criar.html", context={"criar_form":form})
+    profile_form = PerfilForm()
+    return render (request, "psiu/criar.html", {"criar_form":form, 'profile_form': profile_form})
 
 
 def login_request(request):
@@ -82,4 +88,4 @@ def login_request(request):
 		else:
 			messages.error(request,"Invalid username or password.")
 	form = AuthenticationForm()
-	return render(request=request, template_name="psiu/login.html", context={"login_form":form})
+	return render(request, "psiu/login.html", {"login_form":form})

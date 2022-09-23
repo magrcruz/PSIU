@@ -1,4 +1,3 @@
-{% load crispy_forms_tags %} 
 <!doctype html>
 <html lang="en">
 <head>
@@ -20,18 +19,79 @@
         <div class="row" style="color: rgba(0,0,0,1)">
             <h6 class="text-center">Crie sua conta!</h6>
         </div>
-
-        <!--Registro--> 
-        <div class="container py-5">
-            <h1>Register</h1>
-            <form method="POST">
-                {% csrf_token %}
-                {{ criar_form|crispy }}                    
-                <button class="btn btn-primary" type="submit">Criar conta</button>
-            </form>
+        <div class="row">
+            -
         </div>
-
+        <form method="POST" enctype="multipart/form-data">
+            <div class="row">
+                <div class="col mb-2">
+                    <div class="input-group flex-nowrap">
+                        <span class="input-group-text" id="addon-wrapping">@</span>
+                        {% csrf_token %}
+                        {{ criar_form.username }}
+                    </div>
+                </div>
+            </div>
+            <div class="row">
+                <div class="col mb-1">
+                    <div class="input-group mb-1">
+                        <span class="input-group-text" id="inputGroup-sizing-default">Nome</span>
+                        {% csrf_token %}
+                        {{ criar_form.first_name }}
+                    </div>
+                </div>
+            </div>
+            <div class="row">
+                <div class="col mb-4">
+                    <div class="input-group mb-3">
+                        <span class="input-group-text" id="inputGroup-sizing-default">Sobrenome</span>
+                        {% csrf_token %}
+                        {{ criar_form.last_name }}
+                    </div>
+                </div>
+            </div>
+            <div class="row">
+                <div class="col mb-4">
+                    <div class="input-group mb-3">
+                        <span class="input-group-text" id="inputGroup-sizing-default">E-mail</span>
+                        {% csrf_token %}
+                        {{ criar_form.email }}
+                    </div>
+                </div>
+            </div>
+            <div class="row">
+                <div class="col mb-1">
+                    <div class="input-group mb-1">
+                        <span class="input-group-text" id="inputGroup-sizing-default">Foto de perfil</span>
+                        {% csrf_token %}
+                        {{ profile_form.fotoPerfil }}
+                    </div>
+                </div>
+            </div>
+            <div class="row">
+                <div class="col mb-2">
+                    <div class="input-group">
+                        <span class="input-group-text" id="inputGroup-sizing-default">Senha</span>
+                        {% csrf_token %}
+                        {{ criar_form.password1 }}
+                    </div>
+                </div>
+            </div>
+            <div class="row">
+                <div class="col mb-5">
+                    <div class="input-group">
+                        <span class="input-group-text" id="inputGroup-sizing-default">Confirmar Senha</span>
+                        {% csrf_token %}
+                        {{ criar_form.password2 }}
+                    </div>
+                </div>
+            </div>
+            <div class="row">
+                <div class="col">
+                    <button type="submit" class="btn btn-primary text-black" style="--bs-btn-border-radius: 1rem; --bs-btn-padding-x: 1rem; --bs-btn-padding-y: .5rem; ">Criar Conta</button>
+                </div>
+            </div>
+        </form>
     </div>
-
 </body>
 </html>

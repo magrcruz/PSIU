@@ -1,6 +1,8 @@
 from django.db import models
 from django.contrib.auth.models import AbstractUser, BaseUserManager
 from django.contrib.auth.models import User
+from django.db.models.signals import post_save
+from django.dispatch import receiver
 
 #Cada classe abaixo é uma "many to one relationship" com um usuario
 #Isso é, um usuario pode ter diversas caronas, mas a carona só pode ter um "criador"
@@ -44,3 +46,9 @@ class Ligas(models.Model):
   criador = models.ForeignKey(User, on_delete=models.CASCADE)
   nomeLiga = models.CharField(max_length=30)
   adicionais = models.CharField(max_length=254, blank=True, default='')
+
+
+class Perfil(models.Model):
+  user = models.OneToOneField(User, on_delete=models.CASCADE)
+  bio = models.CharField(max_length=30)
+  fotoPerfil = models.ImageField(upload_to='images/')
