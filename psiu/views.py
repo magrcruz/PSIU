@@ -55,6 +55,9 @@ def criar_carona(request):
         for field in fields:
             if field in form:
                 content[field] = form.get(field)
+
+        #content['criador_id'] = 
+        print(request.user)
         #print( content['dataHora'])
         #content['dataHora'] = datetime.strptime(content['dataHora'], '%Y-%m-%dT%H:%M')
         #print( content['dataHora'])
@@ -65,6 +68,8 @@ def criar_carona(request):
 
         return redirect(reverse('psiu:carona'))
 
+def view_carona(request):
+    return render(request, 'psiu/info_carona.html',{})
 
 def grupo_estudos(request):
     return render(request, 'base.html',{'title':'Grupo de estudos'})

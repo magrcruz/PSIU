@@ -13,5 +13,7 @@ urlpatterns = [
     path('criar/', views.register_request, name='criar'),
     path('login/', views.login_request, name='login'),
     path('criar_carona/',views.criar_carona, name='criar_carona'),
-    path('logout/', views.logout_request, name='logout')
+    path('logout/', views.logout_request, name='logout'),
+    path('view_carona/', views.view_carona, name='view_carona'),
+
 ]
