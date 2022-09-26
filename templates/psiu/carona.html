@@ -38,12 +38,12 @@
     {% for carona in carona_list %}
     <div class="row carona-card">
         <div class="d-grid gap-2 col mx-auto">
-            <a href="{% url 'psiu:view_carona' %}">.</a>
-            <button class="btn btn-outline-secondary" type="button">
+
+            <a href="{% url 'psiu:view_carona' %}" class="btn btn-outline-secondary" >
                 <div class="card-body">
                     <div class="row">
                         <div class="col">
-                            <h5 class="card-title">{{carona.nomeCarona}}</h5>
+                            <h5 class="card-title">{{carona.nomeUser}}</h5>
                             <p class="card-text">Saindo de: {{carona.localSaida}}<br>Indo para: {{carona.localChegada}}</p>
                         </div>
                         <div class="col">
@@ -52,8 +52,9 @@
                         </div>
                     </div>
                 </div>
-            </button>
+            </a>
         </div>
+        <br>
     </div>
 
 
