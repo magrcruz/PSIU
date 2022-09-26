@@ -24,12 +24,12 @@
                         <div class="col">
                         </div>
                         <div class="col">
-                            <p class="card-text">29/08 - 8:00</p>
+                            <p class="card-text">{{carona.dataHora}}</p>
                         </div>
                     </div>
                     <div class="row">
                         <div class="col">
-                            <p class="card-text-left">Saindo de: algum lugar<br>Indo para: algum lugar</p>
+                            <p class="card-text-left">Saindo de:  {{carona.localSaida}}<br>Indo para: {{carona.localChegada}}</p>
                         </div>
                     <div class="col">
                     </div>
@@ -38,7 +38,7 @@
                         <div class="col">
                         </div>
                         <div class="col">
-                            <p class="card-text">Vagas disponíveis: 4</p>
+                            <p class="card-text">Vagas disponíveis: {{carona.vagas}}</p>
                         </div>
                     </div>    
                 </div>
