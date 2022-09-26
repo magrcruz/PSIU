@@ -1,11 +1,18 @@
 {% extends 'base.html' %}
+{% block image-page %}
+<a href="{% url 'psiu:user_info' %}">
+    <img src="{{ user.perfil.fotoPerfil.url }}" class="mx-auto d-block rounded-circle position-absolute top-100 start-50 translate-middle" height="100" width="100" style="margin-top:23px">
+</a>
+{% endblock %}
 {% block content %}
 <br>
 {% if userinfo %}
   <h4>username: {{userinfo.username}}</h4>
   <h4>country: {{userinfo.country}}</h4>
+  <h4>username: {{ user.first_name }}</h4>
+  <h4>country: {{ user.last_name }}</h4>
 {% else %}
   <h4>username: not informed</h4>
   <h4>country: not informed</h4>
-{% endif %}
-{% endblock  %}
+  {% endif %}
+  {% endblock  %}
