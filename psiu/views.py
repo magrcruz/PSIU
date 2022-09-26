@@ -7,6 +7,8 @@ from psiu.models import *
 from django.contrib.auth.forms import AuthenticationForm
 from django.contrib.auth import logout
 from django.contrib.auth.decorators import login_required
+from django.utils.dateparse import parse_datetime
+from datetime import datetime
 
 # Create your views here.
 def home(request):
@@ -26,6 +28,15 @@ def user_info(request):
 
 def carona(request):
     carona_list = Carona.objects.all().values() #to update with filters
+    # to add nome of user
+    for carona in carona_list:
+        if 'criador_id' in carona_list and carona_list['criador_id']!="NULL":
+            name = Perfil.objects.get(pk=carona_list['criador_id'])
+            if name:
+                carona['nomeUser'] = name
+            continue
+        carona['nomeUser'] = "User not found"
+
     return render(request, 'psiu/carona.html',{'title':'Carona', 'carona_list':carona_list})
 
 def criar_carona(request):
@@ -44,8 +55,12 @@ def criar_carona(request):
         for field in fields:
             if field in form:
                 content[field] = form.get(field)
+        #print( content['dataHora'])
+        #content['dataHora'] = datetime.strptime(content['dataHora'], '%Y-%m-%dT%H:%M')
+        #print( content['dataHora'])
 
         carona = Carona(**content)
+        #carona.add_to_class('dataHora', content['dataHora'])
         carona.save()
 
         return redirect(reverse('psiu:carona'))

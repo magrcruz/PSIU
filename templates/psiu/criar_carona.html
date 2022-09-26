@@ -3,78 +3,66 @@
 
 <!doctype html>
 <html lang="pt-br">
-<head>
-    <meta charset="utf-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1">
-    <title>Bootstrap demo</title>
-    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.1/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-iYQeCzEYFbKjA/T2uDLTpkwGzCiq6soy8tYaI1GyVh/UjpbCx/TYkiZhlZB6+fzT" crossorigin="anonymous">
-</head>
-<div class="container text-left" style="color: rgba(0,0,0,1)">
-    <div class="row">
-        <h4>Criando carona</h4>
-    </div>
-    <br>
-    <div class="row">
-        <p>Nome da carona</p>
-        <input type="text" class="form-control" placeholder="" aria-label="Recipient's username" aria-describedby="basic-addon2" width="100">
-    </div>
-    <br>
-    <div class="row">
-        <p>Data</p>
-        <input type="text" class="form-control" placeholder="" aria-label="Recipient's username" aria-describedby="basic-addon2" width="100">
-    </div>
-    <br>
-    <div class="row">
-        <p>Hora</p>
-        <input type="text" class="form-control" placeholder="" aria-label="Recipient's username" aria-describedby="basic-addon2" width="100">
-    </div>
-    <br>
-    <div class="row">
-        <p>Lugar de saída</p>
-        <input type="text" class="form-control" placeholder="" aria-label="Recipient's username" aria-describedby="basic-addon2" width="100">
-    </div>
-    <br>
-    <div class="row">
-        <p>Lugar de chegada</p>
-        <input type="text" class="form-control" placeholder="" aria-label="Recipient's username" aria-describedby="basic-addon2" width="100">
-    </div>
-    <br>
-    <div class="row">
-        <p>Vagas disponíveis</p>
-        <input type="text" class="form-control" placeholder="" aria-label="Recipient's username" aria-describedby="basic-addon2" width="100">
-    </div>
-    <br>
-    <div class="row">
-        <p>Descrição</p>
-        <input type="text" class="form-control" placeholder="" aria-label="Recipient's username" aria-describedby="basic-addon2" width="100">
-    </div>
-    <br>
-    <div class="row">
-        <div class="col">
-        </div>
-        <div class="col">
-        </div>
-        <div class="col">
-            <button type="button" class="btn btn-secondary">Cancelar</button>
-        </div>
-        <div class="col">
-            <button type="button" class="btn btn-primary">Criar</button>
-        </div>
-        <div class="col">
-        </div>
-        <div class="col">
-        </div>
-    </div>
-</div>
+
 
 <form action="" method="post">
+    
     {% csrf_token %}
-    <!--Instructions: build the form to create carona, when its ready make sure to add the field "name" with the value corresponding to the model, I left the list of fields in the next line-->
-    <!--Fields: NomeCarona LocalSaida LocalChegada DataHora Vagas Adicionais-->
+    <div class="container text-left" style="color: rgba(0,0,0,1)">
+        <div class="form-group">
+            <h4>Criando carona</h4>
+        </div>
+        <!--Instructions: build the form to create carona, when its ready make sure to add the field "name" with the value corresponding to the model, I left the list of fields in the next line-->
+        <!--Fields: NomeCarona LocalSaida LocalChegada DataHora Vagas Adicionais-->
 
-    <input type="text" name="nomeCarona" value="{{carona_temp.nomeCarona}}"> <!-- This is the example -->
-
-    <button>Criar</button>
+        <div class="form-group">
+            <label for="">Nome da carona</label>
+            <input type="text" class="form-control" placeholder="" aria-describedby="basic-addon2" width="100" name="nomeCarona"  value="{{carona_temp.nomeCarona}}">
+        </div>
+        
+        <div class="form-group">
+            <label for="">Data</label>
+            <input type="datetime-local" class="form-control" placeholder="" aria-describedby="basic-addon2" width="100" name="dataHora"  value="{{carona_temp.dataHora}}">
+        </div>
+        
+        <div class="form-group">
+            <label for="">Lugar de saÃ­da</label>
+            <input type="text" class="form-control" placeholder="" aria-describedby="basic-addon2" width="100" name="localSaida"  value="{{carona_temp.localSaida}}">
+        </div>
+        
+        <div class="form-group">
+            <label for="">Lugar de chegada</label>
+            <input type="text" class="form-control" placeholder="" aria-describedby="basic-addon2" width="100" name="localChegada"  value="{{carona_temp.localChegada}}">
+        </div>
+        
+        <div class="form-group">
+            <label for="">Vagas disponÃ­veis</label>
+            <input type="number" class="form-control" placeholder="" aria-describedby="basic-addon2" width="100" name="vagas"  value="{{carona_temp.vagas}}" min="0" max="16">
+        </div>
+        
+        <div class="form-group">
+            <label for="">DescriÃ§Ã£o</label>
+            <input type="text" class="form-control" placeholder="" aria-describedby="basic-addon2" width="100" name="adicionais"  value="{{carona_temp.adicionais}}" >
+        </div>
+        
+        <br>
+        <div class="row">
+            <div class="col">
+            </div>
+            <div class="col">
+            </div>
+            <div class="col">
+                <button type="button" class="btn btn-secondary">Cancelar</button>
+            </div>
+            <div class="col">
+                <button type="submit" class="btn btn-primary">Criar</button>
+            </div>
+            <div class="col">
+            </div>
+            <div class="col">
+            </div>
+        </div>
+    </div>
 </form>
 
 {% endblock  %}
