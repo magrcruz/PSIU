@@ -32,7 +32,7 @@ class NewUserForm(UserCreationForm):
 class PerfilForm(forms.ModelForm):
     class Meta:
         model = Perfil
-        fields = ('bio','fotoPerfil')
+        fields = ('fotoPerfil',)
 
     def __init__(self, *args, **kwargs):
         super().__init__(*args, **kwargs)
