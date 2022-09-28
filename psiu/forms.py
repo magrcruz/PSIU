@@ -1,7 +1,7 @@
 from django import forms
 from django.contrib.auth.forms import UserCreationForm
 from django.contrib.auth.models import *
-from .models import Perfil
+from .models import Carona, Perfil
 
 # Create your forms here.
 
@@ -37,3 +37,17 @@ class PerfilForm(forms.ModelForm):
     def __init__(self, *args, **kwargs):
         super().__init__(*args, **kwargs)
         self.fields['fotoPerfil'].widget.attrs.update({"class": "form-control"})
+
+class caronaFilter(forms.ModelForm):
+    class Meta:
+        model = Carona
+        fields = ('nomeCarona', 'localSaida', 'localChegada', 'dataHora', 'vagas', 'adicionais')
+    def __init__(self, *args, **kwargs):
+        super().__init__(*args, **kwargs)
+        #self.fields['criador'].widget.attrs.update({"class": "form-control"})
+        self.fields['nomeCarona'].widget.attrs.update({"class": "form-control"})
+        self.fields['localSaida'].widget.attrs.update({"class": "form-control"})
+        self.fields['localChegada'].widget.attrs.update({"class": "form-control"})
+        self.fields['dataHora'].widget.attrs.update({"class": "form-control"})
+        self.fields['vagas'].widget.attrs.update({"class": "form-control"})
+        self.fields['adicionais'].widget.attrs.update({"class": "form-control"})

@@ -8,10 +8,10 @@ from django.dispatch import receiver
 #Isso é, um usuario pode ter diversas caronas, mas a carona só pode ter um "criador"
 class Carona(models.Model):
   criador = models.ForeignKey(User, on_delete=models.CASCADE,null=True)
-  nomeCarona = models.CharField(max_length=254,blank=False,default='Minha carona')
-  localSaida = models.CharField(max_length=30,null=True)
-  localChegada = models.CharField(max_length=30,null=True)
-  dataHora = models.DateTimeField(auto_now_add=True, blank=True)#Just to prove it
+  nomeCarona = models.CharField(max_length=254,default='Minha carona', blank=True)
+  localSaida = models.CharField(max_length=30,null=True, blank=True)
+  localChegada = models.CharField(max_length=30,null=True, blank=True)
+  dataHora = models.DateTimeField(auto_now_add=False, blank=True)#Just to prove it
   vagas = models.IntegerField(default=4,null=True)
   adicionais = models.CharField(max_length=254, blank=True, default='')
 
