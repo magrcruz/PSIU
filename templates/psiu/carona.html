@@ -3,12 +3,12 @@
 
 <a href="{% url 'psiu:criar_carona' %}">Adicionar carona</a>
 
+{% block image-page %}
+    <img src="https://cdn.discordapp.com/attachments/1004623388758777966/1019419664142581821/unknown.png" class="mx-auto d-block rounded-circle position-absolute top-100 start-50 translate-middle" height="100" width="100" style="margin-top:23px">
+{% endblock %}
+
 <!doctype html>
 <html lang = "pt-br">
-
-{% block image-page %}
-<img src="https://cdn.discordapp.com/attachments/1004623388758777966/1019419664142581821/unknown.png" class="mx-auto d-block rounded-circle position-absolute top-100 start-50 translate-middle" height="100" width="100" style="margin-top:23px">
-{% endblock %}
 
 <div class = "text-center" style = "color: rgba(0,0,0,1)">
     <div class="row">
@@ -25,9 +25,9 @@
     <br>
     <div class="row">
         <div class="center">
-            <div class="input-group mb-3">
+            <div class="input-group mb-3 ms-4">
                 <input type="text" class="form-control" placeholder="Barra de pesquisa" aria-label="Recipient's username" aria-describedby="basic-addon2" width="100">
-                <button class="btn btn-outline-secondary" type="button" id="button-addon2">P</button>
+                <button class="btn btn-outline-secondary me-5" type="button" id="button-addon2">P</button>
               </div>
         </div>
     </div>
@@ -38,9 +38,9 @@
 {% if carona_list %}
     {% for carona in carona_list %}
     <div class="row carona-card">
-        <div class="d-grid gap-2 col mx-auto">
+        <div class="d-grid gap-2 col">
 
-            <a href="{% url 'psiu:view_carona' %}" class="btn btn-outline-secondary" >
+            <a href="{% url 'psiu:view_carona' %}" class="btn btn-outline-secondary mb-4 ms-5 me-5" >
                 <div class="card-body">
                     <div class="row">
                         <div class="col">
