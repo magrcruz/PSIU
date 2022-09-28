@@ -97,7 +97,7 @@ def view_carona(request):
     return render(request, 'psiu/info_carona.html',{})
 
 def grupo_estudos(request):
-    return render(request, 'base.html',{'title':'Grupo de estudos'})
+    return render(request, 'psiu/estudos.html',{'title':'Grupo de estudos'})
 def extracurriculares(request):
     return render(request, 'base.html',{'title':'Actividades extracurriculares'})
 def ligas_academicas(request):
