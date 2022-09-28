@@ -1,0 +1,92 @@
+{% extends 'base.html' %}
+{% block content %}
+
+<a href="{% url 'psiu:criar_carona' %}">Adicionar carona</a>
+
+{% block image-page %}
+    <img src="https://media.discordapp.net/attachments/1004623388758777966/1019419539966013521/unknown.png" class="mx-auto d-block rounded-circle position-absolute top-100 start-50 translate-middle" height="100" width="100" style="margin-top:23px">
+{% endblock %}
+
+<!doctype html>
+<html lang = "pt-br">
+
+<div class = "text-center" style = "color: rgba(0,0,0,1)">
+    <div class="row">
+        <div class="col">
+        </div>
+        <div class="col">
+        </div>
+        <div class="col">
+            <button type="button" class="btn btn-secondary btn-sm" data-toggle="modal" data-target="#fitro_form">
+                Filtrar por ↓
+            </button>
+        </div>
+    </div>
+    <br>
+    <div class="row">
+        <div class="center">
+            <div class="input-group mb-3 ms-4">
+                <input type="text" class="form-control" placeholder="Barra de pesquisa" aria-label="Recipient's username" aria-describedby="basic-addon2" width="100">
+                <button class="btn btn-outline-secondary me-5" type="button" id="button-addon2">P</button>
+              </div>
+        </div>
+    </div>
+    
+</div>
+
+<br>
+{% if carona_list %}
+    {% for carona in carona_list %}
+    <div class="row carona-card">
+        <div class="d-grid gap-2 col">
+
+            <a href="{% url 'psiu:view_carona' %}" class="btn btn-outline-secondary mb-4 ms-5 me-5" >
+                <div class="card-body">
+                    <div class="row">
+                        <div class="col">
+                            <h5 class="card-title">Ana Luiza</h5>
+                            <p class="card-text">INF1034 - Programação II</p>
+                        </div>
+                        <div class="col">
+                            <p class="card-text">29/08 - 15:00</p>
+                            <p class="card-text-center">Local: Labgrad</p>
+                        </div>
+                    </div>
+                </div>
+            </a>
+        </div>
+        <br>
+    </div>
+
+
+    <!--You need to change the content here, to access the values you just need to place carona.<the attribute you want to, the name is the same from de database-->
+       
+    {% endfor %}
+{% else %}
+    Nao foram encontradas caronas
+{% endif %}
+
+<!--Modal for filtragem-->
+<form method="post">
+    {% csrf_token %}
+<div class="modal fade" id="fitro_form" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+    <div class="modal-dialog" role="document">
+      <div class="modal-content">
+        <div class="modal-header">
+          <h5 class="modal-title" id="fitro_formLabel">Filtro</h5>
+          <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+            <span aria-hidden="true">&times;</span>
+          </button>
+        </div>
+        <div class="modal-body">
+          {{fitro_form}}
+        </div>
+        <div class="modal-footer">
+          <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+          <button type="submit" class="btn btn-primary">Save changes</button>
+        </div>
+      </div>
+    </div>
+</div>
+</form>
+{% endblock  %}
