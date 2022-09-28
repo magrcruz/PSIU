@@ -4,6 +4,7 @@
 {% endblock %}
 {% block content %}
 
+<a href="{% url 'psiu:grupo_estudos' %}">+ Adicionar grupo de estudo</a>
 
 <!doctype html>
 <html lang = "pt-br">
@@ -34,26 +35,25 @@
 
 <br>
 
-    <div class="row">
-        <div class="d-grid gap-2 col">
-
-            <a href="" class="btn btn-outline-secondary mb-4 ms-5 me-5" >
-                <div class="card-body">
-                    <div class="row">
-                        <div class="col">
-                            <h5 class="card-title">Ana Luiza</h5>
-                            <p class="card-text">INF1034 - Programação II</p>
-                        </div>
-                        <div class="col">
-                            <p class="card-text">29/08 - 15:00</p>
-                            <p class="card-text-center">Local: Labgrad</p>
-                        </div>
+<div class="row">
+    <div class="d-grid gap-2 col">
+        <a href="" class="btn btn-outline-secondary mb-4 ms-5 me-5" >
+            <div class="card-body">
+                <div class="row">
+                    <div class="col">
+                        <h5 class="card-title">Ana Luiza</h5>
+                        <p class="card-text">INF1034 - Programação II</p>
+                    </div>
+                    <div class="col">
+                        <p class="card-text">29/08 - 15:00</p>
+                        <p class="card-text-center">Local: Labgrad</p>
                     </div>
                 </div>
-            </a>
-        </div>
-        <br>
+            </div>
+        </a>
     </div>
+    <br>
+</div>
 
 
 {% endblock  %}
