@@ -2,8 +2,9 @@
   "ExpandedNodes": [
     "",
     "\\psiu",
-    "\\templates"
+    "\\templates",
+    "\\templates\\psiu"
   ],
-  "SelectedNode": "\\psiu\\admin.py",
+  "SelectedNode": "\\templates\\psiu\\criar_carona.html",
   "PreviewInSolutionExplorer": false
 }
