@@ -28,39 +28,43 @@ def main(request):
 def user_info(request):
     return render(request, 'psiu/user_info.html')
 
+def filtrar_carona(request, carona_list):
+    carona = Carona()
+
+    # there is a better way to do this with forms.py
+    form = caronaFilter(request.POST)
+    if form.is_valid():
+        fields = carona.get_readonly_fields(request)
+        filtro = {}
+        
+        for field in fields:
+            if field in form.cleaned_data:
+                filtro[field] = form.cleaned_data[field]
+
+    #carona_list = carona_list.filter(criador__startswith=form.cleaned_data["criador"])
+    carona_list = carona_list.filter(nomeCarona__startswith=form.cleaned_data["nomeCarona"]or"")
+    carona_list = carona_list.filter(localSaida__startswith=form.cleaned_data["localSaida"]or"")
+    carona_list = carona_list.filter(localChegada__startswith=form.cleaned_data["localChegada"]or"")
+    carona_list = carona_list.filter(dataHora__startswith=form.cleaned_data["dataHora"]or"")
+    carona_list = carona_list.filter(vagas__startswith=form.cleaned_data["vagas"]or"")
+    carona_list = carona_list.filter(adicionais__startswith=form.cleaned_data["adicionais"]or"")
+
+    return carona_list
+
 def carona(request):
     carona_list = Carona.objects.all().values() #to update with filters
     fitro_form = caronaFilter()
     if request.method == "GET":
         for carona in carona_list:
-            if 'criador_id' in carona_list and carona_list['criador_id']!="NULL":
-                name = Perfil.objects.get(pk=carona_list['criador_id'])
+            if 'criador' in carona and carona['criador']!="NULL":
+                name = Perfil.objects.get(pk=carona_list['criador'])
                 if name:
                     carona['nomeUser'] = name
                 continue
             carona['nomeUser'] = "User not found"
 
     elif request.method == "POST":
-        carona = Carona()
-
-        # there is a better way to do this with forms.py
-        form = caronaFilter(request.POST)
-        if form.is_valid():
-            fields = carona.get_readonly_fields(request)
-            filtro = {}
-            
-            for field in fields:
-                if field in form.cleaned_data:
-                    filtro[field] = form.cleaned_data[field]
-
-        #carona_list = carona_list.filter(criador__startswith=form.cleaned_data["criador"])
-        carona_list = carona_list.filter(nomeCarona__startswith=form.cleaned_data["nomeCarona"]or"")
-        carona_list = carona_list.filter(localSaida__startswith=form.cleaned_data["localSaida"]or"")
-        carona_list = carona_list.filter(localChegada__startswith=form.cleaned_data["localChegada"]or"")
-        carona_list = carona_list.filter(dataHora__startswith=form.cleaned_data["dataHora"]or"")
-        carona_list = carona_list.filter(vagas__startswith=form.cleaned_data["vagas"]or"")
-        carona_list = carona_list.filter(adicionais__startswith=form.cleaned_data["adicionais"]or"")
-
+        carona_list = filtrar_carona(request,carona_list)
 
     return render(request, 'psiu/carona.html',{'title':'Carona', 'carona_list':carona_list,'fitro_form':fitro_form})
 
@@ -93,11 +97,35 @@ def criar_carona(request):
 
         return redirect(reverse('psiu:carona'))
 
-def view_carona(request):
-    return render(request, 'psiu/info_carona.html',{})
+def view_carona(request, id):
+    carona = Carona.objects.get(pk = id)
+    return render(request, 'psiu/info_carona.html',{'carona':carona})
+
+# GRUPO DE ESTUDOS
+def info_estudos(request, id):
+    return "algo"
+
+def filtrar_estudos(request, estudos_list):
+    return estudos_list
 
 def grupo_estudos(request):
-    return render(request, 'psiu/estudos.html',{'title':'Grupo de estudos'})
+    grupo_de_estudos = Estudos.objects.all().values() #to update with filters
+    #fitro_form = caronaFilter()
+    if request.method == "GET":
+        for grupo in grupo_de_estudos:
+            if 'criador_id' in grupo and grupo['criador_id']!="NULL":
+                name = Perfil.objects.get(pk=grupo['criador_id'])
+                if name:
+                    grupo['nomeUser'] = name
+                continue
+            grupo['nomeUser'] = "User not found"
+
+    elif request.method == "POST":
+       #Filtrar grupo de estudos
+        grupo_de_estudos = filtrar_estudos()
+
+    return render(request, 'psiu/estudos.html',{'title':'Grupo de estudos','grupo_estudos':grupo_de_estudos})
+
 def extracurriculares(request):
     return render(request, 'base.html',{'title':'Actividades extracurriculares'})
 def ligas_academicas(request):

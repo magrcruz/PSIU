@@ -35,25 +35,34 @@
 
 <br>
 
-<div class="row">
-    <div class="d-grid gap-2 col">
-        <a href="" class="btn btn-outline-secondary mb-4 ms-5 me-5" >
-            <div class="card-body">
-                <div class="row">
-                    <div class="col">
-                        <h5 class="card-title">Ana Luiza</h5>
-                        <p class="card-text">INF1034 - Programação II</p>
-                    </div>
-                    <div class="col">
-                        <p class="card-text">29/08 - 15:00</p>
-                        <p class="card-text-center">Local: Labgrad</p>
+{% if grupo_estudos %}
+    {% for i in grupo_estudos %}
+    <div class="row">
+        <div class="d-grid gap-2 col">
+            <a href="{% url 'psiu:info_estudos' %}" class="btn btn-outline-secondary mb-4 ms-5 me-5" >
+                <div class="card-body">
+                    <div class="row">
+                        <div class="col">
+                            <h5 class="card-title">{{i.nomeUser}}</h5>
+                            <p class="card-text">{{i.materia}}</p>
+                        </div>
+                        <div class="col">
+                            <p class="card-text">{{i.dataHora}}</p>
+                            <p class="card-text-center">Local: {{i.local}}</p>
+                            {% if vagas in i %}
+                                <p class="card-text">Vagas {{i.vagas}}</p>
+                            {% endif  %}
+                        </div>
                     </div>
                 </div>
-            </div>
-        </a>
+            </a>
+        </div>
+        <br>
     </div>
-    <br>
-</div>
+    {% endfor %}
+{% else %}
+    Nao foram encontrados grupos de estudos
+{% endif  %}
 
 
 {% endblock  %}
