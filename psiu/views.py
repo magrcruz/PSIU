@@ -113,8 +113,8 @@ def grupo_estudos(request):
     #fitro_form = caronaFilter()
     if request.method == "GET":
         for grupo in grupo_de_estudos:
-            if 'criador_id' in grupo and grupo['criador_id']!="NULL":
-                name = Perfil.objects.get(pk=grupo['criador_id'])
+            if 'criador' in grupo and grupo['criador']!="NULL":
+                name = Perfil.objects.get(pk=grupo['criador'])
                 if name:
                     grupo['nomeUser'] = name
                 continue
