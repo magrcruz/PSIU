@@ -103,9 +103,11 @@ def view_carona(request, id):
 
 # GRUPO DE ESTUDOS
 def info_estudos(request, id):
-    return "algo"
+    grupo = Estudos.objects.get(pk = id)
+    return render(request, 'psiu/info_estudos.html',{'grupo':grupo})
 
 def filtrar_estudos(request, estudos_list):
+
     return estudos_list
 
 def grupo_estudos(request):
@@ -144,7 +146,7 @@ def register_request(request):
             profile.user = request.user
             profile.save()
             messages.success(request, "Registration successful." )
-            return redirect("home")
+            return redirect(reverse('login_request'))
 
         messages.error(request, "Unsuccessful registration. Invalid information.")
     form = NewUserForm()
@@ -153,22 +155,33 @@ def register_request(request):
 
 
 def login_request(request):
-	if request.method == "POST":
-		form = AuthenticationForm(request, data=request.POST)
-		if form.is_valid():
-			username = form.cleaned_data.get('username')
-			password = form.cleaned_data.get('password')
-			user = authenticate(username=username, password=password)
-			if user is not None:
-				login(request, user)
-				messages.info(request, f"You are now logged in as {username}.")
-				return redirect("home")
-			else:
-				messages.error(request,"Invalid username or password.")
-		else:
-			messages.error(request,"Invalid username or password.")
-	form = AuthenticationForm()
-	return render(request, "psiu/login.html", {"login_form":form})
+    print("Al menos esta aqui")
+    if request.method == "GET":
+        print("entro en el get")
+        form = AuthenticationForm()
+
+    elif request.method == "POST":
+        form = AuthenticationForm(None, data=request.POST)
+        if form.is_valid():
+            print(" form.is_valid")
+            username = form.cleaned_data.get('username')
+            password = form.cleaned_data.get('password')
+            user = authenticate(username=username, password=password)
+            print("user is None")
+            if user is not None:
+                login(request, user)
+                print(user.id)
+                #perfil = Perfil.objects.get(user = user.id)
+                #FALTA CREAR PERFIL JUNTO CON EL USUARIO
+                request.user["perfil"] = 1#perfil[id]
+                messages.info(request, f"You are now logged in as {username}.")
+                return redirect(reverse('home'))
+            else:
+                messages.error(request,"Invalid username or password.")
+        else:
+            messages.error(request,"Invalid username or password.")
+    return render(request, "psiu/login.html", {"login_form":form})
+
 
 
 def logout_request(request):

@@ -9,18 +9,22 @@
     <h6>Ei,</h6>
     <h1>Psiu!</h1>
     <h6 class="mb-5">Entre na sua conta!</h6>
-    <div class="container">
+    <form class="container" method="post">
+    {% csrf_token %}
+        <!--{{login_form}}-->
+
+
         <div class="row">
             <div class="col">
                 <div class="input-group mb-4 mt-4">
-                    <input type="text" class="form-control" placeholder="Nome do Usuario" aria-label="Username" aria-describedby="basic-addon1">
+                    <input name="username" type="text" class="form-control" placeholder="Nome do Usuario" aria-label="Username" aria-describedby="basic-addon1">
                 </div>
             </div>
         </div>
         <div class="row">
             <div class="col">
                 <div class="input-group mb-3 mt-4">
-                    <input type="text" class="form-control" placeholder="Senha" aria-label="Username" aria-describedby="basic-addon1">
+                    <input name="password" type="text" class="form-control" placeholder="Senha" aria-label="Username" aria-describedby="basic-addon1">
                 </div>
             </div>
         </div>
@@ -31,7 +35,7 @@
         </div>
         <div class="row mb-5">
             <div class="col">
-                <button type="button" class="btn btn-primary" style="--bs-btn-border-radius: 1rem; --bs-btn-padding-x: 1.5rem; --bs-btn-padding-y: 0.45rem "><h5>Entrar</h5></button>
+                <button type="submit" class="btn btn-primary" style="--bs-btn-border-radius: 1rem; --bs-btn-padding-x: 1.5rem; --bs-btn-padding-y: 0.45rem "><h5>Entrar</h5></button>
             </div>
         </div>
         <div class="row">
@@ -39,6 +43,6 @@
                 <a class="text-dark" href="#" style="font-weight: bold">Ainda nao tenho conta</a>
             </div>
         </div>
-    </div>
+    </form>
 </body>
 {% endblock %}
