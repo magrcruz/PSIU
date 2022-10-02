@@ -28,6 +28,17 @@ def main(request):
 def user_info(request):
     return render(request, 'psiu/user_info.html')
 
+def getTestPerfil():
+    fakePerfil = {
+        "id":1,
+        "telefone" :"(21) 99999-9999",
+        "nomeUser":"Ana Luiza",
+        "instagram":"@instagram",
+        "direcao":"Av. Nossa Senhora 545 - Copacabana",
+        "image":"https://cdn.discordapp.com/attachments/1004623388758777966/1019399649100050512/unknown.png",
+    }
+    return fakePerfil
+
 def filtrar_carona(request, carona_list):
     carona = Carona()
 
@@ -99,12 +110,43 @@ def criar_carona(request):
 
 def view_carona(request, id):
     carona = Carona.objects.get(pk = id)
-    return render(request, 'psiu/info_carona.html',{'carona':carona})
+    criador = getTestPerfil()
+    try:
+        criador = Perfil.objects.get(pk = carona.criador)
+    except:
+        print("Criador not found")
+    return render(request, 'psiu/info_carona.html',{'carona':carona,'contato':criador})
 
 # GRUPO DE ESTUDOS
 def info_estudos(request, id):
     grupo = Estudos.objects.get(pk = id)
-    return render(request, 'psiu/info_estudos.html',{'grupo':grupo})
+    criador = getTestPerfil()
+    return render(request, 'psiu/info_estudos.html',{'grupo':grupo,'contato':criador})
+
+def criar_estudos(request):
+    if request.method == "GET":
+        return render(request, 'psiu/criar_estudos.html', {})
+
+    elif request.method == "POST":
+        estudos = Estudos()
+
+        # there is a better way to do this with forms.py
+        form = request.POST.dict()
+        fields = estudos.get_readonly_fields(request)
+        content = {} 
+        for field in fields:
+            if field in form:
+                content[field] = form.get(field)
+
+        try:
+            content['criador_id'] = request.user["perfil"]
+        except:
+            content['criador_id'] = 1#Fix
+
+        estudos = Estudos(**content)
+        estudos.save()
+
+        return redirect(reverse('psiu:grupo_estudos'))
 
 def filtrar_estudos(request, estudos_list):
 
@@ -152,6 +194,9 @@ def register_request(request):
     form = NewUserForm()
     profile_form = PerfilForm()
     return render (request, "psiu/criar.html", {"criar_form":form, 'profile_form': profile_form})
+
+def info_perfil(request, id):
+    return render(request, 'base.html',{'title':'Perfil'})
 
 
 def login_request(request):

@@ -12,9 +12,16 @@ urlpatterns = [
     path('conhecer_pessoas/', views.conhecer_pessoas, name='conhecer_pessoas'),
     path('criar/', views.register_request, name='criar'),
     path('login/', views.login_request, name='login'),
-    path('criar_carona/',views.criar_carona, name='criar_carona'),
     path('logout/', views.logout_request, name='logout'),
+
+    #criar
+    path('criar_carona/',views.criar_carona, name='criar_carona'),
+    path('criar_estudos/',views.criar_estudos, name='criar_estudos'),
+
+
+    #views
     path('view_carona/<id>', views.view_carona, name='view_carona'),
     path('info_estudos/<id>', views.info_estudos, name='info_estudos'),
+    path('info_perfil/<id>', views.info_perfil, name='info_perfil'),
 
 ]

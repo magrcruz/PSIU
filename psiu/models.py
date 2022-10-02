@@ -25,6 +25,8 @@ class Estudos(models.Model):
   dataHora = models.DateTimeField()
   vagas = models.IntegerField(blank=True, default=-1)
   adicionais = models.CharField(max_length=254, blank=True, default='')
+  def get_readonly_fields(self, request, obj=None):
+    return [f.name for f in self._meta.get_fields()]
   
 class Extra(models.Model):
   criador = models.ForeignKey(User, on_delete=models.CASCADE)
@@ -33,6 +35,8 @@ class Extra(models.Model):
   dataHora = models.DateTimeField()
   vagas = models.IntegerField(blank=True, default=-1)
   adicionais = models.CharField(max_length=254, blank=True, default='')
+  def get_readonly_fields(self, request, obj=None):
+    return [f.name for f in self._meta.get_fields()]
   
 class Conhecer(models.Model):
   criador = models.ForeignKey(User, on_delete=models.CASCADE)
@@ -41,14 +45,19 @@ class Conhecer(models.Model):
   dataHora = models.DateTimeField(blank=True)
   vagas = models.IntegerField(blank=True, default=-1)
   adicionais = models.CharField(max_length=254, blank=True, default='')
+  def get_readonly_fields(self, request, obj=None):
+    return [f.name for f in self._meta.get_fields()]
  
 class Ligas(models.Model):
   criador = models.ForeignKey(User, on_delete=models.CASCADE)
   nomeLiga = models.CharField(max_length=30)
   adicionais = models.CharField(max_length=254, blank=True, default='')
-
+  def get_readonly_fields(self, request, obj=None):
+    return [f.name for f in self._meta.get_fields()]
 
 class Perfil(models.Model):
   user = models.OneToOneField(User, on_delete=models.CASCADE)
   bio = models.CharField(max_length=30)
   fotoPerfil = models.ImageField(upload_to='images/')
+  def get_readonly_fields(self, request, obj=None):
+    return [f.name for f in self._meta.get_fields()]
