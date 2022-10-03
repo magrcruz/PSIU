@@ -1,7 +1,7 @@
 from django import forms
 from django.contrib.auth.forms import UserCreationForm
 from django.contrib.auth.models import *
-from .models import Carona, Perfil
+from .models import Carona, Perfil, Estudos
 
 # Create your forms here.
 
