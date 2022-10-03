@@ -10,7 +10,7 @@
 <p class="text-center">{{grupo.adicionais}}</p>
 
 <div class = "" style = "color: rgba(0,0,0,1)">
-    <h6>Dados</h6>
+    <h5>Dados</h5>
     <div class="row">
         <div class="d-grid gap-2 col mx-auto">
             <button class="btn btn-outline-secondary" type="button">
@@ -43,11 +43,87 @@
         </div>
     </div>
     <br>
-    <h6>Participantes</h6>
-    <br>
-    <h1 class="text-center">os cara</h1>
-    <br>
+    <h5>Participantes</h5>
+    {% if participantes %}
+        {% for i in participantes %}
+        <div class="row mb-3">
+            <div id="carouselExampleControls" class="carousel slide text-center carousel-dark" data-bs-ride="carousel">
+                <div class="carousel-inner">
+                    <div class="carousel-item active">
+                        <div class="row">
+                            <div class="col">
+
+                            </div>
+                            <div class="col">
+                                <img src="{{contato.image}}" class="rounded-circle" height="100" width="100" style="margin-top:23px">
+                            </div>
+                            <div class="col">
+                                <br><br>
+                                <h5>Ana Luiza</h5>
+                                <p>Administradora</p>
+
+                            </div>
+                            <div class="col">
+
+                            </div>
+                            <div class="col">
+                                <img src="https://conteudo.imguol.com.br/blogs/174/files/2018/05/iStock-648229868-1024x909.jpg" class="rounded-circle" height="100" width="100" style="margin-top:23px">
+                            </div>
+                            <div class="col">
+                                <br><br>
+                                <h5>Maria</h5>
+                                <p>Monitora</p>
+                            </div>
+                            <div class="col">
+                                
+                            </div>
+                        </div>
+                    </div>
+                    <div class="carousel-item">
+                        <div class="row">
+                            <div class="col">
+
+                            </div>
+                            <div class="col">
+                                <img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQGiMGYNQlbHjxBJ-A3QwglJszaOF9TVOWZGg&usqp=CAU" class="rounded-circle" height="100" width="100" style="margin-top:23px">
+                            </div>
+                            <div class="col">
+                                <br><br>
+                                <h5>Pedro</h5>
+                                <p>Aluno</p>
+                            </div>
+                            <div class="col">
+                            </div>
+                            <div class="col">
+                                <img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQGiMGYNQlbHjxBJ-A3QwglJszaOF9TVOWZGg&usqp=CAU" class="rounded-circle" height="100" width="100" style="margin-top:23px">
+                            </div>
+                            <div class="col">
+                                <br><br>
+                                <h5>João</h5>
+                                <p>Aluno</p>
+                            </div>
+                            <div class="col">
+
+                            
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <button class="carousel-control-prev" type="button" data-bs-target="#carouselExampleControls" data-bs-slide="prev">
+                    <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+                    <span class="visually-hidden">Previous</span>
+                </button>
+                <button class="carousel-control-next" type="button" data-bs-target="#carouselExampleControls" data-bs-slide="next">
+                    <span class="carousel-control-next-icon" aria-hidden="true"></span>
+                    <span class="visually-hidden">Next</span>
+                </button>
+            </div>
+        </div>
+        {% endfor %}
+    {% else %}
+        Ainda não há participantes.
+    {% endif  %}
     <!--Contato esta em base.html-->
 </div>
 
-{% endblock  %}
+{% endblock  %} 
