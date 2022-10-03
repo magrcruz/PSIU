@@ -20,11 +20,11 @@ class Carona(models.Model):
   
 class Estudos(models.Model):
   criador = models.ForeignKey(User, on_delete=models.CASCADE)
-  materia = models.CharField(max_length=10)
-  local = models.CharField(max_length=30)
-  dataHora = models.DateTimeField()
+  materia = models.CharField(max_length=10,blank=True)
+  local = models.CharField(max_length=30,blank=True)
+  dataHora = models.DateTimeField(blank=True)
   vagas = models.IntegerField(blank=True, default=-1)
-  adicionais = models.CharField(max_length=254, blank=True, default='')
+  adicionais = models.CharField(max_length=254, default='',blank=True)
   def get_readonly_fields(self, request, obj=None):
     return [f.name for f in self._meta.get_fields()]
   
