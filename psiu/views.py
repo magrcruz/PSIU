@@ -10,7 +10,7 @@ from django.contrib.auth import logout
 from django.contrib.auth.decorators import login_required
 from django.utils.dateparse import parse_datetime
 from datetime import datetime
-from .forms import caronaFilter
+from .forms import caronaFilter, newParticipante
 
 # Create your views here.
 def home(request):
@@ -119,21 +119,18 @@ def view_carona(request, id):
 
 # GRUPO DE ESTUDOS
 def info_estudos(request, id):
+    formnewParticipante = newParticipante()
+    if request.method == "GET":
+        print("Estudos")
+
+    if request.method == "POST":
+        print("Criar participacao")
+
     grupo = Estudos.objects.get(pk = id)
-    participantes = [
-        {
-            'id':1,
-            'nome':'Bob',
-            'rol':'admin'
-        },
-        {
-            'id':2,
-            'nome':'Jun',
-            'rol':'secretario'
-        }
-    ]
+    participantes = ParticipacaoGrupoEstudos.objects.all().values().filter(id_grupo=id)
+    #ParticipacaoGrupoEstudos.objects.get(id_grupo = id)
     criador = getTestPerfil()
-    return render(request, 'psiu/info_estudos.html',{'grupo':grupo,'contato':criador, 'participantes':participantes})
+    return render(request, 'psiu/info_estudos.html',{'grupo':grupo,'contato':criador, 'participantes':participantes,'form':formnewParticipante})
 
 def criar_estudos(request):
     if request.method == "GET":

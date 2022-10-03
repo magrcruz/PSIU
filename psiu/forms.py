@@ -1,7 +1,7 @@
 from django import forms
 from django.contrib.auth.forms import UserCreationForm
 from django.contrib.auth.models import *
-from .models import Carona, Perfil, Estudos
+from .models import Carona, Perfil, Estudos, ParticipacaoGrupoEstudos
 
 # Create your forms here.
 
@@ -65,3 +65,11 @@ class estudosFilter(forms.ModelForm):
         self.fields['vagas'].widget.attrs.update({"class": "form-control"})
         self.fields['adicionais'].widget.attrs.update({"class": "form-control"})
 
+class newParticipante(forms.ModelForm):
+    class Meta:
+        model = ParticipacaoGrupoEstudos
+        fields = ('id_participante', 'rol')
+    def __init__(self, *args, **kwargs):
+        super().__init__(*args, **kwargs)
+        self.fields['id_participante'].widget.attrs.update({"class": "form-control"})
+        self.fields['rol'].widget.attrs.update({"class": "form-control"})

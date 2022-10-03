@@ -19,15 +19,20 @@ class Carona(models.Model):
     return [f.name for f in self._meta.get_fields()]
   
 class Estudos(models.Model):
-  criador = models.ForeignKey(User, on_delete=models.CASCADE)
-  materia = models.CharField(max_length=10,blank=True)
+  criador = models.ForeignKey(User, on_delete=models.CASCADE,default=1)
+  materia = models.CharField(max_length=10)
   local = models.CharField(max_length=30,blank=True)
-  dataHora = models.DateTimeField(blank=True)
+  dataHora = models.DateTimeField(auto_now_add=False)
   vagas = models.IntegerField(blank=True, default=-1)
   adicionais = models.CharField(max_length=254, default='',blank=True)
   def get_readonly_fields(self, request, obj=None):
     return [f.name for f in self._meta.get_fields()]
   
+class ParticipacaoGrupoEstudos(models.Model):
+  id_participante = models.ForeignKey(User, on_delete=models.CASCADE)
+  id_grupo = models.ForeignKey(Estudos, on_delete=models.CASCADE)
+  rol = models.CharField(max_length=30,blank=True)
+
 class Extra(models.Model):
   criador = models.ForeignKey(User, on_delete=models.CASCADE)
   atividade = models.CharField(max_length=30)
