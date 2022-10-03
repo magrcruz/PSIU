@@ -149,12 +149,26 @@ def criar_estudos(request):
         return redirect(reverse('psiu:grupo_estudos'))
 
 def filtrar_estudos(request, estudos_list):
+    estudos = Estudos()
+
+    # there is a better way to do this with forms.py
+    form = estudosFilter(request.POST)
+    if form.is_valid():
+        fields = estudos.get_readonly_fields(request)
+        filtro = {}
+        
+        for field in fields:
+            if field in form.cleaned_data:
+                filtro[field] = form.cleaned_data[field]
+
+    estudos_list = estudos_list.filter(materia__startswith=form.cleaned_data["materia"]or"")
+
 
     return estudos_list
 
 def grupo_estudos(request):
     grupo_de_estudos = Estudos.objects.all().values() #to update with filters
-    #fitro_form = caronaFilter()
+    fitro_form = estudosFilter()
     if request.method == "GET":
         for grupo in grupo_de_estudos:
             if 'criador' in grupo and grupo['criador']!="NULL":
@@ -166,9 +180,10 @@ def grupo_estudos(request):
 
     elif request.method == "POST":
        #Filtrar grupo de estudos
-        grupo_de_estudos = filtrar_estudos()
+        grupo_de_estudos = filtrar_estudos(request,grupo_de_estudos)
 
-    return render(request, 'psiu/estudos.html',{'title':'Grupo de estudos','grupo_estudos':grupo_de_estudos})
+    return render(request, 'psiu/estudos.html',{'title':'Grupo de estudos','grupo_estudos':grupo_de_estudos,'fitro_form':fitro_form})
+
 
 def extracurriculares(request):
     return render(request, 'base.html',{'title':'Actividades extracurriculares'})
@@ -218,7 +233,7 @@ def login_request(request):
                 print(user.id)
                 #perfil = Perfil.objects.get(user = user.id)
                 #FALTA CREAR PERFIL JUNTO CON EL USUARIO
-                request.user["perfil"] = 1#perfil[id]
+                #request.user["perfil"] = 1#perfil[id]
                 messages.info(request, f"You are now logged in as {username}.")
                 return redirect(reverse('home'))
             else:
