@@ -1,0 +1,105 @@
+{% extends 'base.html' %}
+{% block image-page %}
+<a href="{% url 'psiu:user_info' %}">
+    <img src="{{ user.perfil.fotoPerfil.url }}" class="mx-auto d-block rounded-circle position-absolute top-100 start-50 translate-middle" height="100" width="100" style="margin-top:23px">
+</a>
+{% endblock %}
+{% block content %}
+<br>
+<h4>UAU MODIFICAR USUARIO</h4>
+{% if userinfo %}
+  <h4>username: {{userinfo.username}}</h4>
+  <h4>country: {{userinfo.country}}</h4>
+  <h4>first name: {{ user.first_name }}</h4>
+  <h4>last name: {{ user.last_name }}</h4>
+{% else %}
+  <h4>username: not informed</h4>
+  <h4>country: not informed</h4>
+  {% endif %}
+  <div class="container">
+      <div class="row mb-3">
+          <div class="d-grid gap-2 col mx-auto ms-5 me-5">
+              <button class="btn btn-outline-secondary" type="button">
+                  <div class="card-body">
+                      <p class="card-text-start" style="font-weight:bold">Dados de contato<br></p>
+                      <p class="card-text-start">(21) 99999-9999<br>@instagram<br>Av. Nossa Senhora 545 - Copacabana</p>
+                  </div>
+              </button>
+          </div>
+      </div>
+      <div class="row mb-3">
+          <div id="carouselExampleControls" class="carousel slide text-center carousel-dark" data-bs-ride="carousel">
+              <div class="carousel-inner">
+                  <div class="carousel-item active">
+                      <div class="row">
+                          <div class="col">
+
+                          </div>
+                          <div class="col">
+                              <a id="carona-link" class="btn btn-white" href="{% url 'psiu:carona' %}" role="button"><img src="https://cdn.discordapp.com/attachments/1004623388758777966/1019419664142581821/unknown.png" class="rounded-circle" height="100" width="100"></a>
+                          </div>
+                          <div class="col">
+                              <a id="grupo-estudos-link" class="btn btn-white" href="{% url 'psiu:grupo_estudos' %}" role="button"><img src="https://cdn.discordapp.com/attachments/1004623388758777966/1019419539966013521/unknown.png" class="rounded-circle" height="100" width="100"></a>
+                          </div>
+                          <div class="col">
+                              <a id="extracurriculares-link" class="btn btn-white" href="{% url 'psiu:extracurriculares' %}" role="button"><img src="https://cdn.discordapp.com/attachments/1004623388758777966/1019419758216617984/unknown.png" class="rounded-circle" height="100" width="100"></a>
+                          </div>
+                          <div class="col">
+
+                          </div>
+                      </div>
+                  </div>
+                  <div class="carousel-item">
+                      <div class="row">
+                          <div class="col">
+
+                          </div>
+                          <div class="col">
+                              <a id="ligas-academicas-link" class="btn btn-white" href="{% url 'psiu:ligas_academicas' %}" role="button"><img src="https://cdn.discordapp.com/attachments/1004623388758777966/1019419863707557938/unknown.png" class="rounded-circle" height="100" width="100"></a>
+                          </div>
+                          <div class="col">
+                              <a id="conhecer-pessoas-link" class="btn btn-white" href="{% url 'psiu:conhecer_pessoas' %}" role="button"><img src="https://cdn.discordapp.com/attachments/1004623388758777966/1019419982062436403/unknown.png" class="rounded-circle" height="100" width="100"></a>
+                          </div>
+                          <div class="col">
+                              <p>?</p>
+                          </div>
+                          <div class="col">
+
+                          </div>
+                      </div>
+                  </div>
+              </div>
+              <button class="carousel-control-prev" type="button" data-bs-target="#carouselExampleControls" data-bs-slide="prev">
+                  <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+                  <span class="visually-hidden">Previous</span>
+              </button>
+              <button class="carousel-control-next" type="button" data-bs-target="#carouselExampleControls" data-bs-slide="next">
+                  <span class="carousel-control-next-icon" aria-hidden="true"></span>
+                  <span class="visually-hidden">Next</span>
+              </button>
+          </div>
+      </div>
+      <div class="row mb-5">
+          <p class="text-center" style="font-weight:bold">Interacoes de Ana Luiza</p>
+      </div>
+        <div class="row mb-5 carona-card">
+            <div class="d-grid gap-2 col mx-auto">
+                <a href="{% url 'psiu:view_carona' %}" class="btn btn-outline-secondary">
+                    <div class="card-body">
+                        <div class="row">
+                            <div class="col">
+                                <h5 class="card-title">{{carona.nomeUser}}</h5>
+                                <p class="card-text">Saindo de: {{carona.localSaida}}<br>Indo para: {{carona.localChegada}}</p>
+                            </div>
+                            <div class="col">
+                                <p class="card-text">{{carona.dataHora}} <br>{{carona.nomeUser}}</p>
+                                <p class="card-text">Vagas disponiveis: {{carona.vagas}}</p>
+                            </div>
+                        </div>
+                    </div>
+                </a>
+            </div>
+            <br>
+        </div>
+  </div>
+{% endblock  %}
