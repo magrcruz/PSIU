@@ -124,7 +124,15 @@ def info_estudos(request, id):
         print("Estudos")
 
     if request.method == "POST":
-        print("Criar participacao")
+        form = request.POST.dict()
+        content = {
+            'id_participante':User.objects.get(pk = form.get('id_participante')),
+            'id_grupo':Estudos.objects.get(pk = id),
+            'rol':form.get('rol')
+        }
+        estudos = ParticipacaoGrupoEstudos(**content)
+        #carona.add_to_class('dataHora', content['dataHora'])
+        estudos.save()
 
     grupo = Estudos.objects.get(pk = id)
     participantes = ParticipacaoGrupoEstudos.objects.all().values().filter(id_grupo=id)
