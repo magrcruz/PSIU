@@ -260,3 +260,6 @@ def logout_request(request):
     if request.user.is_authenticated:
         logout(request)
     return redirect(reverse('psiu:login'))
+
+def modificar_request(request, id):
+    return render(request, "psiu/modificar.html",{'title':'Modificar'})
