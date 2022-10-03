@@ -120,8 +120,20 @@ def view_carona(request, id):
 # GRUPO DE ESTUDOS
 def info_estudos(request, id):
     grupo = Estudos.objects.get(pk = id)
+    participantes = [
+        {
+            'id':1,
+            'nome':'Bob',
+            'rol':'admin'
+        },
+        {
+            'id':2,
+            'nome':'Jun',
+            'rol':'secretario'
+        }
+    ]
     criador = getTestPerfil()
-    return render(request, 'psiu/info_estudos.html',{'grupo':grupo,'contato':criador})
+    return render(request, 'psiu/info_estudos.html',{'grupo':grupo,'contato':criador, 'participantes':participantes})
 
 def criar_estudos(request):
     if request.method == "GET":
