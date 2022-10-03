@@ -1,6 +1,53 @@
 {% extends 'base.html' %}
-<!-- E ai Anna? entao vc só precisa arrumar as informaçoes que vou deixar aqui -->
+{% block image-page %}
+    <img src="https://media.discordapp.net/attachments/1004623388758777966/1019419539966013521/unknown.png" class="mx-auto d-block rounded-circle position-absolute top-100 start-50 translate-middle" height="100" width="100" style="margin-top:23px">
+{% endblock %}
 {% block content %}
 
+<!doctype html>
+
+
+<p class="text-center">{{grupo.adicionais}}</p>
+
+<div class = "" style = "color: rgba(0,0,0,1)">
+    <h6>Dados</h6>
+    <div class="row">
+        <div class="d-grid gap-2 col mx-auto">
+            <button class="btn btn-outline-secondary" type="button">
+                <div class="card-body">
+                    <div class="row">
+                        <div class="col">
+                        </div>
+                        <div class="col">
+                        </div>
+                        <div class="col">
+                            <p class="card-text">{{grupo.dataHora}}</p>
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="col">
+                            <p class="card-text-left">Local: {{grupo.local}}</p>
+                        </div>
+                    <div class="col">
+                    </div>
+                    </div>
+                    <div class="row">
+                        <div class="col">
+                        </div>
+                        <div class="col">
+                            <p class="card-text">Vagas disponíveis: {{grupo.vagas}}</p>
+                        </div>
+                    </div>    
+                </div>
+            </button>
+        </div>
+    </div>
+    <br>
+    <h6>Participantes</h6>
+    <br>
+    <h1 class="text-center">os cara</h1>
+    <br>
+    <!--Contato esta em base.html-->
+</div>
 
 {% endblock  %}
