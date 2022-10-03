@@ -135,9 +135,10 @@ def info_estudos(request, id):
         estudos.save()
 
     grupo = Estudos.objects.get(pk = id)
-    participantes = ParticipacaoGrupoEstudos.objects.all().values().filter(id_grupo=id)
+    participantes = list(ParticipacaoGrupoEstudos.objects.all().values().filter(id_grupo=id).values())
     #ParticipacaoGrupoEstudos.objects.get(id_grupo = id)
     criador = getTestPerfil()
+
     return render(request, 'psiu/info_estudos.html',{'grupo':grupo,'contato':criador, 'participantes':participantes,'form':formnewParticipante})
 
 def criar_estudos(request):

@@ -45,81 +45,21 @@
     <br>
     <h5>Participantes</h5>
     {% if participantes %}
-        {% for i in participantes %}
         <div class="row mb-3">
             <div id="carouselExampleControls" class="carousel slide text-center carousel-dark" data-bs-ride="carousel">
-                <div class="carousel-inner">
-                    <div class="carousel-item active">
-                        <div class="row">
-                            <div class="col">
-
-                            </div>
-                            <div class="col">
-                                <img src="{{contato.image}}" class="rounded-circle" height="100" width="100" style="margin-top:23px">
-                            </div>
-                            <div class="col">
-                                <br><br>
-                                <h5>Ana Luiza</h5>
-                                <p>Administradora</p>
-
-                            </div>
-                            <div class="col">
-
-                            </div>
-                            <div class="col">
-                                <img src="https://conteudo.imguol.com.br/blogs/174/files/2018/05/iStock-648229868-1024x909.jpg" class="rounded-circle" height="100" width="100" style="margin-top:23px">
-                            </div>
-                            <div class="col">
-                                <br><br>
-                                <h5>Maria</h5>
-                                <p>Monitora</p>
-                            </div>
-                            <div class="col">
-                                
-                            </div>
-                        </div>
-                    </div>
-                    <div class="carousel-item">
-                        <div class="row">
-                            <div class="col">
-
-                            </div>
-                            <div class="col">
-                                <img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQGiMGYNQlbHjxBJ-A3QwglJszaOF9TVOWZGg&usqp=CAU" class="rounded-circle" height="100" width="100" style="margin-top:23px">
-                            </div>
-                            <div class="col">
-                                <br><br>
-                                <h5>Pedro</h5>
-                                <p>Aluno</p>
-                            </div>
-                            <div class="col">
-                            </div>
-                            <div class="col">
-                                <img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQGiMGYNQlbHjxBJ-A3QwglJszaOF9TVOWZGg&usqp=CAU" class="rounded-circle" height="100" width="100" style="margin-top:23px">
-                            </div>
-                            <div class="col">
-                                <br><br>
-                                <h5>João</h5>
-                                <p>Aluno</p>
-                            </div>
-                            <div class="col">
-
-                            
-                            </div>
-                        </div>
-                    </div>
+                <div class="carousel-inner" id="participantes">
+                    <!--Filled with js-->
                 </div>
-                <button class="carousel-control-prev" type="button" data-bs-target="#carouselExampleControls" data-bs-slide="prev">
-                    <span class="carousel-control-prev-icon" aria-hidden="true"></span>
-                    <span class="visually-hidden">Previous</span>
-                </button>
-                <button class="carousel-control-next" type="button" data-bs-target="#carouselExampleControls" data-bs-slide="next">
-                    <span class="carousel-control-next-icon" aria-hidden="true"></span>
-                    <span class="visually-hidden">Next</span>
-                </button>
-            </div>
+            <button class="carousel-control-prev" type="button" data-bs-target="#carouselExampleControls" data-bs-slide="prev">
+                <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+                <span class="visually-hidden">Previous</span>
+            </button>
+            <button class="carousel-control-next" type="button" data-bs-target="#carouselExampleControls" data-bs-slide="next">
+                <span class="carousel-control-next-icon" aria-hidden="true"></span>
+                <span class="visually-hidden">Next</span>
+            </button>
         </div>
-        {% endfor %}
+    </div>
     {% else %}
         Ainda não há participantes.
     {% endif  %}
@@ -151,5 +91,60 @@
       </form>
     </div>
   </div>
+
+  <script defer>
+    //MyJs
+    function newParticipante(p){
+        return String.raw`
+        <div class="participante">
+            <div class="col"></div>
+            <div class="col">
+                <img src="${p.image}" class="rounded-circle" height="100" width="100" style="margin-top:23px">
+            </div>
+            <div class="col">
+                <br><br>
+                <h5>${p.nome}</h5>
+                <p>${p.rol}</p>
+            </div>
+            <div class="col"></div>
+        </div>
+        `
+    }
+    function newSlide(carouselItems, isActive = ""){
+        return String.raw`
+        <div class="carousel-item">
+            <div class="row" ${isActive}>
+                ${carouselItems}
+            </div>
+        </div>`
+    }
+
+    function buidCarouselContent(){
+        let outputParticipantes = ""
+        let slideItems = ""
+        let active = "active"
+        let i = 0;
+        for (p in  {{participantes| safe }}){
+            slideItems += newParticipante(p)
+            if (!(i %2)){
+                if(slideItems){
+                    outputParticipantes +=newSlide(slideItems,active)
+                    slideItems = ""
+                    active = ""
+                }
+                i++
+            }
+        }
+        if(slideItems){
+            outputParticipantes +=newSlide(slideItems)
+            slideItems = ""
+        }
+        document.getElementById("participantes").innerHTML = outputParticipantes
+    }
+
+    buidCarouselContent()
+
+
+</script>
 
 {% endblock  %}
