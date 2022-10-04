@@ -1,14 +1,10 @@
 {% extends 'base.html' %}
 {% block image-page %}
-    <img src="https://media.discordapp.net/attachments/1004623388758777966/1019419539966013521/unknown.png" class="mx-auto d-block rounded-circle position-absolute top-100 start-50 translate-middle" height="100" width="100" style="margin-top:23px">
+<img src="https://media.discordapp.net/attachments/1004623388758777966/1019419539966013521/unknown.png" class="mx-auto d-block rounded-circle position-absolute top-100 start-50 translate-middle" height="100" width="100" style="margin-top:23px">
 {% endblock %}
 {% block content %}
-
 <!doctype html>
-
-
 <p class="text-center">{{grupo.adicionais}}</p>
-
 <div class = "" style = "color: rgba(0,0,0,1)">
     <h5>Dados</h5>
     <div class="row">
@@ -28,8 +24,8 @@
                         <div class="col">
                             <p class="card-text-left">Local: {{grupo.local}}</p>
                         </div>
-                    <div class="col">
-                    </div>
+                        <div class="col">
+                        </div>
                     </div>
                     <div class="row">
                         <div class="col">
@@ -37,7 +33,7 @@
                         <div class="col">
                             <p class="card-text">Vagas disponíveis: {{grupo.vagas}}</p>
                         </div>
-                    </div>    
+                    </div>
                 </div>
             </button>
         </div>
@@ -45,106 +41,94 @@
     <br>
     <h5>Participantes</h5>
     {% if participantes %}
-        <div class="row mb-3">
-            <div id="carouselExampleControls" class="carousel slide text-center carousel-dark" data-bs-ride="carousel">
-                <div class="carousel-inner" id="participantes">
-                    <!--Filled with js-->
+    <div class="row mb-3">
+        <div id="carouselExampleControls" class="carousel slide text-center carousel-dark" data-bs-ride="carousel">
+            <div class="carousel-inner" id="participantes">
+                <!--Filled with js-->
+                <div style="display: None;">
+                    {% for p in participantes %}
+                    <div class="participante">
+                        <div class="col col-sm">
+                            <img src="{{p.image}}" class="rounded-circle" height="100" width="100" style="margin-top:23px">
+                        </div>
+                        <div class="col  col-sm">
+                            <br><br>
+                            <h5>{{p.nome}}</h5>
+                            <p>{{p.rol}}</p>
+                        </div>
+                    </div>
+                    {% endfor %}
                 </div>
-            <button class="carousel-control-prev" type="button" data-bs-target="#carouselExampleControls" data-bs-slide="prev">
+
+            </div>
+            <button class="carousel-control-prev d-none d-xl-block" type="button" data-bs-target="#carouselExampleControls" data-bs-slide="prev">
                 <span class="carousel-control-prev-icon" aria-hidden="true"></span>
                 <span class="visually-hidden">Previous</span>
             </button>
-            <button class="carousel-control-next" type="button" data-bs-target="#carouselExampleControls" data-bs-slide="next">
+            <button class="carousel-control-next d-none d-xl-block" type="button" data-bs-target="#carouselExampleControls" data-bs-slide="next">
                 <span class="carousel-control-next-icon" aria-hidden="true"></span>
                 <span class="visually-hidden">Next</span>
             </button>
         </div>
+       
     </div>
+            <!-- Button trigger modal -->
+            <div class="row text-center">
+                <br>
+                <a href="" type="button" style="text-decoration: none;" data-bs-toggle="modal" data-bs-target="#exampleModal">
+                    (+)
+                </a>
+            </div>
+    <script>
+        var p = document.getElementsByClassName("participante");
+        console.log("Se obtuvieron", p.length, "participantes")
+        place = document.getElementById("participantes");
+        place.innerHtml = ""
+        let active = true
+        let newSlide = null;
+        let newRow  = null;
+        let nParticipantes = p.length
+        for(let i=0;i<nParticipantes;i++){
+            console.log(i%2);
+            if(!(i%2)){
+                console.log("create new slide")
+                newSlide = document.createElement('div');
+                newSlide.classList.add("carousel-item");
+                if (active) newSlide.classList.add("active");
+                active = false
+                newRow = document.createElement('div');
+                newRow.classList.add("row");
+                newSlide.appendChild(newRow);
+                place.appendChild(newSlide)
+            }
+            //newRow.appendChild(p[i]);
+            newRow.innerHTML += p[i].innerHTML
+        }
+    </script>
     {% else %}
-        Ainda não há participantes.
+    Ainda não há participantes.
     {% endif  %}
     <!--Contato esta em base.html-->
 </div>
 
-<!-- Button trigger modal -->
-<button type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#exampleModal">
-    Agregar participante
-</button>
-  
-  <!-- Modal -->
-  <div class="modal fade" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+<!-- Modal -->
+<div class="modal fade" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
     <div class="modal-dialog">
-      <form class="modal-content" method="post">
-        {% csrf_token %}
-
-        <div class="modal-header">
-          <h1 class="modal-title fs-5" id="exampleModalLabel">Agregar participante</h1>
-          <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
-        </div>
-        <div class="modal-body">
-          {{form}}
-        </div>
-        <div class="modal-footer">
-          <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
-          <button type="submit" class="btn btn-primary">AgregaR</button>
-        </div>
-      </form>
+        <form class="modal-content" method="post">
+            {% csrf_token %}
+            <div class="modal-header">
+                <h1 class="modal-title fs-5" id="exampleModalLabel">Agregar participante</h1>
+                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+            </div>
+            <div class="modal-body">
+                {{form}}
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+                <button type="submit" class="btn btn-primary">AgregaR</button>
+            </div>
+        </form>
     </div>
-  </div>
-
-  <script defer>
-    //MyJs
-    function newParticipante(p){
-        return String.raw`
-        <div class="participante">
-            <div class="col"></div>
-            <div class="col">
-                <img src="${p.image}" class="rounded-circle" height="100" width="100" style="margin-top:23px">
-            </div>
-            <div class="col">
-                <br><br>
-                <h5>${p.nome}</h5>
-                <p>${p.rol}</p>
-            </div>
-            <div class="col"></div>
-        </div>
-        `
-    }
-    function newSlide(carouselItems, isActive = ""){
-        return String.raw`
-        <div class="carousel-item">
-            <div class="row" ${isActive}>
-                ${carouselItems}
-            </div>
-        </div>`
-    }
-
-    function buidCarouselContent(){
-        let outputParticipantes = ""
-        let slideItems = ""
-        let active = "active"
-        let i = 0;
-        for (p in  {{participantes| safe }}){
-            slideItems += newParticipante(p)
-            if (!(i %2)){
-                if(slideItems){
-                    outputParticipantes +=newSlide(slideItems,active)
-                    slideItems = ""
-                    active = ""
-                }
-                i++
-            }
-        }
-        if(slideItems){
-            outputParticipantes +=newSlide(slideItems)
-            slideItems = ""
-        }
-        document.getElementById("participantes").innerHTML = outputParticipantes
-    }
-
-    buidCarouselContent()
-
-
-</script>
+</div>
 
 {% endblock  %}
