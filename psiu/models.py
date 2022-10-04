@@ -22,7 +22,7 @@ class Estudos(models.Model):
   criador = models.ForeignKey(User, on_delete=models.CASCADE,default=1)
   materia = models.CharField(max_length=10)
   local = models.CharField(max_length=30,blank=True)
-  dataHora = models.DateTimeField(auto_now_add=False)
+  dataHora = models.DateTimeField(blank=True)
   vagas = models.IntegerField(blank=True, default=-1)
   adicionais = models.CharField(max_length=254, default='',blank=True)
   def get_readonly_fields(self, request, obj=None):

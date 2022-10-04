@@ -56,7 +56,7 @@ def filtrar_carona(request, carona_list):
     carona_list = carona_list.filter(nomeCarona__startswith=form.cleaned_data["nomeCarona"]or"")
     carona_list = carona_list.filter(localSaida__startswith=form.cleaned_data["localSaida"]or"")
     carona_list = carona_list.filter(localChegada__startswith=form.cleaned_data["localChegada"]or"")
-    carona_list = carona_list.filter(dataHora__startswith=form.cleaned_data["dataHora"]or"")
+    #carona_list = carona_list.filter(dataHora__startswith=str(datetime.strptime(form.cleaned_data['dataHora'], '%Y-%m-%dT%H:%M'))or"")
     carona_list = carona_list.filter(vagas__startswith=form.cleaned_data["vagas"]or"")
     carona_list = carona_list.filter(adicionais__startswith=form.cleaned_data["adicionais"]or"")
 
@@ -96,14 +96,12 @@ def criar_carona(request):
             if field in form:
                 content[field] = form.get(field)
 
+        print(content['dataHora'])#2022-10-06T22:06
+
         #content['criador_id'] = 
-        print(request.user)
-        #print( content['dataHora'])
-        #content['dataHora'] = datetime.strptime(content['dataHora'], '%Y-%m-%dT%H:%M')
-        #print( content['dataHora'])
+        content['dataHora'] = datetime.strptime(content['dataHora'], '%Y-%m-%dT%H:%M')
 
         carona = Carona(**content)
-        #carona.add_to_class('dataHora', content['dataHora'])
         carona.save()
 
         return redirect(reverse('psiu:carona'))
@@ -155,6 +153,7 @@ def criar_estudos(request):
         for field in fields:
             if field in form:
                 content[field] = form.get(field)
+        content['dataHora'] = datetime.strptime(content['dataHora'], '%Y-%m-%dT%H:%M')
 
         try:
             content['criador_id'] = request.user["perfil"]
@@ -180,12 +179,17 @@ def filtrar_estudos(request, estudos_list):
                 filtro[field] = form.cleaned_data[field]
 
     estudos_list = estudos_list.filter(materia__startswith=form.cleaned_data["materia"]or"")
-
+    estudos_list = estudos_list.filter(local__startswith=form.cleaned_data["local"]or"")
+    #estudos_list = estudos_list.filter(dataHora__startswith=str(datetime.strptime(form.cleaned_data['dataHora'], '%Y-%m-%dT%H:%M'))or"")
+    estudos_list = estudos_list.filter(vagas__startswith=form.cleaned_data["vagas"]or"")
+    estudos_list = estudos_list.filter(adicionais__startswith=form.cleaned_data["adicionais"]or"")
 
     return estudos_list
 
 def grupo_estudos(request):
     grupo_de_estudos = Estudos.objects.all().values() #to update with filters
+
+    print(grupo_de_estudos.values())
     fitro_form = estudosFilter()
     if request.method == "GET":
         for grupo in grupo_de_estudos:
