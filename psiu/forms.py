@@ -27,7 +27,15 @@ class NewUserForm(UserCreationForm):
         self.fields['password1'].widget.attrs.update({"class": "form-control"})
         self.fields['password2'].widget.attrs.update({"class": "form-control"})
 
+class ModificarPerfilForm(forms.ModelForm):
+    class Meta:
+        model = Perfil
+        fields = ('fotoPerfil','bio','twitter','instagram')
 
+    def __init__(self, *args, **kwargs):
+        super().__init__(*args, **kwargs)
+        usuario = self.user
+        self.fields['bio'].widget.attrs.update({'placeholder': usuario.perfil.bio,"class": "form-control"})
 
 class PerfilForm(forms.ModelForm):
     class Meta:
