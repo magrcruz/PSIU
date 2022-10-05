@@ -263,11 +263,11 @@ def logout_request(request):
 
 def modificar_request(request):
     if request.method == "POST":
-        form = ModificarPerfilForm(request.POST, request.FILES)
+        form = ModificarPerfilForm(request.POST, request.FILES, request.user)
         if form.is_valid():
             form.save()
         return redirect(reverse('psiu:user_info'))
     messages.error(request, "Unsuccessful registration. Invalid information.")
-    form = ModificarPerfilForm()
+    form = ModificarPerfilForm(request.user)
 
     return render(request, "psiu/modificar.html", {"form":form})

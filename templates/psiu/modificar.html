@@ -5,43 +5,5 @@
 </a>
 {% endblock %}
 {% block content %}
-<div class="container mt-5">
-    <div class="row mb-4">
-        <div class="col">
-            <div class="input-group mb-3">
-                <label class="input-group-text" for="inputGroupFile01" style="font-weight:bold">Foto de Perfil</label>
-                <input type="file" class="form-control" id="inputGroupFile01">
-            </div>
-        </div>
-    </div>
-    <div class="row mb-4">
-        <div class="col">
-            <div class="input-group mb-3">
-                <span class="input-group-text" id="basic-addon1" style="font-weight:bold">Bio</span>
-                <input type="text" class="form-control" placeholder="Diga mais sobre voce..." aria-label="Username" aria-describedby="basic-addon1">
-            </div>
-        </div>
-    </div>
-    <div class="row">
-        <div class="col">
-            <div class="input-group mb-3">
-                <span class="input-group-text" id="basic-addon1" style="font-weight:bold">Twitter</span>
-                <input type="text" class="form-control" placeholder="(Opcional)" aria-label="Username" aria-describedby="basic-addon1">
-            </div>
-        </div>
-    </div>
-    <div class="row mb-4">
-        <div class="col">
-            <div class="input-group mb-5">
-                <span class="input-group-text" id="basic-addon1" style="font-weight:bold">Instagram</span>
-                <input type="text" class="form-control" placeholder="(Opcional)" aria-label="Username" aria-describedby="basic-addon1">
-            </div>
-        </div>
-    </div>
-    <div class="row mb-4 text-center">
-        <div class="col">
-            <button class="btn btn-info" style="--bs-btn-border-radius: 1rem; --bs-btn-padding-x: 1.2rem; --bs-btn-padding-y: 0.5rem "><h6>Atualizar</h6></button>
-        </div>
-    </div>
-</div>
+{{form.as_p}}
 {% endblock  %}
