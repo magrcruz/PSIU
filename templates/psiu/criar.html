@@ -35,7 +35,7 @@
             <div class="row">
                 <div class="col mb-1">
                     <div class="input-group mb-1">
-                        <span class="input-group-text" id="inputGroup-sizing-default" style="font-weight:650">Nome</span>
+                        <span class="input-group-text" id="inputGroup-sizing-default" style="font-weight:bold">Nome</span>
                         {% csrf_token %}
                         {{ criar_form.first_name }}
                     </div>
@@ -44,7 +44,7 @@
             <div class="row">
                 <div class="col mb-4">
                     <div class="input-group mb-3">
-                        <span class="input-group-text" id="inputGroup-sizing-default" style="font-weight:650">Sobrenome</span>
+                        <span class="input-group-text" id="inputGroup-sizing-default" style="font-weight:bold">Sobrenome</span>
                         {% csrf_token %}
                         {{ criar_form.last_name }}
                     </div>
@@ -53,7 +53,7 @@
             <div class="row">
                 <div class="col mb-4">
                     <div class="input-group mb-3">
-                        <span class="input-group-text" id="inputGroup-sizing-default" style="font-weight:650">E-mail</span>
+                        <span class="input-group-text" id="inputGroup-sizing-default" style="font-weight:bold">E-mail</span>
                         {% csrf_token %}
                         {{ criar_form.email }}
                     </div>
@@ -62,7 +62,7 @@
             <div class="row">
                 <div class="col mb-1">
                     <div class="input-group mb-1">
-                        <span class="input-group-text" id="inputGroup-sizing-default" style="font-weight:650">Foto de perfil</span>
+                        <span class="input-group-text" id="inputGroup-sizing-default" style="font-weight:bold">Foto de perfil</span>
                         {% csrf_token %}
                         {{ profile_form.fotoPerfil }}
                     </div>
@@ -71,7 +71,7 @@
             <div class="row">
                 <div class="col mb-2">
                     <div class="input-group">
-                        <span class="input-group-text" id="inputGroup-sizing-default" style="font-weight:650">Senha</span>
+                        <span class="input-group-text" id="inputGroup-sizing-default" style="font-weight:bold">Senha</span>
                         {% csrf_token %}
                         {{ criar_form.password1 }}
                     </div>
@@ -80,7 +80,7 @@
             <div class="row">
                 <div class="col mb-5">
                     <div class="input-group">
-                        <span class="input-group-text" id="inputGroup-sizing-default" style="font-weight:650">Confirmar Senha</span>
+                        <span class="input-group-text" id="inputGroup-sizing-default" style="font-weight:bold">Confirmar Senha</span>
                         {% csrf_token %}
                         {{ criar_form.password2 }}
                     </div>
