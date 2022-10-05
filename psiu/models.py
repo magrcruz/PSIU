@@ -63,7 +63,7 @@ class Ligas(models.Model):
 class Perfil(models.Model):
   user = models.OneToOneField(User, on_delete=models.CASCADE)
   bio = models.CharField(max_length=30,default='')
-  fotoPerfil = models.ImageField(upload_to='images/',default='images/')
+  fotoPerfil = models.ImageField(upload_to='images/',default='images/default.png')
   instagram = models.CharField(max_length=20,default='')
   twitter = models.CharField(max_length=15,default='')
   def get_readonly_fields(self, request, obj=None):
