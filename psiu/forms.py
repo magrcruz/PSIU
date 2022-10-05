@@ -34,8 +34,8 @@ class ModificarPerfilForm(forms.ModelForm):
 
     def __init__(self, *args, **kwargs):
         super().__init__(*args, **kwargs)
-        #usuario = self.user
-        #self.fields['bio'].widget.attrs.update({'placeholder': usuario.perfil.bio,"class": "form-control"})
+        self.fields['bio'].widget.attrs.update({'placeholder': usuario.perfil.bio,"class": "form-control"})
+
 
 class PerfilForm(forms.ModelForm):
     class Meta:
