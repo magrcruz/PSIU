@@ -22,29 +22,82 @@
   </head>
   <body>
     <!-- NAVBAR -->
-    <div style="background-color: #6FA8FF;" class="container-fluid p-4 text-black text-center">
-        <h1>
-          <a href="{% url 'psiu:main' %}" style="color: black;text-decoration: none;">Psiu!</a>
-        </h1>
-        <p>_</p>
-        <div class="position-relative">
-            {% block image-page %}
-            <a href="{% url 'psiu:main' %}">
-              <img src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAOEAAADhCAMAAAAJbSJIAAAAMFBMVEXp7vG6vsG3u77s8fTCxsnn7O/f5OfFyczP09bM0dO8wMPk6ezY3eDd4uXR1tnJzdBvAX/cAAACVElEQVR4nO3b23KDIBRA0ShGU0n0//+2KmO94gWZ8Zxmr7fmwWEHJsJUHw8AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAwO1MHHdn+L3rIoK6eshsNJ8kTaJI07fERPOO1Nc1vgQm2oiBTWJ+d8+CqV1heplLzMRNonED+4mg7L6p591FC+133/xCRNCtd3nL9BlxWP++MOaXFdEXFjZ7r8D9l45C8y6aG0cWtP/SUGhs2d8dA/ZfGgrzYX+TVqcTNRRO9l+fS5eSYzQs85psUcuzk6igcLoHPz2J8gvzWaH/JLS+95RfOD8o1p5CU5R7l5LkfKEp0mQ1UX7hsVXqDpRrifILD/3S9CfmlUQFhQfuFu0STTyJ8gsP3PH7GVxN1FC4t2sbBy4TNRTu7LyHJbqaqKFw+/Q0ncFloo7CjRPwMnCWqKXQZ75El4nKC9dmcJaou9AXOE5UXbi+RGeJygrz8Uf+GewSn9uXuplnWDZJ7d8f24F/s6iq0LYf9olbS3Q8i5oKrRu4S9ybwaQ/aCkqtP3I28QDgeoK7TBya/aXqL5COx67PTCD2grtdOwH+pQV2r0a7YVBgZoKwwIVFQYG6ikMDVRTGByopjD8ATcKb0UhhRTe77sKs2DV7FKSjId18TUEBYVyLhUThWfILHTDqmI85/2RWWjcE/bhP6OD7maT3h20MHsA47JC3PsW0wcwLhv9t0OOPOIkCn21y2bXXwlyylxiYMPk1SuCSmpfK8bNQvIrpAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAADwNX4BCbAju9/X67UAAAAASUVORK5CYII=" class="mx-auto d-block rounded-circle position-absolute top-100 start-50 translate-middle" height="100" width="100" style="margin-top:23px">
-            </a>
+      <div style="background-color: #6FA8FF;" class="container-fluid p-4 text-black text-center">
+          <button class="btn btn-info position-absolute top-0 start-0" type="button" data-bs-toggle="offcanvas" data-bs-target="#offcanvasExample" aria-controls="offcanvasExample">
+              Menuzinho
+          </button>
+          <div class="offcanvas offcanvas-start" style="background-color: #6FA8FF;" tabindex="-1" id="offcanvasExample" aria-labelledby="offcanvasExampleLabel">
+              <div class="offcanvas-header">
+                  <h5 class="offcanvas-title" id="offcanvasExampleLabel">Psiu!</h5>
+                  <button type="button" class="btn-close" data-bs-dismiss="offcanvas" aria-label="Close"></button>
+              </div>
+              <div class="offcanvas-body">
+                  <div class="container">
+                      <div class="row mb-4">
+                          <div class="col">
+                              <a id="conhecer-pessoas-link" class="btn btn-white" href="{% url 'psiu:carona' %}" role="button"><img src="https://cdn.discordapp.com/attachments/1004623388758777966/1019419664142581821/unknown.png" class="rounded-circle" height="75" width="75"></a>
+                          </div>
+                          <div class="col mt-4">
+                              Carona
+                          </div>
+                      </div>
+                      <div class="row mb-4">
+                          <div class="col">
+                              <a id="conhecer-pessoas-link" class="btn btn-white" href="{% url 'psiu:grupo_estudos' %}" role="button"><img src="https://cdn.discordapp.com/attachments/1004623388758777966/1019419539966013521/unknown.png" class="rounded-circle" height="75" width="75"></a>
+                          </div>
+                          <div class="col mt-4">
+                              Grupo de Estudos
+                          </div>
+                      </div>
+                      <div class="row mb-4">
+                          <div class="col">
+                              <a id="conhecer-pessoas-link" class="btn btn-white" href="{% url 'psiu:extracurriculares' %}" role="button"><img src="https://cdn.discordapp.com/attachments/1004623388758777966/1019419758216617984/unknown.png" class="rounded-circle" height="75" width="75"></a>
+                          </div>
+                          <div class="col mt-3">
+                              Atividades Extracurriculares
+                          </div>
+                      </div>
+                      <div class="row mb-4">
+                          <div class="col">
+                              <a id="conhecer-pessoas-link" class="btn btn-white" href="{% url 'psiu:ligas_academicas' %}" role="button"><img src="https://cdn.discordapp.com/attachments/1004623388758777966/1019419863707557938/unknown.png" class="rounded-circle" height="75" width="75"></a>
+                          </div>
+                          <div class="col mt-4">
+                              Ligas Academicas
+                          </div>
+                      </div>
+                      <div class="row mb-4">
+                          <div class="col">
+                              <a id="conhecer-pessoas-link" class="btn btn-white" href="{% url 'psiu:conhecer_pessoas' %}" role="button"><img src="https://cdn.discordapp.com/attachments/1004623388758777966/1019419982062436403/unknown.png" class="rounded-circle" height="75" width="75"></a>
+                          </div>
+                          <div class="col mt-4">
+                              Conhecer Pessoas
+                          </div>
+                      </div>
+                  </div>
+              </div>
+          </div>
+          <h1>
+              <a href="{% url 'psiu:main' %}" style="color: black;text-decoration: none;">Psiu!</a>
+          </h1>
+          <p>_</p>
+          <div class="position-relative">
+              {% block image-page %}
+              <a href="{% url 'psiu:main' %}">
+                  <img src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAOEAAADhCAMAAAAJbSJIAAAAMFBMVEXp7vG6vsG3u77s8fTCxsnn7O/f5OfFyczP09bM0dO8wMPk6ezY3eDd4uXR1tnJzdBvAX/cAAACVElEQVR4nO3b23KDIBRA0ShGU0n0//+2KmO94gWZ8Zxmr7fmwWEHJsJUHw8AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAwO1MHHdn+L3rIoK6eshsNJ8kTaJI07fERPOO1Nc1vgQm2oiBTWJ+d8+CqV1heplLzMRNonED+4mg7L6p591FC+133/xCRNCtd3nL9BlxWP++MOaXFdEXFjZ7r8D9l45C8y6aG0cWtP/SUGhs2d8dA/ZfGgrzYX+TVqcTNRRO9l+fS5eSYzQs85psUcuzk6igcLoHPz2J8gvzWaH/JLS+95RfOD8o1p5CU5R7l5LkfKEp0mQ1UX7hsVXqDpRrifILD/3S9CfmlUQFhQfuFu0STTyJ8gsP3PH7GVxN1FC4t2sbBy4TNRTu7LyHJbqaqKFw+/Q0ncFloo7CjRPwMnCWqKXQZ75El4nKC9dmcJaou9AXOE5UXbi+RGeJygrz8Uf+GewSn9uXuplnWDZJ7d8f24F/s6iq0LYf9olbS3Q8i5oKrRu4S9ybwaQ/aCkqtP3I28QDgeoK7TBya/aXqL5COx67PTCD2grtdOwH+pQV2r0a7YVBgZoKwwIVFQYG6ikMDVRTGByopjD8ATcKb0UhhRTe77sKs2DV7FKSjId18TUEBYVyLhUThWfILHTDqmI85/2RWWjcE/bhP6OD7maT3h20MHsA47JC3PsW0wcwLhv9t0OOPOIkCn21y2bXXwlyylxiYMPk1SuCSmpfK8bNQvIrpAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAADwNX4BCbAju9/X67UAAAAASUVORK5CYII=" class="mx-auto d-block rounded-circle position-absolute top-100 start-50 translate-middle" height="100" width="100" style="margin-top:23px">
+              </a>
 
-            {% endblock %}
-        </div>
-    </div>
+              {% endblock %}
+          </div>
+      </div>
     <div style="height: 50px;"></div>
     <!-- END OF NAVBAR-->
 
     <div class="container text">
     {% if title %}
     
-      <center>
-        <p>{{title}}</p>
-      </center>
+        <center>
+            <p>{{title}}</p>
+        </center>
     
     {% endif %}
     <!--<div class="container-fluid mt-5" style="max-width: 80%">-->
