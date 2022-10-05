@@ -72,13 +72,7 @@
         </div>
        
     </div>
-            <!-- Button trigger modal -->
-            <div class="row text-center">
-                <br>
-                <a href="" type="button" style="text-decoration: none;" data-bs-toggle="modal" data-bs-target="#exampleModal">
-                    (+)
-                </a>
-            </div>
+            
     <script>
         var p = document.getElementsByClassName("participante");
         console.log("Se obtuvieron", p.length, "participantes")
@@ -108,6 +102,13 @@
     {% else %}
     Ainda não há participantes.
     {% endif  %}
+    <!-- Button trigger modal -->
+    <div class="row text-center">
+        <br>
+        <a href="" type="button" style="text-decoration: none;" data-bs-toggle="modal" data-bs-target="#exampleModal">
+            (+)
+        </a>
+    </div>
     <!--Contato esta em base.html-->
 </div>
 
