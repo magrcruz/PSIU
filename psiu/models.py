@@ -60,6 +60,30 @@ class Ligas(models.Model):
   def get_readonly_fields(self, request, obj=None):
     return [f.name for f in self._meta.get_fields()]
 
+from django.contrib.auth.backends import ModelBackend, UserModel
+from django.db.models import Q
+
+class EmailBackend(ModelBackend):
+    def authenticate(self, request, username=None, password=None, **kwargs):
+        try: #to allow authentication through phone number or any other field, modify the below statement
+            user = UserModel.objects.get(Q(username__iexact=username) | Q(email__iexact=username))
+        except UserModel.DoesNotExist:
+            UserModel().set_password(password)
+        except MultipleObjectsReturned:
+            return User.objects.filter(email=username).order_by('id').first()
+        else:
+            if user.check_password(password) and self.user_can_authenticate(user):
+                return user
+
+    def get_user(self, user_id):
+        try:
+            user = UserModel.objects.get(pk=user_id)
+        except UserModel.DoesNotExist:
+            return None
+
+        return user if self.user_can_authenticate(user) else None
+
+
 class Perfil(models.Model):
   user = models.OneToOneField(User, on_delete=models.CASCADE)
   bio = models.CharField(max_length=30,default='')
