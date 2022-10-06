@@ -208,7 +208,7 @@ def grupo_estudos(request):
 
 
 def extracurriculares(request):
-    return render(request, 'base.html',{'title':'Actividades extracurriculares'})
+    return render(request, 'psiu/extracurriculares.html', {})
 def ligas_academicas(request):
     return render(request, 'base.html',{'title':'Ligas Academicas'})
 def conhecer_pessoas(request):

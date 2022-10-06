@@ -1,0 +1,59 @@
+{% extends 'base.html' %}
+{% block image-page %}
+    <img src="https://media.discordapp.net/attachments/1004623388758777966/1019419758216617984/unknown.png" class="mx-auto d-block rounded-circle position-absolute top-100 start-50 translate-middle" height="100" width="100" style="margin-top:23px">
+{% endblock %}
+{% block content %}
+
+<a href="#">+ Adicionar atividade</a>
+
+
+<!doctype html>
+<html lang = "pt-br">
+
+<div class = "text-center" style = "color: rgba(0,0,0,1)">
+    <div class="row">
+        <div class="col">
+        </div>
+        <div class="col">
+        </div>
+        <div class="col">
+            <button type="button" class="btn btn-secondary btn-sm" data-toggle="modal" data-target="#fitro_form">
+                Filtrar por ↓
+            </button>
+        </div>
+    </div>
+    <br>
+    <div class="row">
+        <div class="center">
+            <div class="input-group mb-3 ms-4">
+                <input type="text" class="form-control" placeholder="Barra de pesquisa" aria-label="Recipient's username" aria-describedby="basic-addon2" width="100">
+                <button class="btn btn-outline-secondary me-5" type="button" id="button-addon2">P</button>
+              </div>
+        </div>
+    </div>
+    
+</div>
+
+<br>
+
+    <div class="row carona-card">
+        <div class="d-grid gap-2 col">
+
+            <a href="#" class="btn btn-outline-secondary mb-4 ms-5 me-5" >
+                <div class="card-body">
+                    <div class="row">
+                        <div class="col">
+                            <h5 class="card-title">Ana Luiza</h5>
+                            <p class="card-text">Atividade extracurricular<br></p>
+                        </div>
+                        <div class="col">
+                            <p class="card-text">28/09 - 15:00</p>
+                            <p class="card-text">Vagas disponíveis: mais que 1</p>
+                        </div>
+                    </div>
+                </div>
+            </a>
+        </div>
+        <br>
+    </div>
+{% endblock %}
