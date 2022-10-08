@@ -1,0 +1,83 @@
+- model: auth.user
+  pk: 1
+  fields:
+    username: director
+    first_name: bob
+    last_name: tor
+    is_active: True
+    is_superuser: True
+    is_staff: True
+    password: bobtor
+    email: bob@psiu.com
+- model: psiu.perfil
+  pk: 1
+  fields:
+    user : 1
+- model: auth.user
+  pk: 2
+  fields:
+    username: analuiza
+    first_name: Ana
+    last_name: Marques 
+    is_active: True
+    is_superuser: False
+    password: analuiza12
+    email: analuiza@psiu.com
+- model: psiu.perfil
+  pk: 2
+  fields:
+    user : 2
+    bio : The best things come from living outside of your comfort zone.
+    fotoPerfil : images/p2.png
+    instagram : myperfil
+- model: auth.user
+  pk: 3
+  fields:
+    username: joaopedro
+    first_name: Joao
+    last_name: Cunha 
+    is_active: True
+    is_superuser: False
+    password: joaopedro12
+    email: joaopedro@psiu.com
+- model: psiu.perfil
+  pk: 3
+  fields:
+    user : 3
+    bio : Welcome to my world
+    fotoPerfil : images/71b9p7Y3UhL.png
+    instagram : myperfil
+- model: auth.user
+  pk: 4
+  fields:
+    username: pedromannarino
+    first_name: Pedro
+    last_name: Mannarino 
+    is_active: True
+    is_superuser: False
+    password: pedromannarino12
+    email: pedromannarino@psiu.com
+- model: psiu.perfil
+  pk: 4
+  fields:
+    user : 4
+    bio : streaming on Netflix!
+    fotoPerfil : images/p4.png
+    instagram : myperfil
+- model: auth.user
+  pk: 5
+  fields:
+    username: mariacruz
+    first_name: Maria
+    last_name: Cruz 
+    is_active: True
+    is_superuser: False
+    password: mariacruz12
+    email: mariacruz@psiu.com
+- model: psiu.perfil
+  pk: 5
+  fields:
+    user : 5
+    bio : Coming Soon!
+    fotoPerfil : images/p5.jfif
+    instagram : myperfil

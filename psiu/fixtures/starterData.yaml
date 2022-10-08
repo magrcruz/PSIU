@@ -1,0 +1,118 @@
+- model: psiu.carona
+  pk: 1
+  fields:
+    criador : 2
+    localSaida : PUC
+    localChegada : Barra da Tijuca
+    dataHora : 2022-08-19T06:00:00-03:00
+    vagas : 4
+    adicionais : Chegaremos a PUC?
+- model: psiu.carona
+  pk: 2
+  fields:
+    criador : 2
+    localSaida : Barra da Tijuca
+    localChegada : PUC
+    dataHora : 2022-08-19T15:00:00-03:00
+    vagas : 3
+    adicionais : Voltamos a casa e pasamos por leblon
+- model: psiu.carona
+  pk: 3
+  fields:
+    criador : 4
+    localSaida : Flamengo
+    localChegada : PUC
+    dataHora : 2022-04-29T11:53:40-03:00
+    vagas : 2
+    adicionais : Uma viagem sem retorno
+- model: psiu.estudos
+  pk: 1
+  fields:
+    criador : 2
+    materia : INF1403
+    local : LABGRAD
+    dataHora : 2022-08-12T13:45:00-03:00
+    vagas : 2
+    adicionais : Revisamos o roteiro
+- model: psiu.estudos
+  pk: 2
+  fields:
+    criador : 5
+    materia : INF1039
+    local : LABGRAD
+    dataHora : 2022-05-10T03:20:14-03:00
+    vagas : 5
+    adicionais : Compartilharemos duvidas sobre Django
+- model: psiu.participacaogrupoestudos
+  pk: 1
+  fields:
+    id_participante : 2
+    id_grupo : 1
+    rol : Administrador
+- model: psiu.participacaogrupoestudos
+  pk: 2
+  fields:
+    id_participante : 3
+    id_grupo : 1
+    rol : Sem rol
+- model: psiu.participacaogrupoestudos
+  pk: 3
+  fields:
+    id_participante : 5
+    id_grupo : 2
+    rol : Criador
+- model: psiu.participacaogrupoestudos
+  pk: 4
+  fields:
+    id_participante : 2
+    id_grupo : 2
+    rol : Criador
+- model: psiu.extra
+  pk: 1
+  fields:
+    criador : 3
+    atividade : Dota
+    local : Casa do Bob
+    dataHora : 2022-11-24T17:05:13-03:00
+    vagas : 4
+    adicionais : Queremos ganhar o torneo
+- model: psiu.extra
+  pk: 2
+  fields:
+    criador : 4
+    atividade : Lol
+    local : Casa do Pedro
+    dataHora : 2022-11-29T03:25:57-03:00
+    vagas : 1
+    adicionais : Jogar ou não jogar
+- model: psiu.conhecer
+  pk: 1
+  fields:
+    criador : 4
+    interesses : Jogar videogames, programação, sair à praia
+    local : Praia de Flamengo
+    dataHora : 2022-06-02T20:44:33-03:00
+    vagas : 3
+    adicionais : Procuramos gente O.o
+- model: psiu.conhecer
+  pk: 2
+  fields:
+    criador : 2
+    interesses : Assistir filmes
+    local : Kinoplex - Barra da Tijuca
+    dataHora : 2022-01-06T21:52:32-03:00
+    vagas : 5
+    adicionais : Alguem quer ver uma pelicula?
+- model: psiu.ligas
+  pk: 1
+  fields:
+    criador : 3
+    nomeLiga : La Liga liga você
+    adicionais : Estamos trabalhando no nome
+- model: psiu.ligas
+  pk: 2
+  fields:
+    criador : 5
+    nomeLiga : Industria 4.0
+    adicionais : Trabalhando no futuro
+    

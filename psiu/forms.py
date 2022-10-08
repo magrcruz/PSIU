@@ -52,11 +52,10 @@ class PerfilForm(forms.ModelForm):
 class caronaFilter(forms.ModelForm):
     class Meta:
         model = Carona
-        fields = ('nomeCarona', 'localSaida', 'localChegada', 'dataHora', 'vagas', 'adicionais')
+        fields = ('localSaida', 'localChegada', 'dataHora', 'vagas', 'adicionais')
     def __init__(self, *args, **kwargs):
         super().__init__(*args, **kwargs)
         #self.fields['criador'].widget.attrs.update({"class": "form-control"})
-        self.fields['nomeCarona'].widget.attrs.update({"class": "form-control"})
         self.fields['localSaida'].widget.attrs.update({"class": "form-control"})
         self.fields['localChegada'].widget.attrs.update({"class": "form-control"})
         self.fields['dataHora'].widget.attrs.update({"class": "form-control"})

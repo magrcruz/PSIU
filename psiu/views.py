@@ -53,7 +53,6 @@ def filtrar_carona(request, carona_list):
                 filtro[field] = form.cleaned_data[field]
 
     #carona_list = carona_list.filter(criador__startswith=form.cleaned_data["criador"])
-    carona_list = carona_list.filter(nomeCarona__startswith=form.cleaned_data["nomeCarona"]or"")
     carona_list = carona_list.filter(localSaida__startswith=form.cleaned_data["localSaida"]or"")
     carona_list = carona_list.filter(localChegada__startswith=form.cleaned_data["localChegada"]or"")
     #carona_list = carona_list.filter(dataHora__startswith=str(datetime.strptime(form.cleaned_data['dataHora'], '%Y-%m-%dT%H:%M'))or"")
@@ -253,8 +252,6 @@ def login_request(request):
 			messages.error(request,"Invalid username or password.")
 	form = AuthenticationForm()
 	return render(request, "psiu/login.html", {"login_form":form})
-
-
 
 def logout_request(request):
     if request.user.is_authenticated:
