@@ -28,7 +28,7 @@
   fields:
     user : 2
     bio : The best things come from living outside of your comfort zone.
-    fotoPerfil : images/p2.png
+    fotoPerfil : images/p2.jpg
     instagram : myperfil
 - model: auth.user
   pk: 3
