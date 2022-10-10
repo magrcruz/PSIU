@@ -62,7 +62,7 @@
   fields:
     user : 4
     bio : streaming on Netflix!
-    fotoPerfil : images/p4.png
+    fotoPerfil : images/p4.jpg
     instagram : myperfil
 - model: auth.user
   pk: 5

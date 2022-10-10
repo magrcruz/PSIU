@@ -52,8 +52,14 @@ def info_estudos(request, id):
     
     for p in participantes:
         perfil = Perfil.objects.get(user_id = p['id_participante_id'])
-        if perfil.fotoPerfil: p["image"] = perfil.fotoPerfil#"images/default.png"
-        else: p["image"] = "images/default.png"
+        if perfil is not None and perfil.fotoPerfil:
+            p["image"] = perfil.fotoPerfil#"images/default.png"
+        else:
+            p["image"] = "images/default.png"
+        usuario = User.objects.get(pk = p['id_participante_id'])
+        if usuario is not None and usuario.first_name:
+            p["nome"] = usuario.first_name
+
     
     #ParticipacaoGrupoEstudos.objects.get(id_grupo = id)
     criador = getTestPerfil()
