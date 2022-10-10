@@ -15,6 +15,16 @@
         </div>
     {% endfor %}
 </div>
+{% endblock %}
 
-
+{% block scripts %}
+    <script>
+        const chatSocket = new WebSocket(
+            'ws://'
+            + window.location.host
+            + '/ws/'
+            + roomName
+            + '/'
+        );
+    </script>
 {% endblock %}
