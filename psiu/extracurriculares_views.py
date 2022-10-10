@@ -1,6 +1,6 @@
 from psiu.views_common import *
 
-def filtrar_extra(request, carona_list):
+def filtrar_extra(request, extra_list):
     '''
     carona = Extra()
 
@@ -23,6 +23,7 @@ def filtrar_extra(request, carona_list):
 
     return carona_list
     '''
+    return extra_list
 
 def extracurriculares(request):
     extra_list = Extra.objects.all().values()
@@ -41,7 +42,7 @@ def extracurriculares(request):
 
     return render(request, 'psiu/extracurriculares.html',{'title':'Atividades Extracurriculares', 'extracurriculares':extra_list,'fitro_form':fitro_form})
 
-def criar_extra(request):
+def criar_extracurricular(request):
     print(request.user)
     if request.method == "GET":
         extra_temp = None
@@ -57,13 +58,14 @@ def criar_extra(request):
         for field in fields:
             if field in form:
                 content[field] = form.get(field)
-        
+
+        content['criador_id'] = 1
         content['dataHora'] = datetime.strptime(content['dataHora'], '%Y-%m-%dT%H:%M')
 
         extra = Extra(**content)
         extra.save()
 
-        return redirect(reverse('psiu:extra'))
+        return redirect(reverse('psiu:extracurriculares'))
 
 def view_extra(request, id):
     extra = Extra.objects.get(pk = id)
