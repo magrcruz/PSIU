@@ -14,6 +14,7 @@ urlpatterns = [
     path('login/', views.login_request, name='login'),
     path('logout/', views.logout_request, name='logout'),
     path('modificar/', views.modificar_request, name='modificar'),
+    path('salas/',views.salas, name='Sala de chat'),
 
     #criar
     path('criar_carona/',views.criar_carona, name='criar_carona'),
