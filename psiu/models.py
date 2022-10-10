@@ -16,7 +16,7 @@ class Carona(models.Model):
 
   def get_readonly_fields(self, request, obj=None):
     return [f.name for f in self._meta.get_fields()]
-  
+
 class Estudos(models.Model):
   criador = models.ForeignKey(User, on_delete=models.CASCADE,default=1)
   materia = models.CharField(max_length=10)
@@ -91,3 +91,7 @@ class Perfil(models.Model):
   twitter = models.CharField(max_length=15,default='')
   def get_readonly_fields(self, request, obj=None):
     return [f.name for f in self._meta.get_fields()]
+
+class Sala(models.Model):
+  nome = models.CharField(max_length=255)
+  slug = models.SlugField(unique=True)

@@ -90,3 +90,8 @@ def modificar_request(request):
     form = ModificarPerfilForm(request.user)
 
     return render(request, "psiu/modificar.html", {"form":form})
+
+@login_required
+def salas(request):
+    salas = Sala.objects.all()
+    return render(request, 'psiu/salas.html', {'salas': salas})
