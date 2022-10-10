@@ -67,11 +67,11 @@ def criar_extracurricular(request):
 
         return redirect(reverse('psiu:extracurriculares'))
 
-def view_extra(request, id):
+def info_extracurricular(request, id):
     extra = Extra.objects.get(pk = id)
     criador = getTestPerfil()
     try:
         criador = Perfil.objects.get(pk = extra.criador)
     except:
         print("Criador not found")
-    return render(request, 'psiu/info_carona.html',{'extra':extra,'contato':criador})
+    return render(request, 'psiu/info_extracurricular.html',{'extra':extra,'contato':criador})

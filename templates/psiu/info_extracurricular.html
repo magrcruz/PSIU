@@ -1,0 +1,44 @@
+{% extends 'base.html' %}
+{% block image-page %}
+<img src="https://media.discordapp.net/attachments/1004623388758777966/1019419758216617984/unknown.png" class="mx-auto d-block rounded-circle position-absolute top-100 start-50 translate-middle" height="100" width="100" style="margin-top:23px">
+{% endblock %}
+{% block content %}
+<!doctype html>
+<p class="text-center">{{extra.adicionais}}</p>
+<div class = "" style = "color: rgba(0,0,0,1)">
+    <h5>Dados</h5>
+    <div class="row">
+        <div class="d-grid gap-2 col mx-auto">
+            <button class="btn btn-outline-secondary" type="button">
+                <div class="card-body">
+                    <div class="row">
+                        <div class="col">
+                        </div>
+                        <div class="col">
+                        </div>
+                        <div class="col">
+                            <p class="card-text">{{extra.dataHora}}</p>
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="col">
+                            <p class="card-text-left">Local: {{extra.local}}</p>
+                        </div>
+                        <div class="col">
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="col">
+                        </div>
+                        <div class="col">
+                            <p class="card-text">Vagas disponíveis: {{extra.vagas}}</p>
+                        </div>
+                    </div>
+                </div>
+            </button>
+        </div>
+    </div>
+    <br>
+
+
+{% endblock %}

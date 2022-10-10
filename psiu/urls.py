@@ -24,5 +24,6 @@ urlpatterns = [
     path('view_carona/<id>', views.view_carona, name='view_carona'),
     path('info_estudos/<id>', views.info_estudos, name='info_estudos'),
     path('info_perfil/<id>', views.info_perfil, name='info_perfil'),
+    path('info_extracurricular/<id>', views.info_extracurricular, name='info_extracurricular'),
 
 ]
