@@ -11,6 +11,18 @@ import os
 
 from django.core.asgi import get_asgi_application
 
+from psiu.auth import AuthMiddlewareStack
+from psiu.routing import ProtocolTypeRouter, URLRouter
+
+
 os.environ.setdefault('DJANGO_SETTINGS_MODULE', 'project.settings')
 
-application = get_asgi_application()
+application = ProtocolTypeRouter({
+    "http": get_asgi_application(),
+    "websocket": AuthMiddlewareStack(
+        URLRouter(
+            sala.routing.websocket_urlpatterns
+        )
+
+    )
+})

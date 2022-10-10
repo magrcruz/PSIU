@@ -17,6 +17,6 @@ class ChatChatter(AsyncWebsockedConsumer):
 
     async def disconnect(self):
         await self.channel_layer.group_discard(
-            
+            self.sala_grupo_nome,
+            self.channel_nome
         )
-
