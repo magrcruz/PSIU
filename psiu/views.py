@@ -32,6 +32,32 @@ def user_info(request):
 
 def extracurriculares(request):
     return render(request, 'psiu/extracurriculares.html', {})
+
+def criar_extracurricular(request):
+    if request.method == "GET":
+        return render(request, 'psiu/criar_extracurricular.html', {})
+
+    elif request.method == "POST":
+        extracurriculares = Extracurriculares()
+
+        # there is a better way to do this with forms.py
+        form = request.POST.dict()
+        fields = extracurriculares.get_readonly_fields(request)
+        content = {} 
+        for field in fields:
+            if field in form:
+                content[field] = form.get(field)
+        content['dataHora'] = datetime.strptime(content['dataHora'], '%Y-%m-%dT%H:%M')
+
+        '''
+        content['criador_id'] = 1#Fix
+        '''
+        extracurriculares = Extracurriculares(**content)
+        extracurriculares.save()
+
+        return redirect(reverse('psiu:extracurriculares'))
+
+
 def ligas_academicas(request):
     return render(request, 'base.html',{'title':'Ligas Academicas'})
 def conhecer_pessoas(request):

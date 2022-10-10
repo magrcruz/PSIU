@@ -18,7 +18,7 @@ urlpatterns = [
     #criar
     path('criar_carona/',views.criar_carona, name='criar_carona'),
     path('criar_estudos/',views.criar_estudos, name='criar_estudos'),
-
+    path('criar_extracurricular/',views.criar_extracurricular, name='criar_extracurricular'),
 
     #views
     path('view_carona/<id>', views.view_carona, name='view_carona'),
