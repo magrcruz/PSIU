@@ -1,7 +1,7 @@
 from django import forms
 from django.contrib.auth.forms import UserCreationForm
 from django.contrib.auth.models import *
-from .models import Carona, Perfil, Estudos, ParticipacaoGrupoEstudos
+from .models import *
 
 # Create your forms here.
 
@@ -70,6 +70,18 @@ class estudosFilter(forms.ModelForm):
         super().__init__(*args, **kwargs)
         #self.fields['criador'].widget.attrs.update({"class": "form-control"})
         self.fields['materia'].widget.attrs.update({"class": "form-control"})
+        self.fields['local'].widget.attrs.update({"class": "form-control"})
+        self.fields['dataHora'].widget.attrs.update({"class": "form-control"})
+        self.fields['vagas'].widget.attrs.update({"class": "form-control"})
+        self.fields['adicionais'].widget.attrs.update({"class": "form-control"})
+
+class extraFilter(forms.ModelForm):
+    class Meta:
+        model = Extra
+        fields = ('atividade', 'local', 'dataHora', 'vagas', 'adicionais')
+    def __init__(self, *args, **kwargs):
+        super().__init__(*args, **kwargs)
+        self.fields['atividade'].widget.attrs.update({"class": "form-control"})
         self.fields['local'].widget.attrs.update({"class": "form-control"})
         self.fields['dataHora'].widget.attrs.update({"class": "form-control"})
         self.fields['vagas'].widget.attrs.update({"class": "form-control"})

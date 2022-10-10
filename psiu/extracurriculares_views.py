@@ -1,33 +1,30 @@
 from psiu.views_common import *
 
 def filtrar_extra(request, extra_list):
-    '''
-    carona = Extra()
+    
+    extra = Extra()
 
     # there is a better way to do this with forms.py
-    form = caronaFilter(request.POST)
+    form = extraFilter(request.POST)
     if form.is_valid():
-        fields = carona.get_readonly_fields(request)
+        fields = extra.get_readonly_fields(request)
         filtro = {}
         
         for field in fields:
             if field in form.cleaned_data:
                 filtro[field] = form.cleaned_data[field]
 
-    #carona_list = carona_list.filter(criador__startswith=form.cleaned_data["criador"])
-    carona_list = carona_list.filter(localSaida__startswith=form.cleaned_data["localSaida"]or"")
-    carona_list = carona_list.filter(localChegada__startswith=form.cleaned_data["localChegada"]or"")
-    #carona_list = carona_list.filter(dataHora__startswith=str(datetime.strptime(form.cleaned_data['dataHora'], '%Y-%m-%dT%H:%M'))or"")
-    carona_list = carona_list.filter(vagas__startswith=form.cleaned_data["vagas"]or"")
-    carona_list = carona_list.filter(adicionais__startswith=form.cleaned_data["adicionais"]or"")
+    extra_list = extra_list.filter(atividade__startswith=form.cleaned_data["atividade"]or"")
+    extra_list = extra_list.filter(localSaida__startswith=form.cleaned_data["localSaida"]or"")
+    extra_list = extra_list.filter(localChegada__startswith=form.cleaned_data["localChegada"]or"")
+    extra_list = extra_list.filter(vagas__startswith=form.cleaned_data["vagas"]or"")
+    extra_list = extra_list.filter(adicionais__startswith=form.cleaned_data["adicionais"]or"")
 
-    return carona_list
-    '''
+
     return extra_list
 
 def extracurriculares(request):
     extra_list = Extra.objects.all().values()
-    print(extra_list)
     fitro_form = None#caronaFilter()
     if request.method == "GET":
         for extra in extra_list:
