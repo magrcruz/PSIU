@@ -1,7 +1,8 @@
 from psiu.views_common import *
 
-def filtrar_carona(request, carona_list):
-    carona = Carona()
+def filtrar_extra(request, carona_list):
+    '''
+    carona = Extra()
 
     # there is a better way to do this with forms.py
     form = caronaFilter(request.POST)
@@ -21,37 +22,37 @@ def filtrar_carona(request, carona_list):
     carona_list = carona_list.filter(adicionais__startswith=form.cleaned_data["adicionais"]or"")
 
     return carona_list
+    '''
 
-def carona(request):
-    carona_list = Carona.objects.all().values() #to update with filters
-    fitro_form = caronaFilter()
+def extracurriculares(request):
+    extra_list = Extra.objects.all().values()
+    fitro_form = None#caronaFilter()
     if request.method == "GET":
-        for carona in carona_list:
-            if 'criador_id' in carona and carona['criador_id']!="NULL":
-                user = User.objects.get(pk=carona['criador_id'])
+        for extra in extra_list:
+            extra['nomeUser'] = "User not found"
+            if 'criador_id' in extra and extra['criador_id']!="NULL":
+                user = User.objects.get(pk=extra['criador_id'])
                 name = user.first_name
                 if name:
-                    carona['nomeUser'] = name
-                    continue
-            carona['nomeUser'] = "User not found"
+                    extra['nomeUser'] = name
 
     elif request.method == "POST":
-        carona_list = filtrar_carona(request,carona_list)
+        extra_list = filtrar_extra(request,extra_list)
 
-    return render(request, 'psiu/carona.html',{'title':'Carona', 'carona_list':carona_list,'fitro_form':fitro_form})
+    return render(request, 'psiu/extracurriculares.html',{'title':'Atividades Extracurriculares', 'extracurriculares':extra_list,'fitro_form':fitro_form})
 
-def criar_carona(request):
-    print(request)
+def criar_extra(request):
+    print(request.user)
     if request.method == "GET":
-        carona_temp = None
-        return render(request, 'psiu/criar_carona.html', {'carona_temp':carona_temp})
+        extra_temp = None
+        return render(request, 'psiu/criar_extracurricular.html', {'extra_temp':extra_temp})
 
     elif request.method == "POST":
-        carona = Carona()
+        extra = Extra()
 
         # there is a better way to do this with forms.py
         form = request.POST.dict()
-        fields = carona.get_readonly_fields(request)
+        fields = extra.get_readonly_fields(request)
         content = {} 
         for field in fields:
             if field in form:
@@ -59,16 +60,16 @@ def criar_carona(request):
         
         content['dataHora'] = datetime.strptime(content['dataHora'], '%Y-%m-%dT%H:%M')
 
-        carona = Carona(**content)
-        carona.save()
+        extra = Extra(**content)
+        extra.save()
 
-        return redirect(reverse('psiu:carona'))
+        return redirect(reverse('psiu:extra'))
 
-def view_carona(request, id):
-    carona = Carona.objects.get(pk = id)
+def view_extra(request, id):
+    extra = Extra.objects.get(pk = id)
     criador = getTestPerfil()
     try:
-        criador = Perfil.objects.get(pk = carona.criador)
+        criador = Perfil.objects.get(pk = extra.criador)
     except:
         print("Criador not found")
-    return render(request, 'psiu/info_carona.html',{'carona':carona,'contato':criador})
+    return render(request, 'psiu/info_carona.html',{'extra':extra,'contato':criador})
