@@ -65,7 +65,7 @@ def criar_extracurricular(request):
         extra = Extra(**content)
         extra.save()
 
-        return redirect(reverse('psiu:extracurricular'))
+        return redirect(reverse('psiu:extracurriculares'))
 
 def view_extra(request, id):
     extra = Extra.objects.get(pk = id)

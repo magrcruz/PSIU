@@ -30,7 +30,6 @@ def main(request):
 def user_info(request):
     return render(request, 'psiu/user_info.html')
 
-
 def ligas_academicas(request):
     return render(request, 'base.html',{'title':'Ligas Academicas'})
 def conhecer_pessoas(request):
