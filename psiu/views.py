@@ -33,7 +33,9 @@ def user_info(request):
 def ligas_academicas(request):
     return render(request, 'base.html',{'title':'Ligas Academicas'})
 def conhecer_pessoas(request):
-    return render(request, 'base.html',{'title':'Conhecer Pessoas'})
+    return render(request, 'psiu/conhecer_pessoas.html',{'title':'Conhecer Pessoas'})
+def criar_pessoas(request):
+    return render(request, 'psiu/criar_pessoas.html',{'title':'Criar Pessoas'})
 
 def register_request(request):
     if request.method == "POST":
