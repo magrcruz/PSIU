@@ -17,7 +17,7 @@ $(document).ready(function(){
 setInterval(function(){
     $.ajax({
         type: 'GET',
-        url : "/getMessages/{{room}}/",
+        url : "/psiuChat/getMessages/{{room}}/",
         success: function(response){
             console.log(response);
             $("#display").empty();
@@ -55,7 +55,7 @@ setInterval(function(){
 
     $.ajax({
       type:'POST',
-      url:'/send',
+      url:'/psiuChat/send',
       data:{
           username:$('#username').val(),
           room_id:$('#room_id').val(),
