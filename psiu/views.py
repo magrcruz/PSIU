@@ -13,7 +13,7 @@ from datetime import datetime
 from psiu.carona_view import *
 from psiu.estudos_views import *
 from psiu.extracurriculares_views import *
-
+from psiu.views_common import *
 # Create your views here.
 def home(request):
     if request.user.is_authenticated:
