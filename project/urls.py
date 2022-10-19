@@ -23,6 +23,7 @@ urlpatterns = [
     path('', views.home, name='home'),
     path('admin/', admin.site.urls),
     path('psiu/', include('psiu.urls')),
+    path('psiuChat/', include('psiuChat.urls')),
 ]
 
 if settings.DEBUG:
