@@ -17,18 +17,18 @@ def room(request, room):
 
 def checkview(request):
     room = request.POST['room_name']
-    username = request.POST['username']
+    username = request.user.get_full_name()
 
     if Room.objects.filter(name=room).exists():
-        return redirect('/psiuChat/'+room+'/?username='+username)
+        return redirect('/psiuChat/'+room)
     else:
-        new_room = Room.objects.create(name=room)
+        new_room = Room.objects.create()
         new_room.save()
-        return redirect('/psiuChat/'+room+'/?username='+username)
+        return redirect('/psiuChat/'+room)
 
 def send(request):
     message = request.POST['message']
-    username = request.POST['username']
+    username = request.user.get_full_name()
     room_id = request.POST['room_id']
 
     new_message = Message.objects.create(value=message, user=username, room=room_id)

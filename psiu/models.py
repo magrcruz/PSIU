@@ -3,6 +3,7 @@ from django.contrib.auth.models import AbstractUser, BaseUserManager
 from django.contrib.auth.models import User
 from django.db.models.signals import post_save
 from django.dispatch import receiver
+from psiuChat.models import Room
 
 #Cada classe abaixo é uma "many to one relationship" com um usuario
 #Isso é, um usuario pode ter diversas caronas, mas a carona só pode ter um "criador"
@@ -13,6 +14,10 @@ class Carona(models.Model):
   dataHora = models.DateTimeField(auto_now_add=False, blank=True)#Just to prove it
   vagas = models.IntegerField(default=4,null=True)
   adicionais = models.CharField(max_length=254, blank=True, default='')
+
+  #new_room = Room.objects.create()
+  #new_room.save()
+  #sala = models.ForeignKey(new_room, on_delete=models.CASCADE)
 
   def get_readonly_fields(self, request, obj=None):
     return [f.name for f in self._meta.get_fields()]
