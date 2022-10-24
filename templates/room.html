@@ -1,8 +1,10 @@
+{% extends 'base.html' %}
+{% block content %}
 <!DOCTYPE html>
 <html>
 <head>
 <meta name="viewport" content="width=device-width, initial-scale=1">
-<script   src="https://code.jquery.com/jquery-3.1.1.min.js"   integrity="sha256-hVVnYaiADRTO2PzUGmuLJr8BLUSjGIZsDYGmIJLv2b8="   crossorigin="anonymous"></script>
+<script src="https://code.jquery.com/jquery-3.1.1.min.js"   integrity="sha256-hVVnYaiADRTO2PzUGmuLJr8BLUSjGIZsDYGmIJLv2b8="   crossorigin="anonymous"></script>
 </head>
 <body>
 
@@ -37,12 +39,13 @@ setInterval(function(){
 
 
 <div class="container">
-    <form id="post-form">
+    <form id="post-form" class="form-group">
         {% csrf_token %}
         <input type="hidden" name="username" id="username" value="{{username}}"/>
         <input type="hidden" name="room_id" id="room_id" value="{{room_details.id}}"/>
-        <input type="text" name="message" id="message" width="100px" />
-        <input type="submit" value="Send">
+        <input class="form-control" type="text" name="message" id="message" width="100px" />
+        <br>
+        <input  class="btn btn-primary" type="submit" value="Send">
     </form>
 </div>
 
@@ -71,3 +74,4 @@ setInterval(function(){
 </script>
 
 </html>
+{% endblock %}

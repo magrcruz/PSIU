@@ -1,17 +1,29 @@
+{% extends 'base.html' %}
+{% block content %}
 <!DOCTYPE html>
 <html>
 <head>
 <meta name="viewport" content="width=device-width, initial-scale=1">
-    <form id="post-form" method="POST" action="checkview">
+<br>
+    <form id="post-form" method="POST" action="checkview" class="form-group">
         {% csrf_token %}
-        <label>Sala</label>
-        <input type="text" name="room_name" id="room_name" width="100px" />
-        <label>Nome de usuario</label>
-        <input type="text" name="username" id="username" width="100px" />
-        <input type="submit" value="Entrar">
+        <div class="row form-row">
+            <div class="col">
+                <label>Sala</label>
+                <input class="form-control" type="text" name="room_name" id="room_name" width="100px" />
+            </div>
+            <div class="col">
+                <label>Nome de usuario</label>
+                <input class="form-control" type="text" name="username" id="username" width="100px" />
+            </div>
+            
+        </div>
+<br>
+                <input class="btn btn-primary" type="submit" value="Entrar">
     </form>
 
 </body>
 
 
 </html>
+{% endblock %}
