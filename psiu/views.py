@@ -31,7 +31,14 @@ def user_info(request):
     return render(request, 'psiu/user_info.html')
 
 def ligas_academicas(request):
-    return render(request, 'base.html',{'title':'Ligas Academicas'})
+    return render(request, 'psiu/ligas_academicas.html',{'title':'Ligas Academicas'})
+
+def ligas_oficiais(request):
+    return render(request, 'psiu/ligas_oficiais.html',{'title':'Ligas Oficiais'})
+
+def ligas_nao_oficiais(request):
+    return render(request, 'psiu/ligas_nao_oficiais.html',{'title':'Ligas Não Oficiais'})
+
 def conhecer_pessoas(request):
     return render(request, 'psiu/conhecer_pessoas.html',{'title':'Conhecer Pessoas'})
 def criar_pessoas(request):
