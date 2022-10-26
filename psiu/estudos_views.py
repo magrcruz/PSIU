@@ -51,10 +51,14 @@ def criar_estudos(request):
                 content[field] = form.get(field)
         content['dataHora'] = datetime.strptime(content['dataHora'], '%Y-%m-%dT%H:%M')
 
+        new_room = Room.objects.create()
+        new_room.save()
+
         '''
         content['criador_id'] = 1#Fix
         '''
-        estudos = Estudos(**content)
+        
+        estudos = Estudos(**content, sala=new_room)
         estudos.save()
 
         return redirect(reverse('psiu:grupo_estudos'))

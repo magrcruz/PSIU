@@ -1,4 +1,5 @@
 from psiu.views_common import *
+from psiuChat.models import *
 
 def filtrar_carona(request, carona_list):
     carona = Carona()
@@ -56,7 +57,7 @@ def criar_carona(request):
         for field in fields:
             if field in form:
                 content[field] = form.get(field)
-        
+
         content['dataHora'] = datetime.strptime(content['dataHora'], '%Y-%m-%dT%H:%M')
 
         carona = Carona(**content)

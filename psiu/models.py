@@ -14,11 +14,8 @@ class Carona(models.Model):
   dataHora = models.DateTimeField(auto_now_add=False, blank=True)#Just to prove it
   vagas = models.IntegerField(default=4,null=True)
   adicionais = models.CharField(max_length=254, blank=True, default='')
-
-  #new_room = Room.objects.create()
-  #new_room.save()
-  #sala = models.ForeignKey(new_room, on_delete=models.CASCADE)
-
+  sala = models.ForeignKey(Room, on_delete=models.CASCADE,default=1)
+  
   def get_readonly_fields(self, request, obj=None):
     return [f.name for f in self._meta.get_fields()]
 
@@ -29,6 +26,8 @@ class Estudos(models.Model):
   dataHora = models.DateTimeField(blank=True)
   vagas = models.IntegerField(blank=True, default=-1)
   adicionais = models.CharField(max_length=254, default='',blank=True)
+  sala = models.ForeignKey(Room, on_delete=models.CASCADE,default=1)
+  
   def get_readonly_fields(self, request, obj=None):
     return [f.name for f in self._meta.get_fields()]
   
@@ -44,6 +43,7 @@ class Extra(models.Model):
   dataHora = models.DateTimeField()
   vagas = models.IntegerField(blank=True, default=-1)
   adicionais = models.CharField(max_length=254, blank=True, default='')
+  sala = models.ForeignKey(Room, on_delete=models.CASCADE,default=1)
   def get_readonly_fields(self, request, obj=None):
     return [f.name for f in self._meta.get_fields()]
   
@@ -54,6 +54,7 @@ class Conhecer(models.Model):
   dataHora = models.DateTimeField(blank=True)
   vagas = models.IntegerField(blank=True, default=-1)
   adicionais = models.CharField(max_length=254, blank=True, default='')
+  sala = models.ForeignKey(Room, on_delete=models.CASCADE,default=1)
   def get_readonly_fields(self, request, obj=None):
     return [f.name for f in self._meta.get_fields()]
  
@@ -61,6 +62,7 @@ class Ligas(models.Model):
   criador = models.ForeignKey(User, on_delete=models.CASCADE)
   nomeLiga = models.CharField(max_length=30)
   adicionais = models.CharField(max_length=254, blank=True, default='')
+  sala = models.ForeignKey(Room, on_delete=models.CASCADE,default=1)
   def get_readonly_fields(self, request, obj=None):
     return [f.name for f in self._meta.get_fields()]
 
@@ -94,9 +96,8 @@ class Perfil(models.Model):
   fotoPerfil = models.ImageField(upload_to='images/',default='images/default.png')
   instagram = models.CharField(max_length=20,default='')
   twitter = models.CharField(max_length=15,default='')
+
+  darkMode = models.BooleanField(default=False)
+
   def get_readonly_fields(self, request, obj=None):
     return [f.name for f in self._meta.get_fields()]
-
-class Sala(models.Model):
-  nome = models.CharField(max_length=255)
-  slug = models.SlugField(unique=True)
