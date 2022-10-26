@@ -19,7 +19,7 @@ def info_estudos(request, id):
 
     grupo = Estudos.objects.get(pk = id)
     participantes = list(ParticipacaoGrupoEstudos.objects.all().values().filter(id_grupo=id).values())
-    
+
     for p in participantes:
         perfil = Perfil.objects.get(user_id = p['id_participante_id'])
         if perfil is not None and perfil.fotoPerfil:
