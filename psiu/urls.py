@@ -15,6 +15,8 @@ urlpatterns = [
     path('logout/', views.logout_request, name='logout'),
     path('modificar/', views.modificar_request, name='modificar'),
     path('salas/',views.salas, name='Sala de chat'),
+    path('ligas_oficiais/',views.ligas_oficiais,name='ligas_oficiais'),
+    path('ligas_nao_oficiais/',views.ligas_nao_oficiais,name='ligas_nao_oficiais'),
 
     #criar
     path('criar_carona/',views.criar_carona, name='criar_carona'),

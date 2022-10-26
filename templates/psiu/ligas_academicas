@@ -1,0 +1,51 @@
+{% extends 'base.html' %}
+{% block image-page %}
+    <img src="https://cdn.discordapp.com/attachments/1004623388758777966/1019419863707557938/unknown.png" class="mx-auto d-block rounded-circle position-absolute top-100 start-50 translate-middle" height="100" width="100" style="margin-top:23px">
+{% endblock %}
+{% block content %}
+
+
+<!doctype html>
+<html lang = "pt-br">
+
+<div class = "text-center" style = "color: rgba(0,0,0,1)">
+    <br><br><br>
+    <div class="row">
+        <div class="col">
+        </div>
+        <div class="col">
+
+        </div>
+        <div class="col">
+            <div class="card" style="width: 25rem;">
+                <img src="..." class="card-img-top" alt="">
+                <div class="card-body">
+                <h5 class="card-title">Eventos oficiais</h5>
+                <p class="card-text">Alguns eventos disponibilizados pela PUC</p>
+                <a href="{% url 'psiu:ligas_oficiais' %}" class="btn btn-secondary">Ver eventos</a>
+                </div>
+            </div>
+        </div>
+        <div class="col"></div>
+        <div class="col">
+            <div class="card" style="width: 25rem;">
+                <img src="..." class="card-img-top" alt="">
+                <div class="card-body">
+                <h5 class="card-title">Não oficiais</h5>
+                <p class="card-text">bla bla bla</p>
+                <a href="#" class="btn btn-secondary">Ver eventos</a>
+                </div>
+            </div>
+        </div>
+        <div class="col">
+
+        </div>
+        <div class="col">
+
+        </div>
+    </div>
+</div>
+
+
+
+{% endblock %}
