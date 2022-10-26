@@ -17,7 +17,7 @@
                         <div class="col">
                         </div>
                         <div class="col">
-                            <p class="card-text">{{grupo.dataHora}} {{grupo.sala.name}}</p>
+                            <p class="card-text">{{grupo.dataHora}}</p>
                         </div>
                     </div>
                     <div class="row">
@@ -113,14 +113,21 @@
     <!--Contato esta em base.html-->
 </div>
 
+
 <div class="row mb-3" style = "color: rgba(0,0,0,1)">
     <h5>Chat</h5>
     <div class="row">
-        <div class="col">
-            <a class="text-dark" href="{% url 'psiu:criar' %}" style="font-weight: bold">Entrar na sala</a>
+        <div  class="col">
+            <a class="text-dark" href="#void" onclick="myFunction();" style="font-weight: bold">Entrar na sala</a>
         </div>
     </div>
 </div>
+
+<script>
+    function myFunction() {
+        window.location.href = "/psiuChat/" + document.getElementsByClassName("participante");
+    }
+</script>
 
 
 
