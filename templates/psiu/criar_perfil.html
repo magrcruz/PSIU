@@ -1,0 +1,43 @@
+<!doctype html>
+<html lang="en">
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>Bootstrap demo</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.1/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-iYQeCzEYFbKjA/T2uDLTpkwGzCiq6soy8tYaI1GyVh/UjpbCx/TYkiZhlZB6+fzT" crossorigin="anonymous">
+</head>
+<body style="background-color: #6FA8FF;">
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.1/dist/js/bootstrap.bundle.min.js" integrity="sha384-u1OknCvxWvY5kfmNBILK2hRnQC3Pr17a+RTT6rIHI7NnikvbZlHgTPOOmMi466C8" crossorigin="anonymous"></script>
+    <div class="container text-center" style="color: rgba(111,168,255,1)">
+        <div class="row">
+            -
+        </div>
+        <div class="row" style="color: rgba(0,0,0,1)">
+            <h6>Ei,</h6>
+            <h1 class="text-center">Psiu!</h1>
+        </div>
+        <div class="row" style="color: rgba(0,0,0,1)">
+            <h6 class="text-center">Crie seu perfil!</h6>
+        </div>
+        <div class="row">
+            -
+        </div>
+        <form method="POST" enctype="multipart/form-data">
+            <div class="row">
+                <div class="col mb-1">
+                    <div class="input-group mb-1">
+                        <span class="input-group-text" id="inputGroup-sizing-default" style="font-weight:bold">Foto de perfil</span>
+                        {% csrf_token %}
+                        {{ profile_form.fotoPerfil }}
+                    </div>
+                </div>
+            </div>
+            <div class="row">
+                <div class="col">
+                    <button type="submit" class="btn btn-primary text-black" style="--bs-btn-border-radius: 1rem; --bs-btn-padding-x: 1rem; --bs-btn-padding-y: .5rem; ">Criar Perfil</button>
+                </div>
+            </div>
+        </form>
+    </div>
+</body>
+</html>

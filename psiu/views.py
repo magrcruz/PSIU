@@ -47,20 +47,29 @@ def criar_pessoas(request):
 def register_request(request):
     if request.method == "POST":
         form = NewUserForm(request.POST)
-        profile_form = PerfilForm(request.POST, request.FILES)
-        if form.is_valid() and profile_form.is_valid():
+        if form.is_valid():
             user = form.save()
             login(request, user)
-            profile = profile_form.save(commit=False)
-            profile.user = request.user
-            profile.save()
-            messages.success(request, "Registration successful." )
-            return redirect("home")
+            messages.success(request, "Registration successful.")
+            return redirect(reverse('psiu:criar_perfil'))
 
         messages.error(request, "Unsuccessful registration. Invalid information.")
     form = NewUserForm()
+    return render (request, "psiu/criar.html", {"criar_form":form})
+
+def perfil_request(request):
+    if request.method == "POST":
+        profile_form = PerfilForm(request.POST, request.FILES)
+        if profile_form.is_valid():
+            profile = profile_form.save(commit=False)
+            profile.user = request.user
+            profile.save()
+            return redirect("home")
+
+        messages.error(request, "Unsuccessful registration. Invalid information.")
     profile_form = PerfilForm()
-    return render (request, "psiu/criar.html", {"criar_form":form, 'profile_form': profile_form})
+    return render (request, "psiu/criar_perfil.html", {'profile_form': profile_form})
+
 
 def info_perfil(request, id):
     return render(request, 'base.html',{'title':'Perfil'})

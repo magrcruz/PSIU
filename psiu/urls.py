@@ -11,6 +11,7 @@ urlpatterns = [
     path('ligas_academicas/', views.ligas_academicas, name='ligas_academicas'),
     path('conhecer_pessoas/', views.conhecer_pessoas, name='conhecer_pessoas'),
     path('criar/', views.register_request, name='criar'),
+    path('criar_perfil/',views.perfil_request, name='criar_perfil'),
     path('login/', views.login_request, name='login'),
     path('logout/', views.logout_request, name='logout'),
     path('modificar/', views.modificar_request, name='modificar'),
