@@ -1,0 +1,30 @@
+{% extends 'base.html' %}
+{% block image-page %}
+<a href="{% url 'psiu:user_info' %}">
+    <img src="{{ user.perfil.fotoPerfil.url }}" class="mx-auto d-block rounded-circle position-absolute top-100 start-50 translate-middle" height="100" width="100" style="margin-top:23px">
+</a>
+{% endblock %}
+{% block content %}
+
+
+    <div class="form-check form-switch">
+        <input class="form-check-input" onchange="handleChange(event)" name="geraldo" type="checkbox" role="switch" id="flexSwitchCheckDefault">
+        <label class="form-check-label" for="flexSwitchCheckDefault">Dark mode</label>
+    </div>
+
+    <script>
+        function handleChange(event) {
+            const { checked } = event.target;
+            var checkbox = event.target;
+
+            if (checkbox.checked) {
+                document.body.style.background = "#404040";
+                document.body.style.color = "#FFFFFF";
+            } else {
+                document.body.style.background = "#FFFFFF";
+                document.body.style.color = "#000000";
+            }
+        }
+    </script>
+
+{% endblock %}

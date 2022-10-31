@@ -1,11 +1,12 @@
 
 <!DOCTYPE html>
 <html lang="pt-br">
-  <head>
-    <meta charset = "utf-8">
-    <meta name = "viewport" content = "width=device-width, initial-scale=1">
-    
-    <link href = "https://cdn.jsdelivr.net/npm/bootstrap@5.2.1/dist/css/bootstrap.min.css" rel = "stylesheet" integrity = "sha384-iYQeCzEYFbKjA/T2uDLTpkwGzCiq6soy8tYaI1GyVh/UjpbCx/TYkiZhlZB6+fzT" crossorigin = "anonymous">
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.1/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-iYQeCzEYFbKjA/T2uDLTpkwGzCiq6soy8tYaI1GyVh/UjpbCx/TYkiZhlZB6+fzT" crossorigin="anonymous">
+
 
     <!-- INSERT ADITIONAL INFORMATION TO THE HEAD TAG HERE-->
     {% block head %}
@@ -13,146 +14,174 @@
 
     <!-- CHANGES THE PAGE TITLE IF THE VARIABLE "title" IS PASSED BY THE VIEW -->
     {% if title %}
-        <title>{{title}}</title>
+    <title>{{title}}</title>
     {% else %}
     <!-- USE DEFAULT TITLE TEXT IF NO VARIABLE "title" IS PASSED BY THE VIEW -->
-        <title>My Psiu App</title>
+    <title>My Psiu App</title>
     {% endif %}
-    
-  </head>
-  <body>
-    <!-- NAVBAR -->
-      <div style="background-color: #6FA8FF;" class="container-fluid p-4 text-black text-center">
-          <button class="btn btn-info position-absolute top-0 start-0" type="button" data-bs-toggle="offcanvas" data-bs-target="#offcanvasExample" aria-controls="offcanvasExample">
-              Menuzinho
-          </button>
-          <div class="offcanvas offcanvas-start" style="background-color: #6FA8FF;" tabindex="-1" id="offcanvasExample" aria-labelledby="offcanvasExampleLabel">
-              <div class="offcanvas-header">
-                  <h5 class="offcanvas-title" id="offcanvasExampleLabel">Psiu!</h5>
-                  <button type="button" class="btn-close" data-bs-dismiss="offcanvas" aria-label="Close"></button>
-              </div>
-              <div class="offcanvas-body">
-                  <div class="container">
-                      <div class="row mb-4">
-                          <div class="col">
-                              <a id="home-link" class="btn btn-white" href="{% url 'psiu:main' %}" role="button"><img src="https://cdn.discordapp.com/attachments/1009800857631592489/1033925137378066442/house.png" height="75" width="75"></a>
-                          </div>
-                          <div class="col mt-4">
-                              Pagina Inicial
-                          </div>
-                      </div>
-                      <div class="row mb-4">
-                          <div class="col">
-                              <a id="carona-link" class="btn btn-white" href="{% url 'psiu:carona' %}" role="button"><img src="https://cdn.discordapp.com/attachments/1009800857631592489/1033926816026611712/parking.png" height="75" width="75"></a>
-                          </div>
-                          <div class="col mt-4">
-                              Carona
-                          </div>
-                      </div>
-                      <div class="row mb-4">
-                          <div class="col">
-                              <a id="grupo-estudos-link" class="btn btn-white" href="{% url 'psiu:grupo_estudos' %}" role="button"><img src="https://cdn.discordapp.com/attachments/1009800857631592489/1033926469824561252/library.png" height="75" width="75"></a>
-                          </div>
-                          <div class="col mt-4">
-                              Grupo de Estudos
-                          </div>
-                      </div>
-                      <div class="row mb-4">
-                          <div class="col">
-                              <a id="extracurriculares-link" class="btn btn-white" href="{% url 'psiu:extracurriculares' %}" role="button"><img src="https://cdn.discordapp.com/attachments/1009800857631592489/1033926121827340378/basket-ball.png" height="75" width="75"></a>
-                          </div>
-                          <div class="col mt-3">
-                              Atividades Extracurriculares
-                          </div>
-                      </div>
-                      <div class="row mb-4">
-                          <div class="col">
-                              <a id="ligas-academicas-link" class="btn btn-white" href="{% url 'psiu:ligas_academicas' %}" role="button"><img src="https://cdn.discordapp.com/attachments/1009800857631592489/1033927490936250430/medal.png" height="75" width="75"></a>
-                          </div>
-                          <div class="col mt-4">
-                              Ligas Academicas
-                          </div>
-                      </div>
-                      <div class="row mb-4">
-                          <div class="col">
-                              <a id="conhecer-pessoas-link" class="btn btn-white" href="{% url 'psiu:conhecer_pessoas' %}" role="button"><img src="https://cdn.discordapp.com/attachments/1009800857631592489/1033927869719658616/communication.png" height="75" width="75"></a>
-                          </div>
-                          <div class="col mt-4">
-                              Conhecer Pessoas
-                          </div>
-                      </div>
-                  </div>
-              </div>
-          </div>
-          <h1>
-              <a href="{% url 'psiu:main' %}" style="color: black;text-decoration: none;">Psiu!</a>
-          </h1>
-          <br>
-          <br>
-          <div class="position-relative">
-              {% block image-page %}
-              <a href="{% url 'psiu:main' %}">
-                  <img src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAOEAAADhCAMAAAAJbSJIAAAAMFBMVEXp7vG6vsG3u77s8fTCxsnn7O/f5OfFyczP09bM0dO8wMPk6ezY3eDd4uXR1tnJzdBvAX/cAAACVElEQVR4nO3b23KDIBRA0ShGU0n0//+2KmO94gWZ8Zxmr7fmwWEHJsJUHw8AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAwO1MHHdn+L3rIoK6eshsNJ8kTaJI07fERPOO1Nc1vgQm2oiBTWJ+d8+CqV1heplLzMRNonED+4mg7L6p591FC+133/xCRNCtd3nL9BlxWP++MOaXFdEXFjZ7r8D9l45C8y6aG0cWtP/SUGhs2d8dA/ZfGgrzYX+TVqcTNRRO9l+fS5eSYzQs85psUcuzk6igcLoHPz2J8gvzWaH/JLS+95RfOD8o1p5CU5R7l5LkfKEp0mQ1UX7hsVXqDpRrifILD/3S9CfmlUQFhQfuFu0STTyJ8gsP3PH7GVxN1FC4t2sbBy4TNRTu7LyHJbqaqKFw+/Q0ncFloo7CjRPwMnCWqKXQZ75El4nKC9dmcJaou9AXOE5UXbi+RGeJygrz8Uf+GewSn9uXuplnWDZJ7d8f24F/s6iq0LYf9olbS3Q8i5oKrRu4S9ybwaQ/aCkqtP3I28QDgeoK7TBya/aXqL5COx67PTCD2grtdOwH+pQV2r0a7YVBgZoKwwIVFQYG6ikMDVRTGByopjD8ATcKb0UhhRTe77sKs2DV7FKSjId18TUEBYVyLhUThWfILHTDqmI85/2RWWjcE/bhP6OD7maT3h20MHsA47JC3PsW0wcwLhv9t0OOPOIkCn21y2bXXwlyylxiYMPk1SuCSmpfK8bNQvIrpAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAADwNX4BCbAju9/X67UAAAAASUVORK5CYII=" class="mx-auto d-block rounded-circle position-absolute top-100 start-50 translate-middle" height="100" width="100" style="margin-top:23px">
-              </a>
 
-              {% endblock %}
-          </div>
-      </div>
+</head>
+<body>
+    <!-- NAVBAR -->
+    <div style="background-color: #6FA8FF;" class="container-fluid p-4 text-black text-center">
+        <button class="btn btn-info position-absolute top-0 start-0" type="button" data-bs-toggle="offcanvas" data-bs-target="#offcanvasExample" aria-controls="offcanvasExample">
+            Menuzinho
+        </button>
+        <div class="offcanvas offcanvas-start" style="background-color: #6FA8FF;" tabindex="-1" id="offcanvasExample" aria-labelledby="offcanvasExampleLabel">
+            <div class="offcanvas-header">
+                <h5 class="offcanvas-title" id="offcanvasExampleLabel">Psiu!</h5>
+                <button type="button" class="btn-close" data-bs-dismiss="offcanvas" aria-label="Close"></button>
+            </div>
+            <div class="offcanvas-body">
+                <div class="container">
+                    <div class="row mb-4">
+                        <div class="col">
+                            <a id="home-link" class="btn btn-white" href="{% url 'psiu:main' %}" role="button"><img src="https://cdn.discordapp.com/attachments/1009800857631592489/1033925137378066442/house.png" height="75" width="75"></a>
+                        </div>
+                        <div class="col mt-4">
+                            Pagina Inicial
+                        </div>
+                    </div>
+                    <div class="row mb-4">
+                        <div class="col">
+                            <a id="carona-link" class="btn btn-white" href="{% url 'psiu:carona' %}" role="button"><img src="https://cdn.discordapp.com/attachments/1009800857631592489/1033926816026611712/parking.png" height="75" width="75"></a>
+                        </div>
+                        <div class="col mt-4">
+                            Carona
+                        </div>
+                    </div>
+                    <div class="row mb-4">
+                        <div class="col">
+                            <a id="grupo-estudos-link" class="btn btn-white" href="{% url 'psiu:grupo_estudos' %}" role="button"><img src="https://cdn.discordapp.com/attachments/1009800857631592489/1033926469824561252/library.png" height="75" width="75"></a>
+                        </div>
+                        <div class="col mt-4">
+                            Grupo de Estudos
+                        </div>
+                    </div>
+                    <div class="row mb-4">
+                        <div class="col">
+                            <a id="extracurriculares-link" class="btn btn-white" href="{% url 'psiu:extracurriculares' %}" role="button"><img src="https://cdn.discordapp.com/attachments/1009800857631592489/1033926121827340378/basket-ball.png" height="75" width="75"></a>
+                        </div>
+                        <div class="col mt-3">
+                            Atividades Extracurriculares
+                        </div>
+                    </div>
+                    <div class="row mb-4">
+                        <div class="col">
+                            <a id="ligas-academicas-link" class="btn btn-white" href="{% url 'psiu:ligas_academicas' %}" role="button"><img src="https://cdn.discordapp.com/attachments/1009800857631592489/1033927490936250430/medal.png" height="75" width="75"></a>
+                        </div>
+                        <div class="col mt-4">
+                            Ligas Academicas
+                        </div>
+                    </div>
+                    <div class="row mb-4">
+                        <div class="col">
+                            <a id="conhecer-pessoas-link" class="btn btn-white" href="{% url 'psiu:conhecer_pessoas' %}" role="button"><img src="https://cdn.discordapp.com/attachments/1009800857631592489/1033927869719658616/communication.png" height="75" width="75"></a>
+                        </div>
+                        <div class="col mt-4">
+                            Conhecer Pessoas
+                        </div>
+                    </div>
+                    <div class="row mb-4">
+                        <div class="col">
+                            <a id="modificar-perfil-link" class="btn btn-white" href="{% url 'psiu:modificar_perfil' %}" role="button"><img src="https://cdn.discordapp.com/attachments/1009800857631592489/1036480038025056286/settings.png" height="75" width="75"></a>
+                        </div>
+                        <div class="col mt-4">
+                            Modificar Perfil
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <h1>
+            <a href="{% url 'psiu:main' %}" style="color: black;text-decoration: none;">Psiu!</a>
+        </h1>
+        <br>
+        <br>
+        <div class="position-relative">
+            {% block image-page %}
+            <a href="{% url 'psiu:main' %}">
+                <img src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAOEAAADhCAMAAAAJbSJIAAAAMFBMVEXp7vG6vsG3u77s8fTCxsnn7O/f5OfFyczP09bM0dO8wMPk6ezY3eDd4uXR1tnJzdBvAX/cAAACVElEQVR4nO3b23KDIBRA0ShGU0n0//+2KmO94gWZ8Zxmr7fmwWEHJsJUHw8AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAwO1MHHdn+L3rIoK6eshsNJ8kTaJI07fERPOO1Nc1vgQm2oiBTWJ+d8+CqV1heplLzMRNonED+4mg7L6p591FC+133/xCRNCtd3nL9BlxWP++MOaXFdEXFjZ7r8D9l45C8y6aG0cWtP/SUGhs2d8dA/ZfGgrzYX+TVqcTNRRO9l+fS5eSYzQs85psUcuzk6igcLoHPz2J8gvzWaH/JLS+95RfOD8o1p5CU5R7l5LkfKEp0mQ1UX7hsVXqDpRrifILD/3S9CfmlUQFhQfuFu0STTyJ8gsP3PH7GVxN1FC4t2sbBy4TNRTu7LyHJbqaqKFw+/Q0ncFloo7CjRPwMnCWqKXQZ75El4nKC9dmcJaou9AXOE5UXbi+RGeJygrz8Uf+GewSn9uXuplnWDZJ7d8f24F/s6iq0LYf9olbS3Q8i5oKrRu4S9ybwaQ/aCkqtP3I28QDgeoK7TBya/aXqL5COx67PTCD2grtdOwH+pQV2r0a7YVBgZoKwwIVFQYG6ikMDVRTGByopjD8ATcKb0UhhRTe77sKs2DV7FKSjId18TUEBYVyLhUThWfILHTDqmI85/2RWWjcE/bhP6OD7maT3h20MHsA47JC3PsW0wcwLhv9t0OOPOIkCn21y2bXXwlyylxiYMPk1SuCSmpfK8bNQvIrpAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAADwNX4BCbAju9/X67UAAAAASUVORK5CYII=" class="mx-auto d-block rounded-circle position-absolute top-100 start-50 translate-middle" height="100" width="100" style="margin-top:23px">
+            </a>
+
+            {% endblock %}
+        </div>
+    </div>
     <div style="height: 50px;"></div>
     <!-- END OF NAVBAR-->
 
     <div class="container text">
-    {% if title %}
-    
+        {% if title %}
+
         <center>
             <p>{{title}}</p>
         </center>
-    
-    {% endif %}
-    <!--<div class="container-fluid mt-5" style="max-width: 80%">-->
-    <!-- INSERT THE CONTENT FROM SPECIFIC PAGES HERE-->
-    {% block content %}
-    {% endblock  %}
-    {% if contato != None %}
-    <h5>Contato</h5>
-    <div class="row">
-        <div class="d-grid gap-2 col mx-auto">
-            <button class="btn btn-outline-secondary" type="button">
-                <div class="card-body">
-                    <div class="row">
-                        <div class="col">
-                            <h6 class="text-start">{{contato.nomeUser}}</h6>
-                            <br>
-                            <p class="card-text-start">
-                              {{contato.telefone}}<br>
-                              {{contato.instagram}}<br>
-                              {{contato.direcao }}</p>
-                        </div>
-                        
-                        <div class="col">
-                            <img src="{{contato.image}}" class="rounded-circle" height="100" width="100" style="margin-top:23px">
-                        </div>
-                    </div>
-                    <div class="row">
 
+        {% endif %}
+        <!--<div class="container-fluid mt-5" style="max-width: 80%">-->
+        <!-- INSERT THE CONTENT FROM SPECIFIC PAGES HERE-->
+        {% block content %}
+        {% endblock  %}
+        {% if contato != None %}
+        <h5>Contato</h5>
+        <div class="row">
+            <div class="d-grid gap-2 col mx-auto">
+                <button class="btn btn-outline-secondary" type="button">
+                    <div class="card-body">
+                        <div class="row">
+                            <div class="col">
+                                <h6 class="text-start">{{contato.nomeUser}}</h6>
+                                <br>
+                                <p class="card-text-start">
+                                    {{contato.telefone}}<br>
+                                    {{contato.instagram}}<br>
+                                    {{contato.direcao }}
+                                </p>
+                            </div>
+
+                            <div class="col">
+                                <img src="{{contato.image}}" class="rounded-circle" height="100" width="100" style="margin-top:23px">
+                            </div>
+                        </div>
+                        <div class="row">
+
+                        </div>
+                        <div class="row">
+                            <div class="col">
+                            </div>
+                            <div class="col">
+                                <a href="{% url 'psiu:info_perfil' contato.id %}">+ Visualizar perfil</a>
+                            </div>
+                        </div>
                     </div>
-                    <div class="row">
-                        <div class="col">
-                        </div>
-                        <div class="col">
-                            <a href="{% url 'psiu:info_perfil' contato.id %}">+ Visualizar perfil</a>
-                        </div>
-                    </div>    
-                </div>
-            </button>
+                </button>
+            </div>
         </div>
-    </div>
-    {% endif %}
+        {% endif %}
 
+        <div class="form-check form-switch">
+            <input class="form-check-input" onchange="handleChange(event)" name="geraldo" type="checkbox" role="switch" id="flexSwitchCheckDefault">
+            <label class="form-check-label" for="flexSwitchCheckDefault">Dark mode</label>
+        </div>
+
+        <script>
+            function handleChange(event) {
+                const { checked } = event.target;
+                var checkbox = event.target;
+
+                if (checkbox.checked) {
+                    document.body.style.background = "#404040";
+                    document.body.style.color = "#FFFFFF";
+                } else {
+                    document.body.style.background = "#FFFFFF";
+                    document.body.style.color = "#000000";
+                }
+            }
+        </script>
     </div>
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/js/bootstrap.bundle.min.js"></script>
-<script src="https://cdn.jsdelivr.net/npm/popper.js@1.12.9/dist/umd/popper.min.js" integrity="sha384-ApNbgh9B+Y1QKtv3Rn7W3mgPxhU9K/ScQsAP7hUibX39j7fakFPskvXusvfa0b4Q" crossorigin="anonymous"></script>
-<script src="https://cdn.jsdelivr.net/npm/bootstrap@4.0.0/dist/js/bootstrap.min.js" integrity="sha384-JZR6Spejh4U02d8jOt6vLEHfe/JQGiRRSQQxSfFWpi1MquVdAyjUar5+76PVCmYl" crossorigin="anonymous"></script>
-  </body>
+    <script src="https://cdn.jsdelivr.net/npm/popper.js@1.12.9/dist/umd/popper.min.js" integrity="sha384-ApNbgh9B+Y1QKtv3Rn7W3mgPxhU9K/ScQsAP7hUibX39j7fakFPskvXusvfa0b4Q" crossorigin="anonymous"></script>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@4.0.0/dist/js/bootstrap.min.js" integrity="sha384-JZR6Spejh4U02d8jOt6vLEHfe/JQGiRRSQQxSfFWpi1MquVdAyjUar5+76PVCmYl" crossorigin="anonymous"></script>
+</body>
 </html>
 <!-- Towardsdatascience -->

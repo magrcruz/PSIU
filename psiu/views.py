@@ -30,6 +30,9 @@ def main(request):
 def user_info(request):
     return render(request, 'psiu/user_info.html')
 
+def modificar_perfil(request):
+    return render(request, 'psiu/modificar_perfil.html')
+
 def ligas_academicas(request):
     return render(request, 'psiu/ligas_academicas.html',{'title':'Ligas Academicas'})
 
