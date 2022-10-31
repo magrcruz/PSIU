@@ -15,7 +15,8 @@ class Carona(models.Model):
   vagas = models.IntegerField(default=4,null=True)
   adicionais = models.CharField(max_length=254, blank=True, default='')
   sala = models.ForeignKey(Room, on_delete=models.CASCADE,default=1)
-  
+  dataCriacao = models.DateTimeField(auto_now_add=True, blank=False)
+
   def get_readonly_fields(self, request, obj=None):
     return [f.name for f in self._meta.get_fields()]
 
@@ -27,7 +28,8 @@ class Estudos(models.Model):
   vagas = models.IntegerField(blank=True, default=-1)
   adicionais = models.CharField(max_length=254, default='',blank=True)
   sala = models.ForeignKey(Room, on_delete=models.CASCADE,default=1)
-  
+  dataCriacao = models.DateTimeField(auto_now_add=True, blank=False)
+
   def get_readonly_fields(self, request, obj=None):
     return [f.name for f in self._meta.get_fields()]
   
@@ -35,6 +37,7 @@ class ParticipacaoGrupoEstudos(models.Model):
   id_participante = models.ForeignKey(User, on_delete=models.CASCADE)
   id_grupo = models.ForeignKey(Estudos, on_delete=models.CASCADE)
   rol = models.CharField(max_length=30,blank=True)
+  dataCriacao = models.DateTimeField(auto_now_add=True, blank=False)
 
 class Extra(models.Model):
   criador = models.ForeignKey(User, on_delete=models.CASCADE)
@@ -44,6 +47,8 @@ class Extra(models.Model):
   vagas = models.IntegerField(blank=True, default=-1)
   adicionais = models.CharField(max_length=254, blank=True, default='')
   sala = models.ForeignKey(Room, on_delete=models.CASCADE,default=1)
+  dataCriacao = models.DateTimeField(auto_now_add=True, blank=False)
+
   def get_readonly_fields(self, request, obj=None):
     return [f.name for f in self._meta.get_fields()]
   
@@ -55,6 +60,8 @@ class Conhecer(models.Model):
   vagas = models.IntegerField(blank=True, default=-1)
   adicionais = models.CharField(max_length=254, blank=True, default='')
   sala = models.ForeignKey(Room, on_delete=models.CASCADE,default=1)
+  dataCriacao = models.DateTimeField(auto_now_add=True, blank=False)
+
   def get_readonly_fields(self, request, obj=None):
     return [f.name for f in self._meta.get_fields()]
  
@@ -63,6 +70,8 @@ class Ligas(models.Model):
   nomeLiga = models.CharField(max_length=30)
   adicionais = models.CharField(max_length=254, blank=True, default='')
   sala = models.ForeignKey(Room, on_delete=models.CASCADE,default=1)
+  dataCriacao = models.DateTimeField(auto_now_add=True, blank=False)
+
   def get_readonly_fields(self, request, obj=None):
     return [f.name for f in self._meta.get_fields()]
 
@@ -96,8 +105,8 @@ class Perfil(models.Model):
   fotoPerfil = models.ImageField(upload_to='images/',default='images/default.png')
   instagram = models.CharField(max_length=20,default='')
   twitter = models.CharField(max_length=15,default='')
-
   darkMode = models.BooleanField(default=False)
+  dataCriacao = models.DateTimeField(auto_now_add=True, blank=False)
 
   def get_readonly_fields(self, request, obj=None):
     return [f.name for f in self._meta.get_fields()]

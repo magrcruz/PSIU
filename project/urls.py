@@ -24,6 +24,7 @@ urlpatterns = [
     path('admin/', admin.site.urls),
     path('psiu/', include('psiu.urls')),
     path('psiuChat/', include('psiuChat.urls')),
+    path('psiuAmigos/', include('amigos.urls', namespace='amigos')),
 ]
 
 if settings.DEBUG:

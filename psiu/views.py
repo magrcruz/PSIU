@@ -94,6 +94,7 @@ def login_request(request):
 	return render(request, "psiu/login.html", {"login_form":form})
 
 def logout_request(request):
+    
     if request.user.is_authenticated:
         logout(request)
     return redirect(reverse('psiu:login'))
