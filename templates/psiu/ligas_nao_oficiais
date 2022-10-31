@@ -4,6 +4,57 @@
 {% endblock %}
 {% block content %}
 
+<a href="{% url 'psiu:criar_ligas' %}">+ Adicionar liga acadêmica</a>
+
+
+<!doctype html>
+<html lang = "pt-br">
+
+<div class = "text-center" style = "color: rgba(0,0,0,1)">
+    <div class="row">
+        <div class="col">
+        </div>
+        <div class="col">
+        </div>
+        <div class="col">
+            <button type="button" class="btn btn-secondary btn-sm" data-toggle="modal" data-target="#fitro_form">
+                Filtrar por ↓
+            </button>
+        </div>
+    </div>
+    <br>
+    <div class="row">
+        <div class="center">
+            <div class="input-group mb-3 ms-4">
+                <input type="text" class="form-control" placeholder="Barra de pesquisa" aria-label="Recipient's username" aria-describedby="basic-addon2" width="100">
+                <button class="btn btn-outline-secondary me-5" type="button" id="button-addon2">P</button>
+              </div>
+        </div>
+    </div>
+    
+</div>
+
+<br>
+
+<div class="row carona-card">
+    <div class="d-grid gap-2 col">
+        <a href="" class="btn btn-outline-secondary mb-4 ms-5 me-5" >
+            <div class="card-body">
+                <div class="row">
+                    <div class="col">
+                        <h5 class="card-title">Ana Luiza</h5>
+                        <p class="card-text">Local: L252</p>
+                    </div>
+                    <div class="col">
+                        <p class="card-text">31/10 - 17:00</p>
+                        <p class="card-text">Vagas disponíveis: 40</p>
+                    </div>
+                </div>
+            </div>
+        </a>
+    </div>
+    <br>
+</div>
 
 
 {% endblock %}

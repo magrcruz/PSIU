@@ -33,7 +33,7 @@
                 <div class="card-body">
                 <h5 class="card-title">Não oficiais</h5>
                 <p class="card-text">bla bla bla</p>
-                <a href="#" class="btn btn-secondary">Ver eventos</a>
+                <a href="{% url 'psiu:ligas_nao_oficiais' %}" class="btn btn-secondary">Ver eventos</a>
                 </div>
             </div>
         </div>
