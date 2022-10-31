@@ -41,8 +41,12 @@ def ligas_nao_oficiais(request):
 
 def conhecer_pessoas(request):
     return render(request, 'psiu/conhecer_pessoas.html',{'title':'Conhecer Pessoas'})
+
 def criar_pessoas(request):
     return render(request, 'psiu/criar_pessoas.html',{'title':'Criar Pessoas'})
+
+def criar_ligass(request):
+    return render(request, 'psiu/criar_ligas.html',{'title':'Criar Ligas'})
 
 def register_request(request):
     if request.method == "POST":

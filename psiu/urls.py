@@ -16,14 +16,15 @@ urlpatterns = [
     path('logout/', views.logout_request, name='logout'),
     path('modificar/', views.modificar_request, name='modificar'),
     path('salas/',views.salas, name='Sala de chat'),
-    path('ligas_oficiais/',views.ligas_oficiais,name='ligas_oficiais'),
-    path('ligas_nao_oficiais/',views.ligas_nao_oficiais,name='ligas_nao_oficiais'),
+    path('ligas_oficiais/',views.ligas_oficiais, name='ligas_oficiais'),
+    path('ligas_nao_oficiais/',views.ligas_nao_oficiais, name='ligas_nao_oficiais'),
 
     #criar
     path('criar_carona/',views.criar_carona, name='criar_carona'),
     path('criar_estudos/',views.criar_estudos, name='criar_estudos'),
     path('criar_pessoas/',views.criar_pessoas, name='criar_pessoas'),
     path('criar_extracurricular/',views.criar_extracurricular, name='criar_extracurricular'),
+    path('criar_ligas/',views.criar_ligas, name='criar_ligas'),
 
     #views
     path('view_carona/<id>', views.view_carona, name='view_carona'),
