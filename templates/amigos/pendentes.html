@@ -1,0 +1,14 @@
+{% extends "amigos/base.html"%}
+{% block navbar %}
+<nav class="nav nav-pills flex-column flex-sm-row">
+    <a class="flex-sm-fill text-sm-center nav-link" aria-current="page" href="{% url 'amigos:recente' %}">Recente</a>
+    <a class="flex-sm-fill text-sm-center nav-link" aria-current="page" href="{% url 'amigos:todos' %}">Todos</a>
+    <a class="flex-sm-fill text-sm-center nav-link active" href="{% url 'amigos:pendentes' %}">Pendentes</a>
+    <a class="flex-sm-fill text-sm-center nav-link" href="{% url 'amigos:agregar' %}">Agregar</a>
+</nav>
+{% endblock %}
+{% block content %}  
+    {% for amigo in amigos%}
+        {% include "amigos/includes/amigoOverview.html" with img=amigo.img nome=amigo.nome descricao=amigo.descricao link1=amigo.aceitarLink link2=amigo.rejeitarLink icon1="bi-check-lg" icon2="bi-x-lg" %}
+    {% endfor %}
+{% endblock %}

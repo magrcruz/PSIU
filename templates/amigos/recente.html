@@ -1,0 +1,27 @@
+{% extends "amigos/base.html"%}
+{% block navbar %}
+<nav class="nav nav-pills flex-column flex-sm-row">
+    <a class="flex-sm-fill text-sm-center nav-link active" aria-current="page" href="{% url 'amigos:recente' %}">Recente</a>
+    <a class="flex-sm-fill text-sm-center nav-link" aria-current="page" href="{% url 'amigos:todos' %}">Todos</a>
+    <a class="flex-sm-fill text-sm-center nav-link" href="{% url 'amigos:pendentes' %}">Pendentes</a>
+    <a class="flex-sm-fill text-sm-center nav-link" href="{% url 'amigos:agregar' %}">Agregar</a>
+</nav>
+{% endblock %}
+{% block content %}  
+
+
+<div class="vstack gap-2">
+    <div class="bg-light">
+        >>
+        <a href="#" class="link-dark"><b> {{Nome|default:"Bob"}}</b></a> 
+        {{atividade|default:"crio"}}
+        <a href="#" class="link-dark"><b> {{Complemento|default:"Carona"}}</b></a>
+        ,
+        há {{tempo|default:"5 minutos"}}
+    </div>
+</div>
+
+    {% for atividade in atividades%}
+        <p><b>Bob</b> crio <b>Uma Carona</b> 5 minutos atras</p>
+    {% endfor %}
+{% endblock %}

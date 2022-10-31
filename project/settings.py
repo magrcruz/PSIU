@@ -42,6 +42,7 @@ INSTALLED_APPS = [
     'datetime',
     'psiu.apps.PsiuConfig',
     'psiuChat',
+    'amigos',
 ]
 
 MIDDLEWARE = [

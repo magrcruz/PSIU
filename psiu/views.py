@@ -44,8 +44,12 @@ def ligas_nao_oficiais(request):
 
 def conhecer_pessoas(request):
     return render(request, 'psiu/conhecer_pessoas.html',{'title':'Conhecer Pessoas'})
+
 def criar_pessoas(request):
     return render(request, 'psiu/criar_pessoas.html',{'title':'Criar Pessoas'})
+
+def criar_ligas(request):
+    return render(request, 'psiu/criar_ligas.html',{'title':'Criar Ligas'})
 
 def register_request(request):
     if request.method == "POST":
@@ -97,6 +101,7 @@ def login_request(request):
 	return render(request, "psiu/login.html", {"login_form":form})
 
 def logout_request(request):
+    
     if request.user.is_authenticated:
         logout(request)
     return redirect(reverse('psiu:login'))
