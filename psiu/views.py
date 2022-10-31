@@ -45,7 +45,7 @@ def conhecer_pessoas(request):
 def criar_pessoas(request):
     return render(request, 'psiu/criar_pessoas.html',{'title':'Criar Pessoas'})
 
-def criar_ligass(request):
+def criar_ligas(request):
     return render(request, 'psiu/criar_ligas.html',{'title':'Criar Ligas'})
 
 def register_request(request):
