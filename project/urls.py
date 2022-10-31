@@ -18,6 +18,8 @@ from django.urls import path, include
 from psiu import views
 from django.conf import settings
 from django.conf.urls.static import static
+from django.views.generic import TemplateView
+from django.contrib.auth.views import LogoutView
 
 urlpatterns = [
     path('', views.home, name='home'),
@@ -25,6 +27,8 @@ urlpatterns = [
     path('psiu/', include('psiu.urls')),
     path('psiuChat/', include('psiuChat.urls')),
     path('psiuAmigos/', include('amigos.urls', namespace='amigos')),
+    path('accounts/', include('allauth.urls')),
+    path('logout', LogoutView.as_view()),
 ]
 
 if settings.DEBUG:

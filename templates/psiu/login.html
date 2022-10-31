@@ -9,6 +9,20 @@
     <h6>Ei,</h6>
     <h1>Psiu!</h1>
     <h6 class="mb-5">Entre na sua conta!</h6>
+
+    {% load socialaccount %}
+    <html>
+    <body>
+    <h1>My Google OAuth Project </h1>
+    {% if user.is_authenticated %}
+        <p>Welcome, You are logged in as {{ user.username }}</p>
+    {% else %}
+        <a href="{% provider_login_url 'google' %}">Login With Google</a>
+    {% endif %}
+    </body>
+    </html>
+
+
     <form class="container" method="post">
     {% csrf_token %}
         <!--{{login_form}}-->
