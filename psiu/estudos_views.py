@@ -32,7 +32,6 @@ def info_estudos(request, id):
             p["nome"] = usuario.first_name
 
     criador = getTestPerfil()
-
     return render(request, 'psiu/info_estudos.html',{'grupo':grupo,'contato':criador, 'participantes':participantes,'form':formnewParticipante})
 
 def criar_estudos(request):

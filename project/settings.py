@@ -62,6 +62,9 @@ MIDDLEWARE = [
 
 ROOT_URLCONF = 'project.urls'
 
+GOOGLE_API_KEY = 'AIzaSyBr3KJlyXb0GIW4J9oSxm6ZfKurj-LKVRA'
+
+
 SOCIALACCOUNT_PROVIDERS = {
     'google': {
         'SCOPE': [
