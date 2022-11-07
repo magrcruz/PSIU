@@ -117,6 +117,19 @@ def modificar_request(request):
 
     return render(request, "psiu/modificar.html", {"form":form})
 
+def update_user_social_data(strategy, *args, **kwargs):
+  response = kwargs['response']
+  backend = kwargs['backend']
+  user = kwargs['user']
+
+  if response['fotoPerfil']:
+    url = response['fotoPerfil']
+    userProfile_obj = UserProfile()
+    userProfile_obj.user = user
+    userProfile_obj.picture = url
+    userProfile_obj.save()
+
+
 @login_required
 def salas(request):
     salas = Sala.objects.all()
