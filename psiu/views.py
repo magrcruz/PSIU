@@ -14,6 +14,7 @@ from psiu.carona_view import *
 from psiu.estudos_views import *
 from psiu.extracurriculares_views import *
 from psiu.views_common import *
+from psiu.ligas_views import *
 # Create your views here.
 def home(request):
     if request.user.is_authenticated:
@@ -50,6 +51,8 @@ def criar_pessoas(request):
 
 def criar_ligas(request):
     return render(request, 'psiu/criar_ligas.html',{'title':'Criar Ligas'})
+
+
 
 def register_request(request):
     if request.method == "POST":
