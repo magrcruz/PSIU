@@ -17,7 +17,7 @@
                         <div class="col">
                         </div>
                         <div class="col">
-                            <p class="card-text">{{grupo.dataHora}}</p>
+                            <p class="card-text">{{grupo.criador}} {{grupo.dataHora}}</p>
                         </div>
                     </div>
                     <div class="row">
@@ -151,6 +151,12 @@
         </form>
     </div>
 </div>
+
+{% if isCriador %}
+    {{grupo.criador}}
+{% endif %}
+
+
 
 <h5>Mapa</h5>
 <iframe

@@ -25,6 +25,7 @@ def filtrar_carona(request, carona_list):
 
 def carona(request):
     carona_list = Carona.objects.all().values() #to update with filters
+
     fitro_form = caronaFilter()
     if request.method == "GET":
         for carona in carona_list:
@@ -59,6 +60,7 @@ def criar_carona(request):
                 content[field] = form.get(field)
 
         content['dataHora'] = datetime.strptime(content['dataHora'], '%Y-%m-%dT%H:%M')
+        content['criador_id'] = request.user.id
 
         carona = Carona(**content)
         carona.save()
