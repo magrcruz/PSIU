@@ -66,7 +66,7 @@ class Conhecer(models.Model):
     return [f.name for f in self._meta.get_fields()]
  
 class Ligas(models.Model):
-  criador = models.ForeignKey(User, on_delete=models.CASCADE)
+  criador = models.ForeignKey(User, on_delete=models.CASCADE, null=True)
   nomeLiga = models.CharField(max_length=30)
   adicionais = models.CharField(max_length=254, blank=True, default='')
   sala = models.ForeignKey(Room, on_delete=models.CASCADE,default=1)

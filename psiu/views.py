@@ -14,6 +14,7 @@ from psiu.carona_view import *
 from psiu.estudos_views import *
 from psiu.extracurriculares_views import *
 from psiu.views_common import *
+from psiu.ligas_views import *
 # Create your views here.
 def home(request):
     if request.user.is_authenticated:
@@ -31,25 +32,22 @@ def user_info(request):
     return render(request, 'psiu/user_info.html')
 
 def modificar_perfil(request):
+    #if request.method == "GET":
+        #perfil = Perfil.objects.get(user = request.user)
+        # receber o estado de darkMode (?)
+
+    #elif request.method == "POST":
+        #perfil = Perfil.objects.get(user = request.user)
+        #if perfil["darkMode"] == False:
+            #perfil["darkMode"] = True
+        #elif perfil["darkMode"] == True:
+            #perfil["darkMode"] = False
+        # modificar variavel darkMode de true para false ou vice-versa
+
     return render(request, 'psiu/modificar_perfil.html')
-
-def ligas_academicas(request):
-    return render(request, 'psiu/ligas_academicas.html',{'title':'Ligas Academicas'})
-
-def ligas_oficiais(request):
-    return render(request, 'psiu/ligas_oficiais.html',{'title':'Ligas Oficiais'})
-
-def ligas_nao_oficiais(request):
-    return render(request, 'psiu/ligas_nao_oficiais.html',{'title':'Ligas Não Oficiais'})
 
 def conhecer_pessoas(request):
     return render(request, 'psiu/conhecer_pessoas.html',{'title':'Conhecer Pessoas'})
-
-def criar_pessoas(request):
-    return render(request, 'psiu/criar_pessoas.html',{'title':'Criar Pessoas'})
-
-def criar_ligas(request):
-    return render(request, 'psiu/criar_ligas.html',{'title':'Criar Ligas'})
 
 def register_request(request):
     if request.method == "POST":

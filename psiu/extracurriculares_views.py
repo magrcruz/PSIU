@@ -25,7 +25,7 @@ def filtrar_extra(request, extra_list):
 
 def extracurriculares(request):
     extra_list = Extra.objects.all().values()
-    fitro_form = None#caronaFilter()
+    fitro_form = extraFilter()
     if request.method == "GET":
         for extra in extra_list:
             extra['nomeUser'] = "User not found"
