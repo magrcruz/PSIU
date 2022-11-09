@@ -28,11 +28,11 @@ def ligas_nao_oficiais(request):
     if request.method == "GET":
         for ligas in ligas_list:
             ligas['nomeUser'] = "User not found"
-            if 'criador_id' in ligas and ligas['criador_id']!="NULL":
-                user = User.objects.get(pk=ligas['criador_id'])
-                name = user.first_name
-                if name:
-                    ligas['nomeUser'] = name
+            #if 'criador_id' in ligas and ligas['criador_id']!="NULL":
+                #user = User.objects.get(pk=ligas['criador_id'])
+                #name = user.first_name
+                #if name:
+                    #ligas['nomeUser'] = name
 
     elif request.method == "POST":
         ligas_list = filtrar_ligas(request,ligas_list)

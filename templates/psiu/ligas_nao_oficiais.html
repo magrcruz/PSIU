@@ -36,8 +36,8 @@
 
 <br>
 
-{% if ligas_list %}
-    {% for i in ligas_list %}
+{% if ligas_nao_oficais %}
+    {% for i in ligas_nao_oficiais %}
     <div class="row carona-card">
         <div class="d-grid gap-2 col">
             <a href="{% url 'psiu:info_ligas_nao_oficiais' i.id %}" class="btn btn-outline-secondary mb-4 ms-5 me-5" >
