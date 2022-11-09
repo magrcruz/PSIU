@@ -23,7 +23,7 @@ urlpatterns = [
     #criar
     path('criar_carona/',views.criar_carona, name='criar_carona'),
     path('criar_estudos/',views.criar_estudos, name='criar_estudos'),
-    path('criar_pessoas/',views.criar_pessoas, name='criar_pessoas'),
+    #path('criar_pessoas/',views.criar_pessoas, name='criar_pessoas'),
     path('criar_ligas/',views.criar_ligas, name='criar_ligas'),
     path('criar_extracurricular/',views.criar_extracurricular, name='criar_extracurricular'),
 

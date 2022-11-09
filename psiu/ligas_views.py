@@ -57,8 +57,8 @@ def criar_ligas(request):
         for field in fields:
             if field in form:
                 content[field] = form.get(field)
-        content['criador_id'] = 1
-        content['dataHora'] = datetime.strptime(content['dataHora'], '%Y-%m-%dT%H:%M')
+        #content['criador'] = request.user
+        #content['dataHora'] = datetime.strptime(content['dataHora'], '%Y-%m-%dT%H:%M')
 
         ligas = Ligas(**content)
         ligas.save()
