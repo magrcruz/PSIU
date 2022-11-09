@@ -32,6 +32,18 @@ def user_info(request):
     return render(request, 'psiu/user_info.html')
 
 def modificar_perfil(request):
+    #if request.method == "GET":
+        #perfil = Perfil.objects.get(user = request.user)
+        # receber o estado de darkMode (?)
+
+    #elif request.method == "POST":
+        #perfil = Perfil.objects.get(user = request.user)
+        #if perfil["darkMode"] == False:
+            #perfil["darkMode"] = True
+        #elif perfil["darkMode"] == True:
+            #perfil["darkMode"] = False
+        # modificar variavel darkMode de true para false ou vice-versa
+
     return render(request, 'psiu/modificar_perfil.html')
 
 def conhecer_pessoas(request):
