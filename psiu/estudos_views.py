@@ -20,6 +20,7 @@ def info_estudos(request, id):
     grupo = Estudos.objects.get(pk = id)
     participantes = list(ParticipacaoGrupoEstudos.objects.all().values().filter(id_grupo=id).values())
 
+
     for p in participantes:
         perfil = Perfil.objects.get(user_id = p['id_participante_id'])
         if perfil is not None and perfil.fotoPerfil:
@@ -31,8 +32,15 @@ def info_estudos(request, id):
         if usuario is not None and usuario.first_name:
             p["nome"] = usuario.first_name
 
+    if (request.user == grupo.criador):
+        isCriador = True
+    else:
+        print(request.user)
+        print(grupo.criador)
+        isCriador = False
+
     criador = getTestPerfil()
-    return render(request, 'psiu/info_estudos.html',{'grupo':grupo,'contato':criador, 'participantes':participantes,'form':formnewParticipante})
+    return render(request, 'psiu/info_estudos.html',{'grupo':grupo,'contato':criador, 'participantes':participantes,'form':formnewParticipante,'isCriador':isCriador})
 
 def criar_estudos(request):
     if request.method == "GET":
@@ -44,7 +52,7 @@ def criar_estudos(request):
         # there is a better way to do this with forms.py
         form = request.POST.dict()
         fields = estudos.get_readonly_fields(request)
-        content = {} 
+        content = {}
         for field in fields:
             if field in form:
                 content[field] = form.get(field)
@@ -53,9 +61,7 @@ def criar_estudos(request):
         new_room = Room.objects.create()
         new_room.save()
 
-        '''
-        content['criador_id'] = 1#Fix
-        '''
+        content['criador_id'] = request.user.id
         
         estudos = Estudos(**content, sala=new_room)
         estudos.save()
