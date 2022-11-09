@@ -52,6 +52,13 @@
         </nav>
         {% endblock %}
         <br>
+        {% if alerta %}
+        <div class="alert alert-success alert-dismissible fade show" role="alert">
+            >> {{ alerta }}
+            <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+        </div>
+        {% endif %}
+
         {% if not disableSearch %}
         <form action="post">
             <div class="input-group mb-3">
