@@ -18,7 +18,9 @@ from psiu.ligas_views import *
 # Create your views here.
 def home(request):
     if request.user.is_authenticated:
-        return render(request, 'home.html')
+        usuario = request.user
+        isDarkMode = usuario.perfil.darkMode
+        return render(request, 'home.html', {'isDarkMode':isDarkMode})
     else:
         return redirect(reverse('psiu:login'))
 
@@ -126,6 +128,17 @@ def update_user_social_data(strategy, *args, **kwargs):
     userProfile_obj.user = user
     userProfile_obj.picture = url
     userProfile_obj.save()
+
+def darkMode_request(request):
+    usuario = request.user
+    if (usuario.perfil.darkMode):
+        usuario.perfil.darkMode = False
+        usuario.perfil.save()
+    else:
+        usuario.perfil.darkMode = True
+        usuario.perfil.save()
+
+    return redirect(reverse('psiu:user_info'))
 
 
 @login_required

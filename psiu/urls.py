@@ -26,7 +26,8 @@ urlpatterns = [
     #path('criar_pessoas/',views.criar_pessoas, name='criar_pessoas'),
     path('criar_ligas/',views.criar_ligas, name='criar_ligas'),
     path('criar_extracurricular/',views.criar_extracurricular, name='criar_extracurricular'),
-
+    path('darkMode/', views.darkMode_request, name='darkMode'),
+    
     #views
     path('view_carona/<id>', views.view_carona, name='view_carona'),
     path('info_estudos/<id>', views.info_estudos, name='info_estudos'),
