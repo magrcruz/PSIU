@@ -8,4 +8,5 @@ urlpatterns = [
     path('pendentes', views.pendentes, name='pendentes'),
     path('agregar', views.agregar, name='agregar'),
     path('recente', views.recente, name='recente'),
+    path('aceitar/<id>', views.aceitar, name='aceitar'),
 ]

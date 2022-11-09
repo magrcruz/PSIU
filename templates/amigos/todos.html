@@ -9,6 +9,8 @@
 {% endblock %}
 {% block content %}  
     {% for amigo in amigos%}
-    {% include "amigos/includes/amigoOverview.html" with img=amigo.img nome=amigo.nome descricao=amigo.descricao link1="link" link2="link" icon1="bi-chat-left" icon2="bi-plus-square"%}
+    {% url 'psiu:info_perfil' amigo.user_id as perfilUrl%}
+    {% url 'psiu:info_perfil' amigo.user_id as chatUrl%}
+    {% include "amigos/includes/amigoOverview.html" with img=amigo.fotoPerfil nome=amigo.nome descricao=amigo.bio link1=chatUrl link2=perfilUrl icon1="bi-chat-left" icon2="bi-plus-square"%}
     {% endfor %}
 {% endblock %}

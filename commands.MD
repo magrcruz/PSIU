@@ -4,3 +4,10 @@ py manage.py migrate --run-syncdb
 py manage.py loaddata .\psiu\fixtures\starterUsers.yaml
 py manage.py loaddata .\psiu\fixtures\starterData.yaml 
 py manage.py runserver
+pip install -r requirements.txt
+py manage.py createsuperuser
+admin
+admin@gmail.com
+admin
+admin
+y
