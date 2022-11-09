@@ -20,15 +20,15 @@ def recente(request):
 
 def todos(request):
     userId = request.user.id
-    meusAmigos = Amizade.objects.filter(amigo1 = userId) | Amizade.objects.filter(amigo2 = userId)
+    meusAmigos = Amizade.objects.all().filter(amigo2 = userId) | Amizade.objects.all().filter(amigo2 = userId)
     amigos = []
     for amizade in meusAmigos:
         #Check if it is not the user
         amigo = Amizade._meta.get_field("amigo1").value_from_object(amizade)[0]
-        if amigo != userId:
+        if amigo == userId:
             amigo = Amizade._meta.get_field("amigo2").value_from_object(amizade)[0]
         
-        perfilAmigo = Perfil.objects.get(user=amigo)
+        perfilAmigo = Perfil.objects.filter(user=amigo)
        
         #img=amigo.img nome=amigo.nome descricao=amigo.descricao link1="link" link2="link"
         amigos.append(perfilAmigo.__dict__ |{
@@ -40,14 +40,13 @@ def todos(request):
 
 def pendentes(request):
     userId = request.user.id
-    minhasSolicitudes = Solicitude.objects.filter(user1 = userId) | Solicitude.objects.filter(user2 = userId)
+    minhasSolicitudes = Solicitude.objects.filter(user2 = userId)
     amigos = []
     for amizade in minhasSolicitudes:
         #Check if it is not the user
-        amigo = Solicitude._meta.get_field("user1").value_from_object(amizade)[0]
-        if amigo != userId:
-            amigo = Solicitude._meta.get_field("user2").value_from_object(amizade)[0]
-        
+        amigo = Solicitude._meta.get_field("user1").value_from_object(amizade)
+        if not amigo: break
+        amigo = amigo[0]
         perfilAmigo = Perfil.objects.filter(user=amigo)
        
         #img=amigo.img nome=amigo.nome descricao=amigo.descricao link1="link" link2="link"
@@ -60,18 +59,31 @@ def pendentes(request):
 
 def agregar(request):
     #return render(request,"base.html")
-    return render(request,"amigos/agregar.html",{"disableSearch":True})
+    if request.method == 'GET':
+        print('get')
+    elif request.method == 'POST':
+        print('post')
+        novaSolicitude = Solicitude.objects.create()
+        form = request.POST.dict()
+        novaSolicitude.user1.add(request.user.id)
+        novaSolicitude.user2.add(form.get('codigo'))
+
+    return render(request,"amigos/agregar.html",{"disableSearch":True,'userId':request.user.id})
 
 def aceitar(request, id):
     
-    solicitude = Solicitude.objects.filter(pk = id)[0]
-    print(solicitude)
-    print("Solicitud encontrada")
+    solicitude = Solicitude.objects.filter(pk = id)
+    if solicitude: solicitude=solicitude[0]
+    aux =  Solicitude._meta.get_field("user1").value_from_object(solicitude)[0].__dict__
+    solicitude.delete()
+
+    idUser = aux["id"]
+
+    print("Solicitud encontrada", idUser)
     amizade = Amizade.objects.create()
-    amizade.setAttr("data",datetime.now)
-    print("aqui", amizade)
-    amizade.amigo1.add(getattr(solicitude,'user1'))
-    amizade.amigo2.add(getattr(solicitude,'user2'))
+
+    amizade.amigo1.add(idUser)
+    amizade.amigo2.add(request.user.id)
 
     amizade.save()
     
