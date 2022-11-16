@@ -136,7 +136,18 @@ def darkMode_request(request):
         usuario.perfil.darkMode = True
         usuario.perfil.save()
 
-    return redirect(reverse('psiu:user_info'))
+    return redirect(reverse('psiu:modificar_perfil'))
+
+def miopiaMode_request(request):
+    usuario = request.user
+    if (usuario.perfil.miopiaMode):
+        usuario.perfil.miopiaMode = False
+        usuario.perfil.save()
+    else:
+        usuario.perfil.miopiaMode = True
+        usuario.perfil.save()
+
+    return redirect(reverse('psiu:modificar_perfil'))
 
 
 @login_required
