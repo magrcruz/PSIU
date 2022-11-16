@@ -18,9 +18,7 @@ from psiu.ligas_views import *
 # Create your views here.
 def home(request):
     if request.user.is_authenticated:
-        usuario = request.user
-        isDarkMode = usuario.perfil.darkMode
-        return render(request, 'home.html', {'isDarkMode':isDarkMode})
+        return render(request, 'home.html')
     else:
         return redirect(reverse('psiu:login'))
 
