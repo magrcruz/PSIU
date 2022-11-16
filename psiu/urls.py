@@ -30,6 +30,7 @@ urlpatterns = [
     
     #deletar
     path('apagar_carona/',views.apagar_carona, name='apagar_carona'),
+    path('apagar_estudos/',views.apagar_estudos, name='apagar_estudos'),
 
     #views
     path('view_carona/<id>', views.view_carona, name='view_carona'),

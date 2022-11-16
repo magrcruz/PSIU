@@ -108,3 +108,6 @@ def grupo_estudos(request):
         grupo_de_estudos = filtrar_estudos(request,grupo_de_estudos)
 
     return render(request, 'psiu/estudos.html',{'title':'Grupo de estudos','grupo_estudos':grupo_de_estudos,'fitro_form':fitro_form})
+
+def apagar_estudos(request):
+    return redirect(reverse('psiu:estudos'))
