@@ -67,13 +67,10 @@ class Conhecer(models.Model):
  
 class Ligas(models.Model):
   criador = models.ForeignKey(User, on_delete=models.CASCADE, null=True)
-  nomeLiga = models.CharField(max_length=30, null=True)
-  adicionais = models.CharField(max_length=254, blank=True, default='', null=True)
-  sala = models.ForeignKey(Room, on_delete=models.CASCADE,default=1, null=True)
-  dataHora = models.DateTimeField(auto_now_add=False, blank=True)
-  vagas = models.IntegerField(blank=True, default=-1)
-  local = models.CharField(max_length=30, blank=True, default='')
-  atividade = models.CharField(max_length=30, null= True)
+  nomeLiga = models.CharField(max_length=30)
+  adicionais = models.CharField(max_length=254, blank=True, default='')
+  sala = models.ForeignKey(Room, on_delete=models.CASCADE,default=1)
+  dataCriacao = models.DateTimeField(auto_now_add=True, blank=False)
 
   def get_readonly_fields(self, request, obj=None):
     return [f.name for f in self._meta.get_fields()]
@@ -110,6 +107,7 @@ class Perfil(models.Model):
   twitter = models.CharField(max_length=15,default='')
   darkMode = models.BooleanField(default=False)
   dataCriacao = models.DateTimeField(auto_now_add=True, blank=False)
+  miopiaMode = models.BooleanField(default=False)
 
   def get_readonly_fields(self, request, obj=None):
     return [f.name for f in self._meta.get_fields()]
