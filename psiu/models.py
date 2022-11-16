@@ -70,7 +70,7 @@ class Ligas(models.Model):
   nomeLiga = models.CharField(max_length=30, null=True)
   adicionais = models.CharField(max_length=254, blank=True, default='', null=True)
   sala = models.ForeignKey(Room, on_delete=models.CASCADE,default=1, null=True)
-  dataHora = models.DateTimeField(auto_now_add=True, blank=False, null=True)
+  dataHora = models.DateTimeField(auto_now_add=False, blank=True)
   vagas = models.IntegerField(blank=True, default=-1)
   local = models.CharField(max_length=30, blank=True, default='')
   atividade = models.CharField(max_length=30, null= True)
