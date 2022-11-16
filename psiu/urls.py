@@ -28,6 +28,9 @@ urlpatterns = [
     path('criar_extracurricular/',views.criar_extracurricular, name='criar_extracurricular'),
     path('darkMode/', views.darkMode_request, name='darkMode'),
     
+    #deletar
+    path('apagar_carona/',views.apagar_carona, name='apagar_carona'),
+
     #views
     path('view_carona/<id>', views.view_carona, name='view_carona'),
     path('info_estudos/<id>', views.info_estudos, name='info_estudos'),

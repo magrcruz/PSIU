@@ -75,3 +75,6 @@ def view_carona(request, id):
     except:
         print("Criador not found")
     return render(request, 'psiu/info_carona.html',{'carona':carona,'contato':criador})
+
+def apagar_carona(request):
+    return redirect(reverse('psiu:carona'))
