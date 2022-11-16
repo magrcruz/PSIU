@@ -5,3 +5,4 @@ def perfilDarkMode(request):
         usuario = request.user
         isDarkMode = usuario.perfil.darkMode
         return {'isDarkMode': isDarkMode}
+    return {}
