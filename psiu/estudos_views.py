@@ -35,8 +35,6 @@ def info_estudos(request, id):
     if (request.user == grupo.criador):
         isCriador = True
     else:
-        print(request.user)
-        print(grupo.criador)
         isCriador = False
 
     criador = getTestPerfil()
@@ -109,5 +107,20 @@ def grupo_estudos(request):
 
     return render(request, 'psiu/estudos.html',{'title':'Grupo de estudos','grupo_estudos':grupo_de_estudos,'fitro_form':fitro_form})
 
-def apagar_estudos(request):
-    return redirect(reverse('psiu:estudos'))
+def apagar_estudos(request, id):
+    grupo = Estudos.objects.get(pk = id)
+    if (request.user == grupo.criador):
+        grupo.delete()
+
+    return redirect(reverse('psiu:grupo_estudos'))
+
+def participar_estudos(request, id):
+    grupo = Estudos.objects.get(pk = id)
+    try:
+        participante = ParticipacaoGrupoEstudos.objects.get(id_participante=request.user,id_grupo=grupo)
+    except:
+        participante = None
+        
+        print("Nao participa")
+
+    return redirect(reverse('psiu:grupo_estudos'))

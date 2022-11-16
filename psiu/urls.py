@@ -32,6 +32,9 @@ urlpatterns = [
     path('apagar_carona/<id>',views.apagar_carona, name='apagar_carona'),
     path('apagar_estudos/<id>',views.apagar_estudos, name='apagar_estudos'),
 
+    #participar
+    path('participar_estudos/<id>',views.participar_estudos, name='participar_estudos'),
+
     #views
     path('view_carona/<id>', views.view_carona, name='view_carona'),
     path('info_estudos/<id>', views.info_estudos, name='info_estudos'),
