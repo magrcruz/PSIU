@@ -26,17 +26,19 @@ def filtrar_ligas(request, ligas_list):
 
 def ligas_nao_oficiais(request):
     ligas_list = Ligas.objects.all().values()
-    fitro_form = None
+    fitro_form = ligasFilter()
     if request.method == "GET":
         for ligas in ligas_list:
             ligas['nomeUser'] = "User not found"
-            #if 'criador_id' in ligas and ligas['criador_id']!="NULL":
-                #user = User.objects.get(pk=ligas['criador_id'])
-                #name = user.first_name
-                #if name:
-                    #ligas['nomeUser'] = name
-                    #continue
-                #ligas['nomeUser'] = "User not found  "
+            if 'criador_id' in ligas and ligas['criador_id']!="NULL":
+                user = User.objects.filter(pk=ligas['criador_id'])
+                if user: user=user[0]
+                else: continue
+                name = user.first_name
+                if name:
+                    ligas['nomeUser'] = name
+                    continue
+                ligas['nomeUser'] = "User not found  "
 
     elif request.method == "POST":
         ligas_list = filtrar_ligas(request,ligas_list)
