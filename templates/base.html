@@ -24,7 +24,7 @@
     {% endif %}
 
 </head>
-<body onload="mudarModo()">
+<body onload="mudarModo1(); mudarModo2()">
     <!-- NAVBAR -->
     <div style="background-color: #6FA8FF;" class="container-fluid p-4 text-black text-center">
         <button class="btn btn-info position-absolute top-0 start-0" type="button" data-bs-toggle="offcanvas" data-bs-target="#offcanvasExample" aria-controls="offcanvasExample">
@@ -163,8 +163,7 @@
         {% endif %}
 
         <script>
-
-            function mudarModo() {
+            function mudarModo1() {
                 var modo = "{{isDarkMode}}"
                 if (modo == "True") {
                     document.body.style.background = "#404040"
@@ -176,6 +175,15 @@
                 }
             }
 
+            function mudarModo1() {
+                var modo = "{{isMiopiaMode}}"
+                if (modo == "True") {
+                    document.body.style.fontSize = "2rem"
+                }
+                else {
+                    document.body.style.fontSize = "1rem"
+                }
+            }
         </script>
     </div>
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/js/bootstrap.bundle.min.js"></script>
