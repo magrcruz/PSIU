@@ -14,7 +14,7 @@ class Carona(models.Model):
   dataHora = models.DateTimeField(auto_now_add=False, blank=True)#Just to prove it
   vagas = models.IntegerField(default=4,null=True)
   adicionais = models.CharField(max_length=254, blank=True, default='')
-  sala = models.ForeignKey(Room, on_delete=models.CASCADE,default=1)
+  sala = models.OneToOneField(Room, on_delete=models.CASCADE,default=1)
   dataCriacao = models.DateTimeField(auto_now_add=True, blank=False)
 
   def get_readonly_fields(self, request, obj=None):
@@ -27,7 +27,7 @@ class Estudos(models.Model):
   dataHora = models.DateTimeField(blank=True)
   vagas = models.IntegerField(blank=True, default=-1)
   adicionais = models.CharField(max_length=254, default='',blank=True)
-  sala = models.ForeignKey(Room, on_delete=models.CASCADE,default=1)
+  sala = models.OneToOneField(Room, on_delete=models.CASCADE,default=1)
   dataCriacao = models.DateTimeField(auto_now_add=True, blank=False)
 
   def get_readonly_fields(self, request, obj=None):
@@ -46,7 +46,7 @@ class Extra(models.Model):
   dataHora = models.DateTimeField()
   vagas = models.IntegerField(blank=True, default=-1)
   adicionais = models.CharField(max_length=254, blank=True, default='')
-  sala = models.ForeignKey(Room, on_delete=models.CASCADE,default=1)
+  sala = models.OneToOneField(Room, on_delete=models.CASCADE,default=1)
   dataCriacao = models.DateTimeField(auto_now_add=True, blank=False)
 
   def get_readonly_fields(self, request, obj=None):
@@ -59,7 +59,7 @@ class Conhecer(models.Model):
   dataHora = models.DateTimeField(blank=True)
   vagas = models.IntegerField(blank=True, default=-1)
   adicionais = models.CharField(max_length=254, blank=True, default='')
-  sala = models.ForeignKey(Room, on_delete=models.CASCADE,default=1)
+  sala = models.OneToOneField(Room, on_delete=models.CASCADE,default=1)
   dataCriacao = models.DateTimeField(auto_now_add=True, blank=False)
 
   def get_readonly_fields(self, request, obj=None):
@@ -69,7 +69,7 @@ class Ligas(models.Model):
   criador = models.ForeignKey(User, on_delete=models.CASCADE, null=True)
   nomeLiga = models.CharField(max_length=30)
   adicionais = models.CharField(max_length=254, blank=True, default='')
-  sala = models.ForeignKey(Room, on_delete=models.CASCADE,default=1)
+  sala = models.OneToOneField(Room, on_delete=models.CASCADE,default=1)
   dataCriacao = models.DateTimeField(auto_now_add=True, blank=False)
 
   def get_readonly_fields(self, request, obj=None):
