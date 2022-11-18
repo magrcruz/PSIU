@@ -11,3 +11,4 @@ admin@gmail.com
 admin
 admin
 y
+python manage.py runscript createAdmin
