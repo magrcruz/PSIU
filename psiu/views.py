@@ -14,6 +14,8 @@ from .viewsFolder.extracurriculares_views import *
 from .viewsFolder.user_info import *
 from .viewsFolder.views_common import *
 from .viewsFolder.ligas_views import *
+from .viewsFolder.login import *
+from .viewsFolder.darkModeMiopia import *
 
 # Create your views here.
 def home(request):
@@ -29,18 +31,6 @@ def main(request):
         return redirect(reverse('psiu:login'))
 
 def modificar_perfil(request):
-    #if request.method == "GET":
-        #perfil = Perfil.objects.get(user = request.user)
-        # receber o estado de darkMode (?)
-
-    #elif request.method == "POST":
-        #perfil = Perfil.objects.get(user = request.user)
-        #if perfil["darkMode"] == False:
-            #perfil["darkMode"] = True
-        #elif perfil["darkMode"] == True:
-            #perfil["darkMode"] = False
-        # modificar variavel darkMode de true para false ou vice-versa
-
     return render(request, 'psiu/modificar_perfil.html')
 
 def conhecer_pessoas(request):
@@ -76,25 +66,6 @@ def perfil_request(request):
 def info_perfil(request, id):
     return render(request, 'base.html',{'title':'Perfil'})
 
-
-def login_request(request):
-	if request.method == "POST":
-		form = AuthenticationForm(request, data=request.POST)
-		if form.is_valid():
-			username = form.cleaned_data.get('username')
-			password = form.cleaned_data.get('password')
-			user = authenticate(username=username, password=password)
-			if user is not None:
-				login(request, user)
-				messages.info(request, f"You are now logged in as {username}.")
-				return redirect("home")
-			else:
-				messages.error(request,"Invalid username or password.")
-		else:
-			messages.error(request,"Invalid username or password.")
-	form = AuthenticationForm()
-	return render(request, "psiu/login.html", {"login_form":form})
-
 def logout_request(request):
     
     if request.user.is_authenticated:
@@ -123,29 +94,6 @@ def update_user_social_data(strategy, *args, **kwargs):
     userProfile_obj.user = user
     userProfile_obj.picture = url
     userProfile_obj.save()
-
-def darkMode_request(request):
-    usuario = request.user
-    if (usuario.perfil.darkMode):
-        usuario.perfil.darkMode = False
-        usuario.perfil.save()
-    else:
-        usuario.perfil.darkMode = True
-        usuario.perfil.save()
-
-    return redirect(reverse('psiu:modificar_perfil'))
-
-def miopiaMode_request(request):
-    usuario = request.user
-    if (usuario.perfil.miopiaMode):
-        usuario.perfil.miopiaMode = False
-        usuario.perfil.save()
-    else:
-        usuario.perfil.miopiaMode = True
-        usuario.perfil.save()
-
-    return redirect(reverse('psiu:modificar_perfil'))
-
 
 @login_required
 def salas(request):

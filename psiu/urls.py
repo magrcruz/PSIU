@@ -36,6 +36,9 @@ urlpatterns = [
     #participar
     path('participar_estudos/<id>',views.participar_estudos, name='participar_estudos'),
 
+    #sair
+    path('sair_estudos/<id>',views.sair_estudos, name='sair_estudos'),
+
     #views
     path('view_carona/<id>', views.view_carona, name='view_carona'),
     path('info_estudos/<id>', views.info_estudos, name='info_estudos'),

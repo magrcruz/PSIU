@@ -5,10 +5,8 @@ def perfilDarkMode(request):
         usuario = request.user
 
         try:
-            perfilUser = Perfil.objects.get(user=usuario)
+            Perfil.objects.get(user=usuario)
         except Perfil.DoesNotExist:
-            perfilUser = None
-        if (perfilUser == None):
             return {}
 
         isDarkMode = usuario.perfil.darkMode

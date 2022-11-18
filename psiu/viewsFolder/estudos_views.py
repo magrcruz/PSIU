@@ -71,7 +71,7 @@ def criar_estudos(request):
         estudos = Estudos(**content, sala=new_room)
         estudos.save()
 
-        participante = ParticipacaoGrupoEstudos(id_participante=request.user, id_grupo=estudos)
+        participante = ParticipacaoGrupoEstudos(id_participante=request.user, id_grupo=estudos, rol="Criador")
         participante.save()
 
         return redirect(reverse('psiu:grupo_estudos'))
@@ -130,6 +130,17 @@ def participar_estudos(request, id):
         participante = ParticipacaoGrupoEstudos.objects.get(id_participante=request.user,id_grupo=grupo)
     except:
         participante = None
-        participante = ParticipacaoGrupoEstudos(id_participante=request.user, id_grupo=grupo)
+        participante = ParticipacaoGrupoEstudos(id_participante=request.user, id_grupo=grupo, rol='Participante')
         participante.save()
+    return redirect('../../psiu/info_estudos/%s'%id)
+
+def sair_estudos(request, id):
+    grupo = Estudos.objects.get(pk = id)
+    if (request.user != grupo.criador):
+        try:
+            participante = ParticipacaoGrupoEstudos.objects.get(id_participante=request.user,id_grupo=grupo)
+            participante.delete()
+        except:
+            participante = None
+
     return redirect('../../psiu/info_estudos/%s'%id)

@@ -4,6 +4,8 @@
 {% endblock %}
 {% block content %}
 <!doctype html>
+
+<body>
 <p class="text-center">{{grupo.adicionais}}</p>
 <div class = "" style = "color: rgba(0,0,0,1)">
     <h5>Dados</h5>
@@ -103,14 +105,6 @@
     {% else %}
     Ainda não há participantes.
     {% endif  %}
-    <!-- Button trigger modal -->
-    <div class="row text-center">
-        <br>
-        <a href="" type="button" style="text-decoration: none;" data-bs-toggle="modal" data-bs-target="#exampleModal">
-            (+)
-        </a>
-    </div>
-    <!--Contato esta em base.html-->
 </div>
 
 
@@ -130,37 +124,19 @@
     }
 </script>
 
-
-
-<!-- Modal -->
-<div class="modal fade" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
-    <div class="modal-dialog">
-        <form class="modal-content" method="post">
-            {% csrf_token %}
-            <div class="modal-header">
-                <h1 class="modal-title fs-5" id="exampleModalLabel">Agregar participante</h1>
-                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
-            </div>
-            <div class="modal-body">
-                {{form}}
-            </div>
-            <div class="modal-footer">
-                <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
-                <button type="submit" class="btn btn-primary">Agregar</button>
-            </div>
-        </form>
-    </div>
-</div>
-
 {% if isCriador %}
     <a href="../apagar_estudos/{{ grupo.id }}" >Apagar estudos</a>
 {% endif %}
 
 {% if isParticipante == False %}
     <a href="../participar_estudos/{{ grupo.id }}" >Participar do grupo</a>
+{% else %}
+    {% if isCriador == False %}
+        <a href="../sair_estudos/{{ grupo.id }}" >Sair do grupo</a>
+    {% endif %}
 {% endif %}
 
-<h5>Mapa</h5>
+<h5 class="mt-5">Mapa</h5>
 <iframe
   width="600"
   height="450"
@@ -172,4 +148,42 @@
     &q={{grupo.local}}">
 </iframe>
 
+<h5 class="mt-5">Contato</h5>
+<div class="row">
+    <div class="d-grid gap-2 col mx-auto">
+        <button class="btn btn-outline-secondary" type="button">
+            <div class="card-body">
+                <div class="row">
+                    <div class="col">
+                        <h6 class="text-start text-center mt-5">{{grupo.criador.first_name}}</h6>
+                        <br>
+                        <p class="card-text-start">
+                            Twitter: @{{ grupo.criador.perfil.twitter }}<br>
+                            Instagram: @{{ grupo.criador.perfil.instagram }}<br>
+                            Bio: {{ grupo.criador.perfil.bio }}<br>
+                        </p>
+                    </div>
+
+                    <div class="col">
+                        <img src="{{ grupo.criador.perfil.fotoPerfil.url }}" class="rounded-circle" height="100" width="100" style="margin-top:23px">
+                    </div>
+                </div>
+                <div class="row">
+
+                </div>
+                <div class="row">
+                    <div class="col">
+                    </div>
+                    <div class="col">
+                        <a href="{% url 'psiu:info_perfil' grupo.criador.id %}">+ Visualizar perfil</a>
+                    </div>
+                </div>
+            </div>
+        </button>
+    </div>
+</div>
+
+<div class="mt-5"></div>
+
+</body>
 {% endblock  %}
