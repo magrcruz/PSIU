@@ -1,4 +1,4 @@
-from psiu.views_common import *
+from .views_common import *
 
 def filtrar_extra(request, extra_list):
     

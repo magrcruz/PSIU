@@ -1,10 +1,9 @@
-from psiu.views_common import *
+from .views_common import *
+from django.http import HttpResponseRedirect
 
 # GRUPO DE ESTUDOS
 def info_estudos(request, id):
     formnewParticipante = newParticipante()
-    if request.method == "GET":
-        print("Estudos")
 
     if request.method == "POST":
         form = request.POST.dict()
@@ -20,7 +19,7 @@ def info_estudos(request, id):
     grupo = Estudos.objects.get(pk = id)
     participantes = list(ParticipacaoGrupoEstudos.objects.all().values().filter(id_grupo=id).values())
 
-
+    isParticipante = False
     for p in participantes:
         perfil = Perfil.objects.get(user_id = p['id_participante_id'])
         if perfil is not None and perfil.fotoPerfil:
@@ -31,6 +30,10 @@ def info_estudos(request, id):
         usuario = User.objects.get(pk = p['id_participante_id'])
         if usuario is not None and usuario.first_name:
             p["nome"] = usuario.first_name
+        if (request.user == usuario):
+            isParticipante = True
+
+
 
     if (request.user == grupo.criador):
         isCriador = True
@@ -38,7 +41,11 @@ def info_estudos(request, id):
         isCriador = False
 
     criador = getTestPerfil()
-    return render(request, 'psiu/info_estudos.html',{'grupo':grupo,'contato':criador, 'participantes':participantes,'form':formnewParticipante,'isCriador':isCriador})
+    return render(request, 'psiu/info_estudos.html',{'grupo':grupo,'contato':criador, 
+    'participantes':participantes,'form':formnewParticipante,
+    'isCriador':isCriador,'isParticipante':isParticipante})
+
+
 
 def criar_estudos(request):
     if request.method == "GET":
@@ -63,6 +70,9 @@ def criar_estudos(request):
         
         estudos = Estudos(**content, sala=new_room)
         estudos.save()
+
+        participante = ParticipacaoGrupoEstudos(id_participante=request.user, id_grupo=estudos)
+        participante.save()
 
         return redirect(reverse('psiu:grupo_estudos'))
 
@@ -120,7 +130,6 @@ def participar_estudos(request, id):
         participante = ParticipacaoGrupoEstudos.objects.get(id_participante=request.user,id_grupo=grupo)
     except:
         participante = None
-        
-        print("Nao participa")
-
-    return redirect(reverse('psiu:grupo_estudos'))
+        participante = ParticipacaoGrupoEstudos(id_participante=request.user, id_grupo=grupo)
+        participante.save()
+    return redirect('../../psiu/info_estudos/%s'%id)

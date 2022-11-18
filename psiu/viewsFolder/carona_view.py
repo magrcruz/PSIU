@@ -1,4 +1,4 @@
-from psiu.views_common import *
+from .views_common import *
 from psiuChat.models import *
 
 def filtrar_carona(request, carona_list):

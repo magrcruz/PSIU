@@ -17,7 +17,7 @@
                         <div class="col">
                         </div>
                         <div class="col">
-                            <p class="card-text">{{grupo.criador}} {{grupo.dataHora}}</p>
+                            <p class="card-text"{{grupo.dataHora}}</p>
                         </div>
                     </div>
                     <div class="row">
@@ -146,7 +146,7 @@
             </div>
             <div class="modal-footer">
                 <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
-                <button type="submit" class="btn btn-primary">AgregaR</button>
+                <button type="submit" class="btn btn-primary">Agregar</button>
             </div>
         </form>
     </div>
@@ -156,7 +156,9 @@
     <a href="../apagar_estudos/{{ grupo.id }}" >Apagar estudos</a>
 {% endif %}
 
-
+{% if isParticipante == False %}
+    <a href="../participar_estudos/{{ grupo.id }}" >Participar do grupo</a>
+{% endif %}
 
 <h5>Mapa</h5>
 <iframe

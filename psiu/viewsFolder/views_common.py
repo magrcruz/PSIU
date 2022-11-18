@@ -1,7 +1,7 @@
 from curses import keyname
 from django.shortcuts import render, redirect
 from django.urls import reverse
-from .forms import *
+from ..forms import *
 from django.contrib.auth import login, authenticate
 from django.contrib import messages
 from psiu.models import *

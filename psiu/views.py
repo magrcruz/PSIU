@@ -1,4 +1,3 @@
-from curses import keyname
 from django.shortcuts import render, redirect
 from django.urls import reverse
 from .forms import *
@@ -9,12 +8,13 @@ from django.contrib.auth.forms import AuthenticationForm
 from django.contrib.auth import logout
 from django.contrib.auth.decorators import login_required
 from django.utils.dateparse import parse_datetime
-from datetime import datetime
-from psiu.carona_view import *
-from psiu.estudos_views import *
-from psiu.extracurriculares_views import *
-from psiu.views_common import *
-from psiu.ligas_views import *
+from .viewsFolder.carona_view import *
+from .viewsFolder.estudos_views import *
+from .viewsFolder.extracurriculares_views import *
+from .viewsFolder.user_info import *
+from .viewsFolder.views_common import *
+from .viewsFolder.ligas_views import *
+
 # Create your views here.
 def home(request):
     if request.user.is_authenticated:
@@ -27,9 +27,6 @@ def main(request):
         return render(request, 'home.html')
     else:
         return redirect(reverse('psiu:login'))
-
-def user_info(request):
-    return render(request, 'psiu/user_info.html')
 
 def modificar_perfil(request):
     #if request.method == "GET":
