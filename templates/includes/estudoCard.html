@@ -1,0 +1,22 @@
+<div class="row estudo-card">
+    <div class="d-grid gap-2 col">
+        <a href="{% url 'psiu:info_estudos' estudo.id %}" class="btn btn-outline-secondary mb-4 ms-5 me-5" >
+            <div class="card-body">
+                <div class="row">
+                    <div class="col">
+                        <h5 class="card-title">{{estudo.nomeUser}}</h5>
+                        <p class="card-text">{{estudo.materia}}</p>
+                    </div>
+                    <div class="col">
+                        <p class="card-text">{{estudo.dataHora}}</p>
+                        <p class="card-text-center">Local: {{estudo.local}}</p>
+                        {% if vagas in i %}
+                            <p class="card-text">Vagas {{estudo.vagas}}</p>
+                        {% endif  %}
+                    </div>
+                </div>
+            </div>
+        </a>
+    </div>
+    <br>
+</div>

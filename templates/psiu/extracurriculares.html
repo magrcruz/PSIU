@@ -38,26 +38,7 @@
 
 {% if extracurriculares %}
     {% for i in extracurriculares %}
-    <div class="row carona-card">
-        <div class="d-grid gap-2 col">
-
-            <a href="{% url 'psiu:info_extracurricular' i.id %}" class="btn btn-outline-secondary mb-4 ms-5 me-5" >
-                <div class="card-body">
-                    <div class="row">
-                        <div class="col">
-                            <h5 class="card-title">{{i.nome}}</h5>
-                            <p class="card-text">{{i.atividade}}<br></p>
-                        </div>
-                        <div class="col">
-                            <p class="card-text">{{i.dataHora}}</p>
-                            <p class="card-text">Vagas disponíveis: {{i.vagas}}</p>
-                        </div>
-                    </div>
-                </div>
-            </a>
-        </div>
-        <br>
-    </div>
+        {% include "includes/extracurrCard.html" with extra=i%}       
     {% endfor %}
 {% else %}
     Não foram encontradas atividades extracurriculares.

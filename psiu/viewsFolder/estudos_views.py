@@ -45,8 +45,6 @@ def info_estudos(request, id):
     'participantes':participantes,'form':formnewParticipante,
     'isCriador':isCriador,'isParticipante':isParticipante})
 
-
-
 def criar_estudos(request):
     if request.method == "GET":
         return render(request, 'psiu/criar_estudos.html', {})

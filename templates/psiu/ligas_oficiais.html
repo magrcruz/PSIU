@@ -33,26 +33,9 @@
 </div>
 
 <br>
-
-    <div class="row carona-card">
-        <div class="d-grid gap-2 col">
-            <a href="" class="btn btn-outline-secondary mb-4 ms-5 me-5" >
-                <div class="card-body">
-                    <div class="row">
-                        <div class="col">
-                            <h5 class="card-title">MAT1158 - L252</h5>
-                            <p class="card-text">Brendo A Bazilio</p>
-                        </div>
-                        <div class="col">
-                            <p class="card-text">5ª feira - 17-18H</p>
-                            <p class="card-text">Vagas disponíveis: nao sei</p>
-                        </div>
-                    </div>
-                </div>
-            </a>
-        </div>
-        <br>
-    </div>
+    <!--Pra fazer mais facil pode botar como um include, os campos sao materia, encarregado, frecuencia, vagas-->
+    {% include "includes/ligaOficialCard.html" with materia="MAT1158 - L252" encarregado="Brendo A Bazilio" frecuencia="5ª feira - 17-18H" %}
+    
     <div class="row carona-card">
         <div class="d-grid gap-2 col">
             <a href="" class="btn btn-outline-secondary mb-4 ms-5 me-5" >

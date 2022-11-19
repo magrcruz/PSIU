@@ -1,0 +1,22 @@
+<div class="row">
+    <div class="d-grid gap-2 col">
+        <a href="{% url 'psiu:info_estudos' conhecer.id %}" class="btn btn-outline-secondary mb-4 ms-5 me-5">
+            <div class="card-body">
+                <div class="row">
+                    <div class="col">
+                        <h5 class="card-title">{{conhecer.nomeUser}}</h5>
+                        <p class="card-text">{{conhecer.materia}}</p>
+                    </div>
+                    <div class="col">
+                        <p class="card-text">{{conhecer.dataHora}}</p>
+                        <p class="card-text-center">Local: {{conhecer.local}}</p>
+                        {% if vagas in i %}
+                        <p class="card-text">Vagas {{conhecer.vagas}}</p>
+                        {% endif  %}
+                    </div>
+                </div>
+            </div>
+        </a>
+    </div>
+    <br>
+</div>

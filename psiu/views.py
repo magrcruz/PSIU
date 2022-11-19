@@ -36,6 +36,9 @@ def modificar_perfil(request):
 def conhecer_pessoas(request):
     return render(request, 'psiu/conhecer_pessoas.html',{'title':'Conhecer Pessoas'})
 
+def criar_pessoas(request):
+    return redirect(reverse('psiu:conhecer_pessoas'))
+
 def register_request(request):
     if request.method == "POST":
         form = NewUserForm(request.POST)
@@ -64,7 +67,7 @@ def perfil_request(request):
 
 
 def info_perfil(request, id):
-    return render(request, 'base.html',{'title':'Perfil'})
+    return redirect(reverse('psiu:user_info'))
 
 def logout_request(request):
     

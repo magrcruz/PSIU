@@ -1,0 +1,20 @@
+<div class="row carona-card">
+    <div class="d-grid gap-2 col">
+
+        <a href="{% url 'psiu:view_carona' carona.id %}" class="btn btn-outline-secondary mb-4 ms-5 me-5" >
+            <div class="card-body">
+                <div class="row">
+                    <div class="col">
+                        <h5 class="card-title">{{carona.nomeUser}}</h5>
+                        <p class="card-text">Saindo de: {{carona.localSaida}}<br>Indo para: {{carona.localChegada}}</p>
+                    </div>
+                    <div class="col">
+                        <p class="card-text">{{carona.dataHora}}</p>
+                        <p class="card-text">Vagas disponíveis: {{carona.vagas}}</p>
+                    </div>
+                </div>
+            </div>
+        </a>
+    </div>
+    <br>
+</div>
