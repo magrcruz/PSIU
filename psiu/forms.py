@@ -99,9 +99,12 @@ class newParticipante(forms.ModelForm):
 class ligasFilter(forms.ModelForm):
     class Meta:
         model = Ligas
-        fields = ('nomeLiga', 'adicionais')
+        fields = ('nomeLiga', 'atividade', 'local', 'dataHora', 'vagas')
     def __init__(self, *args, **kwargs):
         super().__init__(*args, **kwargs)
         #self.fields['criador'].widget.attrs.update({"class": "form-control"})
         self.fields['nomeLiga'].widget.attrs.update({"class": "form-control"})
-        self.fields['adicionais'].widget.attrs.update({"class": "form-control"})
+        self.fields['atividade'].widget.attrs.update({"class": "form-control"})
+        self.fields['local'].widget.attrs.update({"class": "form-control"})
+        self.fields['dataHora'].widget.attrs.update({"class": "form-control"})
+        self.fields['vagas'].widget.attrs.update({"class": "form-control"})
