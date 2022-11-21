@@ -24,7 +24,7 @@
     {% endif %}
 
 </head>
-<body onload="mudarModo1(); mudarModo2()">
+<body onload="mudarModo1(), mudarModo2()">
     <!-- NAVBAR -->
     <div style="background-color: #6FA8FF;" class="container-fluid p-4 text-black text-center">
         {% include "includes/menuzinho.html" %}
@@ -72,7 +72,7 @@
                 }
             }
 
-            function mudarModo1() {
+            function mudarModo2() {
                 var modo = "{{isMiopiaMode}}"
                 if (modo == "True") {
                     document.body.style.fontSize = "2rem"
