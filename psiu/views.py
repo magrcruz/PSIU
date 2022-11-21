@@ -34,9 +34,6 @@ def main(request):
 def modificar_perfil(request):
     return render(request, 'psiu/modificar_perfil.html')
 
-def criar_pessoas(request):
-    return redirect(reverse('psiu:conhecer_pessoas'))
-
 def register_request(request):
     if request.method == "POST":
         form = NewUserForm(request.POST)
