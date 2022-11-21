@@ -28,6 +28,8 @@ urlpatterns = [
     path('criar_extracurricular/',views.criar_extracurricular, name='criar_extracurricular'),
     path('darkMode/', views.darkMode_request, name='darkMode'),
     path('miopiaMode/', views.miopiaMode_request, name='miopiaMode'),
+    path('criar_conhecer/', views.criar_conhecer, name='criar_conhecer'),
+
     
     #deletar
     path('apagar_carona/<id>',views.apagar_carona, name='apagar_carona'),
@@ -44,4 +46,5 @@ urlpatterns = [
     path('info_estudos/<id>', views.info_estudos, name='info_estudos'),
     path('info_extracurricular/<id>', views.info_extracurricular, name='info_extracurricular'),
     path('info_ligas_nao_oficiais/<id>', views.info_ligas_nao_oficiais, name='info_ligas_nao_oficiais'),
+    path('info_conhecer/<id>', views.view_conhecer, name='info_conhecer')
 ]

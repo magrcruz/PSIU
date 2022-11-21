@@ -14,6 +14,7 @@ from .viewsFolder.extracurriculares_views import *
 from .viewsFolder.user_info import *
 from .viewsFolder.views_common import *
 from .viewsFolder.ligas_views import *
+from .viewsFolder.conhecer_view import *
 from .viewsFolder.login import *
 from .viewsFolder.darkModeMiopia import *
 
@@ -32,9 +33,6 @@ def main(request):
 
 def modificar_perfil(request):
     return render(request, 'psiu/modificar_perfil.html')
-
-def conhecer_pessoas(request):
-    return render(request, 'psiu/conhecer_pessoas.html',{'title':'Conhecer Pessoas'})
 
 def criar_pessoas(request):
     return redirect(reverse('psiu:conhecer_pessoas'))
