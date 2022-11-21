@@ -4,6 +4,8 @@ from django.contrib.auth.models import User
 from django.db.models.signals import post_save
 from django.dispatch import receiver
 from psiuChat.models import Room
+from django.utils import timezone
+
 
 #Cada classe abaixo é uma "many to one relationship" com um usuario
 #Isso é, um usuario pode ter diversas caronas, mas a carona só pode ter um "criador"
@@ -71,7 +73,7 @@ class Ligas(models.Model):
   atividade = models.CharField(max_length=254, blank=True, default='')
   local = models.CharField(max_length=254, blank=True, default='')
   sala = models.OneToOneField(Room, on_delete=models.CASCADE,null=True,blank=True)
-  dataCriacao = models.DateTimeField(auto_now_add=True, blank=False)
+  dataCriacao = models.DateTimeField(blank=False, default=timezone.now)
   dataHora = models.DateTimeField(blank=True)
   vagas = models.IntegerField(blank=True, default=-1)
 
