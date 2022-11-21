@@ -8,36 +8,21 @@
 <body>
 <p class="text-center">{{grupo.adicionais}}</p>
 <div class = "" style = "color: rgba(0,0,0,1)">
-    <h5>Dados</h5>
+    <br>
     <div class="row">
-        <div class="d-grid gap-2 col mx-auto">
-            <button class="btn btn-outline-secondary" type="button">
-                <div class="card-body">
-                    <div class="row">
-                        <div class="col">
-                        </div>
-                        <div class="col">
-                        </div>
-                        <div class="col">
-                            <p class="card-text"{{grupo.dataHora}}</p>
-                        </div>
-                    </div>
-                    <div class="row">
-                        <div class="col">
-                            <p class="card-text-left">Local: {{grupo.local}}</p>
-                        </div>
-                        <div class="col">
-                        </div>
-                    </div>
-                    <div class="row">
-                        <div class="col">
-                        </div>
-                        <div class="col">
-                            <p class="card-text">Vagas disponíveis: {{grupo.vagas}}</p>
-                        </div>
-                    </div>
-                </div>
-            </button>
+        <center>
+            <p class="card-text">Esse grupo será focado na matéria de {{grupo.materia}}</p>
+            <p class="card-text">ele será realizado em {{grupo.dataHora}}</p>
+            <p class="card-text">e possui {{grupo.vagas}} vagas disponíveis.</p>
+        </center>
+    </div>
+    <br>
+    <div class="row mb-3" style = "color: rgba(0,0,0,1)">
+        <h5>Chat</h5>
+        <div class="row">
+            <div  class="col">
+                <a class="text-dark" href="#void" onclick="redirectSala();" style="font-weight: bold">Entrar na sala</a>
+            </div>
         </div>
     </div>
     <br>
@@ -107,26 +92,13 @@
     {% endif  %}
 </div>
 
-
-<div class="row mb-3" style = "color: rgba(0,0,0,1)">
-    <h5>Chat</h5>
-    <div class="row">
-        <div  class="col">
-            <a class="text-dark" href="#void" onclick="redirectSala();" style="font-weight: bold">Entrar na sala</a>
-        </div>
-    </div>
-</div>
-
+<br>
 <script>
     function redirectSala() {
         var objectType = '{{ grupo.sala.name }}';
         window.location.href = "/psiuChat/" + objectType;
     }
 </script>
-
-{% if isCriador %}
-    <a href="../apagar_estudos/{{ grupo.id }}" >Apagar estudos</a>
-{% endif %}
 
 {% if isParticipante == False %}
     <a href="../participar_estudos/{{ grupo.id }}" >Participar do grupo</a>
@@ -136,19 +108,21 @@
     {% endif %}
 {% endif %}
 
-<h5 class="mt-5">Mapa</h5>
-<iframe
-  width="600"
-  height="450"
-  style="border:0"
-  loading="lazy"
-  allowfullscreen
-  referrerpolicy="no-referrer-when-downgrade"
-  src="https://www.google.com/maps/embed/v1/place?key=AIzaSyBr3KJlyXb0GIW4J9oSxm6ZfKurj-LKVRA
-    &q={{grupo.local}}">
-</iframe>
+<br>
+<center>
+    <iframe
+    width="600"
+    height="450"
+    style="border:0"
+    loading="lazy"
+    allowfullscreen
+    referrerpolicy="no-referrer-when-downgrade"
+    src="https://www.google.com/maps/embed/v1/place?key=AIzaSyBr3KJlyXb0GIW4J9oSxm6ZfKurj-LKVRA
+        &q={{grupo.local}}">
+    </iframe>
+</center>
 
-<h5 class="mt-5">Contato</h5>
+<h5 class="mt-5">Contato do criador</h5>
 <div class="row">
     <div class="d-grid gap-2 col mx-auto">
         <button class="btn btn-outline-secondary" type="button">
@@ -186,4 +160,11 @@
 <div class="mt-5"></div>
 
 </body>
+{% if isCriador %}
+    <center>
+        <a href="">Editar grupo de estudos</a><br>
+        <a href="../apagar_estudos/{{ grupo.id }}">Apagar grupo de estudos</a>
+    </center>
+{% endif %}
+<br>
 {% endblock  %}
