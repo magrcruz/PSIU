@@ -36,8 +36,8 @@
 
 <br>
 {% if carona_list %}
-    {% for carona in carona_list %}
-        {% include "includes/caronaCard.html" with carona=carona%}       
+    {% for i in carona_list %}
+        {% include "includes/caronaCard.html" with carona=i%}       
     {% endfor %}
 {% else %}
     Não foram encontradas caronas.

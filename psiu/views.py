@@ -65,10 +65,6 @@ def perfil_request(request):
     profile_form = PerfilForm()
     return render (request, "psiu/criar_perfil.html", {'profile_form': profile_form})
 
-
-def info_perfil(request, id):
-    return redirect(reverse('psiu:user_info'))
-
 def logout_request(request):
     
     if request.user.is_authenticated:

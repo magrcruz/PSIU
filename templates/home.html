@@ -1,6 +1,7 @@
 {% extends 'base.html' %}
 {% block image-page %}
-<a href="{% url 'psiu:user_info' %}">
+Here
+<a href="{% url 'psiu:user_info' request.user.id %}">
     <img src="{{ user.perfil.fotoPerfil.url }}" class="mx-auto d-block rounded-circle position-absolute top-100 start-50 translate-middle" height="100" width="100" style="margin-top:23px">
 </a>
 {% endblock %}

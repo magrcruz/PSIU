@@ -1,6 +1,6 @@
 {% extends 'base.html' %}
 {% block image-page %}
-<a href="{% url 'psiu:user_info' %}">
+<a href="{% url 'psiu:user_info' request.user.id%}">
     <img src="{{ user.perfil.fotoPerfil.url }}" class="mx-auto d-block rounded-circle position-absolute top-100 start-50 translate-middle" height="100" width="100" style="margin-top:23px">
 </a>
 {% endblock %}
@@ -87,32 +87,26 @@
           <h2 class="text-center" style="font-weight:bold">Suas Atividades</h2>
       </div>
 
-      <h5 class="text-center">Grupos de Estudos</h5>
-      {% for i in participanteEstudos %}
-      <div class="row">
-          <div class="d-grid gap-2 col">
-              <a href="{% url 'psiu:info_estudos' i.id %}" class="btn btn-outline-secondary mb-4 ms-5 me-5" >
-                  <div class="card-body">
-                      <div class="row">
-                          <div class="col">
-                              <h5 class="card-title">{{i.nomeUser}}</h5>
-                              <p class="card-text">{{i.materia}}</p>
-                          </div>
-                          <div class="col">
-                              <p class="card-text">{{i.dataHora}}</p>
-                              <p class="card-text-center">Local: {{i.local}}</p>
-                              {% if vagas in i %}
-                                  <p class="card-text">Vagas {{i.vagas}}</p>
-                              {% endif  %}
-                          </div>
-                      </div>
-                  </div>
-              </a>
-          </div>
-          <br>
-      </div>
+      <h6 class="text-center">Grupos de Estudos</h6>
+      {% for i in atividades.estudos %}
+        {% include "includes/estudoCard.html" with estudo=i%}       
       {% endfor %}
-
-
+      <h6 class="text-center">Caronas</h6>
+      {% for i in atividades.caronas %}
+        {% include "includes/caronaCard.html" with carona=i%}       
+      {% endfor %}
+      <h6 class="text-center">Atividades Extracurriculares</h6>
+      {% for i in atividades.extra %}
+        {% include "includes/extracurrCard.html" with extra=i%}       
+      {% endfor %}
+      <h6 class="text-center">Ligas academicas</h6>
+      {% for i in atividades.ligas %}
+        {% include "includes/ligaCard.html" with liga=i%}       
+      {% endfor %}
+      <h6 class="text-center">Conhecer pessoas</h6>
+      {% for i in grupo_estudos %}
+        {% include "includes/conhecerCard.html" with conhecer=i%}       
+      {% endfor %}
+      <br><br>
   </div>
 {% endblock  %}

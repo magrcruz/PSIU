@@ -1,0 +1,33 @@
+<h6>Contato</h6>
+    <div class="row">
+        <div class="d-grid gap-2 col mx-auto">
+            <button class="btn btn-outline-secondary" type="button">
+                <div class="card-body">
+                    <div class="row">
+                        <div class="col">
+                            <h6 class="text-start">{{contato.nomeUser}}</h6>
+                            <br>
+                            <p class="card-text-start">
+                              {{contato.telefone}}<br>
+                              {{contato.instagram}}<br>
+                              {{contato.direcao }}</p>
+                        </div>
+                        
+                        <div class="col">
+                            <img src="{{contato.image}}" class="rounded-circle" height="100" width="100" style="margin-top:23px">
+                        </div>
+                    </div>
+                    <div class="row">
+
+                    </div>
+                    <div class="row">
+                        <div class="col">
+                        </div>
+                        <div class="col">
+                            <a href="{% url 'psiu:info_perfil' contato.id %}">+ Visualizar perfil</a>
+                        </div>
+                    </div>    
+                </div>
+            </button>
+        </div>
+    </div>
