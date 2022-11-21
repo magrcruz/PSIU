@@ -3,9 +3,9 @@
     <img src="https://cdn.discordapp.com/attachments/1004623388758777966/1019419982062436403/unknown.png" class="mx-auto d-block rounded-circle position-absolute top-100 start-50 translate-middle" height="100" width="100" style="margin-top:23px">
 {% endblock %}
 {% block content %}
-
-<a href="{% url 'psiu:criar_pessoas' %}">+ Adicionar grupo de pessoas</a>
-
+<form action="get">
+<a href="{% url 'psiu:criar_pessoas' %}" type="submit">+ Adicionar grupo de pessoas</a>
+</form>
 <!doctype html>
 <html lang="pt-br">
 
