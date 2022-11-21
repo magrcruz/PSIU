@@ -42,8 +42,7 @@ def conhecer_pessoas(request):
 
     return render(request, 'psiu/conhecer_pessoas.html',{'title':'Conhecer', 'conhecer_list':conhecer_list,'fitro_form':None})
 
-def criar_conhecer(request):
-    print(request)
+def criar_pessoas(request):
     if request.method == "GET":
         conhecer_temp = None
         return render(request, 'psiu/criar_conhecer.html', {'conhecer_temp':conhecer_temp})
