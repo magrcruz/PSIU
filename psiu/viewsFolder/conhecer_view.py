@@ -45,7 +45,7 @@ def conhecer_pessoas(request):
 def criar_pessoas(request):
     if request.method == "GET":
         conhecer_temp = None
-        return render(request, 'psiu/criar_conhecer.html', {'conhecer_temp':conhecer_temp})
+        return render(request, 'psiu/criar_pessoas.html', {'conhecer_temp':conhecer_temp})
 
     elif request.method == "POST":
         conhecer = Conhecer()
@@ -64,7 +64,7 @@ def criar_pessoas(request):
         conhecer = Conhecer(**content)
         conhecer.save()
 
-        return redirect(reverse('psiu:conhecer'))
+        return redirect(reverse('psiu:conhecer_pessoas'))
 
 def view_conhecer(request, id):
     conhecer = Conhecer.objects.get(pk = id)
