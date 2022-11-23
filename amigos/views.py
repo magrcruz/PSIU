@@ -2,7 +2,7 @@ from django.http import HttpResponse
 from django.shortcuts import render, redirect
 from django.urls import reverse
 from amigos.models import *
-from psiu.models import Perfil, User
+from psiu.models import *
 from psiu.urls import *
 import amigos
 from datetime import datetime  
@@ -20,7 +20,7 @@ def recente(request):
 
 def todos(request):
     userId = request.user.id
-    meusAmigos = Amizade.objects.all().filter(amigo2 = userId) | Amizade.objects.all().filter(amigo2 = userId)
+    meusAmigos = Amizade.objects.all().filter(amigo1 = userId) | Amizade.objects.all().filter(amigo2 = userId)
     amigos = []
     for amizade in meusAmigos:
         #Check if it is not the user
@@ -89,4 +89,33 @@ def aceitar(request, id):
     
     return redirect(reverse('amigos:pendentes'))
 
+nResults = 20
+def get_friends_info(id):
+    carona = Carona.objects.all()[:nResults].order_by("dataModificicao")
+    lastDate = carona[-1]["dataModificicao"]
+    
+    estudos = Estudos.objects.exclude(dataModificicao__lt=lastDate)[:nResults].order_by("dataModificicao")
+    if estudos[-1]["dataModificicao"]<lastDate:
+        lastDate = estudos[-1]["dataModificicao"]
+    
+    extra = Extra.objects.exclude(dataModificicao__lt=lastDate)[:nResults].order_by("dataModificicao")
+    if extra[-1]["dataModificicao"]<lastDate:
+        lastDate = extra[-1]["dataModificicao"]
+    
+    ligas = Ligas.objects.exclude(dataModificicao__lt=lastDate)[:nResults].order_by("dataModificicao")
+    if ligas[-1]["dataModificicao"]<lastDate:
+        lastDate = Ligas[-1]["dataModificicao"]
+    
+    perfil = Perfil.objects.exclude(dataModificicao__lt=lastDate)[:nResults].order_by("dataModificicao")
+    if perfil[-1]["dataModificicao"]<lastDate:
+        lastDate = perfil[-1]["dataModificicao"]
+    
+    conhecer = Conhecer.objects.exclude(dataModificicao__lt=lastDate)[:nResults].order_by("dataModificicao")
+    if conhecer[-1]["dataModificicao"]<lastDate:
+        lastDate = conhecer[-1]["dataModificicao"]
 
+    participacaoGrupoEstudos = ParticipacaoGrupoEstudos.objects.exclude(dataModificicao__lt=lastDate)[:nResults].order_by("dataModificicao")
+    if participacaoGrupoEstudos[-1]["dataModificicao"]<lastDate:
+        lastDate = participacaoGrupoEstudos[-1]["dataModificicao"]
+
+    for i in carona:
