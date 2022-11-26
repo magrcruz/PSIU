@@ -10,18 +10,21 @@
 {% block content %}  
 
 
-<div class="vstack gap-2">
-    <div class="bg-light">
-        >>
-        <a href="#" class="link-dark"><b> {{Nome|default:"Bob"}}</b></a> 
-        {{atividade|default:"crio"}}
-        <a href="#" class="link-dark"><b> {{Complemento|default:"Carona"}}</b></a>
-        ,
-        há {{tempo|default:"5 minutos"}}
-    </div>
-</div>
-
     {% for atividade in atividades%}
-        <p><b>Bob</b> crio <b>Uma Carona</b> 5 minutos atras</p>
+    <div class="vstack gap-2">
+        <div class="bg-light">
+            >>
+            <a href="#" class="link-dark"><b> {{atividade.user | capfirst}}</b></a> 
+            <!--{{atividade|default:"crio"}}-->
+            crio
+            <a href="#" class="link-dark"><b> {{atividade.tipo}}</b></a>
+            ,
+            <!--há {{tempo|default:"5 minutos"}}-->
+            {{ atividade.data|date:'Y-m-d H:i' }}
+        </div>
+    </div>
+    
     {% endfor %}
 {% endblock %}
+
+user tipo data

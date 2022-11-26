@@ -16,7 +16,9 @@ meusAmigos = [
     ]
 
 def recente(request):
-    return render(request,"amigos/recente.html", {"disableSearch":True})
+    atividades = get_friends_info(request.user.id)
+    
+    return render(request,"amigos/recente.html", {"disableSearch":True,"atividades":atividades})
 
 def todos(request):
     userId = request.user.id
@@ -25,14 +27,15 @@ def todos(request):
     for amizade in meusAmigos:
         #Check if it is not the user
         amigo = Amizade._meta.get_field("amigo1").value_from_object(amizade)[0]
-        if amigo == userId:
+        if amigo != userId:
             amigo = Amizade._meta.get_field("amigo2").value_from_object(amizade)[0]
         
         perfilAmigo = Perfil.objects.filter(user=amigo)
        
         #img=amigo.img nome=amigo.nome descricao=amigo.descricao link1="link" link2="link"
         amigos.append(perfilAmigo.__dict__ |{
-            "nome": getattr(amigo,'username')
+            "nome": getattr(amigo,'username'),
+            "bio": getattr(amigo.perfil,'bio')
         })
         #print(amigos[-1])
     #return render(request,"base.html")
@@ -89,33 +92,55 @@ def aceitar(request, id):
     
     return redirect(reverse('amigos:pendentes'))
 
+'''
+STEPS 
+For each friend:
+    get the 5 most recents activities(
+        for each kind of activity get 5
+        #for 1 to 5 compare all kinds to get the most recent one
+        mix kinds and sort by date
+        extract the top 5
+    )
+    mix kinds and sort by date
+    extract the top 5
+'''
+
+def getUserActivity(user):
+    id = user.id
+    activitiesNames = ["Carona","Atividade de conhecer","Grupo de Estudos","Atividad Extracurricular","Participacao","Liga Academica"]
+    activitiesObjects = {
+        "Carona" : Carona.objects.filter(criador_id = id)[:5],
+        "Atividade de conhecer": Conhecer.objects.filter(criador_id = id)[:5],
+        "Grupo de Estudos": Estudos.objects.filter(criador_id = id)[:5],
+        "Atividad Extracurricular": Extra.objects.filter(criador_id = id)[:5],
+        "Liga Academica": Ligas.objects.filter(criador_id = id)[:5],
+        "Participacao" : ParticipacaoGrupoEstudos.objects.filter(id_participante = id)[:5],
+    }
+    userActivities = []
+    for i in activitiesNames:
+        for j in activitiesObjects[i]:
+            userActivities.append(
+                {
+                    "tipo": i,
+                    "user":user.username,
+                    "data":getattr(j,'dataModificacao'),
+                }
+            )
+    return sorted(userActivities,key=lambda x:x["data"],reverse=True)[:5]
+#datetime.datetime
+
 nResults = 20
 def get_friends_info(id):
-    carona = Carona.objects.all()[:nResults].order_by("dataModificicao")
-    lastDate = carona[-1]["dataModificicao"]
-    
-    estudos = Estudos.objects.exclude(dataModificicao__lt=lastDate)[:nResults].order_by("dataModificicao")
-    if estudos[-1]["dataModificicao"]<lastDate:
-        lastDate = estudos[-1]["dataModificicao"]
-    
-    extra = Extra.objects.exclude(dataModificicao__lt=lastDate)[:nResults].order_by("dataModificicao")
-    if extra[-1]["dataModificicao"]<lastDate:
-        lastDate = extra[-1]["dataModificicao"]
-    
-    ligas = Ligas.objects.exclude(dataModificicao__lt=lastDate)[:nResults].order_by("dataModificicao")
-    if ligas[-1]["dataModificicao"]<lastDate:
-        lastDate = Ligas[-1]["dataModificicao"]
-    
-    perfil = Perfil.objects.exclude(dataModificicao__lt=lastDate)[:nResults].order_by("dataModificicao")
-    if perfil[-1]["dataModificicao"]<lastDate:
-        lastDate = perfil[-1]["dataModificicao"]
-    
-    conhecer = Conhecer.objects.exclude(dataModificicao__lt=lastDate)[:nResults].order_by("dataModificicao")
-    if conhecer[-1]["dataModificicao"]<lastDate:
-        lastDate = conhecer[-1]["dataModificicao"]
-
-    participacaoGrupoEstudos = ParticipacaoGrupoEstudos.objects.exclude(dataModificicao__lt=lastDate)[:nResults].order_by("dataModificicao")
-    if participacaoGrupoEstudos[-1]["dataModificicao"]<lastDate:
-        lastDate = participacaoGrupoEstudos[-1]["dataModificicao"]
-
-    for i in carona:
+    userId = id
+    meusAmigos = Amizade.objects.all().filter(amigo1 = userId) | Amizade.objects.all().filter(amigo2 = userId)
+    amigos = []
+    atividades = []
+    for amizade in meusAmigos:
+        #Check if it is not the user
+        amigo = Amizade._meta.get_field("amigo1").value_from_object(amizade)[0]
+        if amigo != userId:
+            amigo = Amizade._meta.get_field("amigo2").value_from_object(amizade)[0]
+        amigos.append(amigo)
+    for i in amigos:
+        atividades.extend(getUserActivity(i))
+    return atividades[:20]

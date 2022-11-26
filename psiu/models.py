@@ -17,7 +17,7 @@ class Carona(models.Model):
   vagas = models.IntegerField(default=4,null=True)
   adicionais = models.CharField(max_length=254, blank=True, default='')
   sala = models.OneToOneField(Room, on_delete=models.CASCADE,null=True,blank=True)
-  dataModificicao = models.DateTimeField(auto_now_add=True, blank=False)
+  dataModificacao = models.DateTimeField(auto_now_add=True, blank=False)
 
   def get_readonly_fields(self, request, obj=None):
     return [f.name for f in self._meta.get_fields()]
@@ -30,7 +30,7 @@ class Estudos(models.Model):
   vagas = models.IntegerField(blank=True, default=-1)
   adicionais = models.CharField(max_length=254, default='',blank=True)
   sala = models.OneToOneField(Room, on_delete=models.CASCADE,null=True,blank=True)
-  dataModificicao = models.DateTimeField(auto_now_add=True, blank=False)
+  dataModificacao = models.DateTimeField(auto_now_add=True, blank=False)
 
   def get_readonly_fields(self, request, obj=None):
     return [f.name for f in self._meta.get_fields()]
@@ -39,7 +39,7 @@ class ParticipacaoGrupoEstudos(models.Model):
   id_participante = models.ForeignKey(User, on_delete=models.CASCADE)
   id_grupo = models.ForeignKey(Estudos, on_delete=models.CASCADE)
   rol = models.CharField(max_length=30,blank=True)
-  dataModificicao = models.DateTimeField(auto_now_add=True, blank=False)
+  dataModificacao = models.DateTimeField(auto_now_add=True, blank=False)
 
 class Extra(models.Model):
   criador = models.ForeignKey(User, on_delete=models.CASCADE)
@@ -49,7 +49,7 @@ class Extra(models.Model):
   vagas = models.IntegerField(blank=True, default=-1)
   adicionais = models.CharField(max_length=254, blank=True, default='')
   sala = models.OneToOneField(Room, on_delete=models.CASCADE,null=True,blank=True)
-  dataModificicao = models.DateTimeField(auto_now_add=True, blank=False)
+  dataModificacao = models.DateTimeField(auto_now_add=True, blank=False)
 
   def get_readonly_fields(self, request, obj=None):
     return [f.name for f in self._meta.get_fields()]
@@ -62,7 +62,7 @@ class Conhecer(models.Model):
   vagas = models.IntegerField(blank=True, default=-1)
   adicionais = models.CharField(max_length=254, blank=True, default='')
   sala = models.OneToOneField(Room, on_delete=models.CASCADE,null=True,blank=True)
-  dataModificicao = models.DateTimeField(auto_now_add=True, blank=False)
+  dataModificacao = models.DateTimeField(auto_now_add=True, blank=False)
 
   def get_readonly_fields(self, request, obj=None):
     return [f.name for f in self._meta.get_fields()]
@@ -71,7 +71,7 @@ class ParticipacaoConhecer(models.Model):
   id_participante = models.ForeignKey(User, on_delete=models.CASCADE)
   id_grupo = models.ForeignKey(Estudos, on_delete=models.CASCADE)
   rol = models.CharField(max_length=30,blank=True)
-  dataModificicao = models.DateTimeField(auto_now_add=True, blank=False)
+  dataModificacao = models.DateTimeField(auto_now_add=True, blank=False)
 
 class Ligas(models.Model):
   criador = models.ForeignKey(User, on_delete=models.CASCADE, null=True)
@@ -79,7 +79,7 @@ class Ligas(models.Model):
   atividade = models.CharField(max_length=254, blank=True, default='')
   local = models.CharField(max_length=254, blank=True, default='')
   sala = models.OneToOneField(Room, on_delete=models.CASCADE,null=True,blank=True)
-  dataModificicao = models.DateTimeField(blank=False, default=timezone.now)
+  dataModificacao = models.DateTimeField(blank=False, default=timezone.now)
   dataHora = models.DateTimeField(blank=True)
   vagas = models.IntegerField(blank=True, default=-1)
 
@@ -117,8 +117,9 @@ class Perfil(models.Model):
   instagram = models.CharField(max_length=20,default='')
   twitter = models.CharField(max_length=15,default='')
   darkMode = models.BooleanField(default=False)
-  dataModificicao = models.DateTimeField(auto_now_add=True, blank=False)
+  dataCriacao = models.DateTimeField(auto_now_add=True, blank=False)
   miopiaMode = models.BooleanField(default=False)
+  dataModificacao = models.DateTimeField(auto_now_add=True, blank=False)
 
   def get_readonly_fields(self, request, obj=None):
     return [f.name for f in self._meta.get_fields()]
