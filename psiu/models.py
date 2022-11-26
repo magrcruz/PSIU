@@ -67,6 +67,12 @@ class Conhecer(models.Model):
   def get_readonly_fields(self, request, obj=None):
     return [f.name for f in self._meta.get_fields()]
  
+class ParticipacaoConhecer(models.Model):
+  id_participante = models.ForeignKey(User, on_delete=models.CASCADE)
+  id_grupo = models.ForeignKey(Estudos, on_delete=models.CASCADE)
+  rol = models.CharField(max_length=30,blank=True)
+  dataCriacao = models.DateTimeField(auto_now_add=True, blank=False)
+
 class Ligas(models.Model):
   criador = models.ForeignKey(User, on_delete=models.CASCADE, null=True)
   nomeLiga = models.CharField(max_length=30)

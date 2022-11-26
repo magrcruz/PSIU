@@ -93,3 +93,6 @@ def update_user_social_data(strategy, *args, **kwargs):
 def salas(request):
     salas = Sala.objects.all()
     return render(request, 'psiu/salas.html', {'salas': salas})
+
+def ajuda(request):
+    return render(request, 'psiu/ajuda.html')

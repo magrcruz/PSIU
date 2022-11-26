@@ -19,6 +19,7 @@ urlpatterns = [
     path('ligas_oficiais/', views.ligas_oficiais, name='ligas_oficiais'),
     path('ligas_nao_oficiais/', views.ligas_nao_oficiais, name='ligas_nao_oficiais'),
     path('modificar_perfil/', views.modificar_perfil, name='modificar_perfil'),
+    path('ajuda/', views.ajuda, name='ajuda'),
 
     #criar
     path('criar_carona/',views.criar_carona, name='criar_carona'),
@@ -44,5 +45,5 @@ urlpatterns = [
     path('info_estudos/<id>', views.info_estudos, name='info_estudos'),
     path('info_extracurricular/<id>', views.info_extracurricular, name='info_extracurricular'),
     path('info_ligas_nao_oficiais/<id>', views.info_ligas_nao_oficiais, name='info_ligas_nao_oficiais'),
-    path('info_conhecer/<id>', views.view_conhecer, name='info_conhecer')
+    path('info_conhecer/<id>', views.info_conhecer, name='info_conhecer')
 ]
