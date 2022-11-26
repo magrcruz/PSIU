@@ -41,7 +41,7 @@ def info_estudos(request, id):
         isCriador = False
 
     criador = getTestPerfil()
-    return render(request, 'psiu/info_estudos.html',{'grupo':grupo,'contato':criador, 
+    return render(request, 'psiu/info_estudos.html',{'grupo':grupo,'contato':getContato(grupo.criador), 
     'participantes':participantes,'form':formnewParticipante,
     'isCriador':isCriador,'isParticipante':isParticipante})
 

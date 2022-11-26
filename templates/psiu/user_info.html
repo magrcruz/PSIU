@@ -1,13 +1,13 @@
 {% extends 'base.html' %}
 {% block image-page %}
-<a href="{% url 'psiu:user_info' request.user.id%}">
-    <img src="{{ user.perfil.fotoPerfil.url }}" class="mx-auto d-block rounded-circle position-absolute top-100 start-50 translate-middle" height="100" width="100" style="margin-top:23px">
+<a href="{% url 'psiu:user_info' thisUser.id%}">
+    <img src="{{ thisUser.perfil.fotoPerfil.url }}" class="mx-auto d-block rounded-circle position-absolute top-100 start-50 translate-middle" height="100" width="100" style="margin-top:23px">
 </a>
 {% endblock %}
 {% block content %}
 
 <center>
-    <p>{{ user.first_name }} {{ user.last_name }}</p>   
+    <p>{{ thisUser.first_name }} {{ thisUser.last_name }}</p>   
 </center>
 
 {% if isDarkMode %}
@@ -21,7 +21,7 @@
               <button class="btn btn-outline-secondary" type="button">
                   <div class="card-body">
                       <p class="card-text-start" style="font-weight:bold">Dados de contato<br></p>
-                      <p class="card-text-start">Twitter: {{ user.perfil.twitter }}<br>Instagram: {{ user.perfil.twitter }}<br>Bio: {{ user.perfil.bio }}</p>
+                      <p class="card-text-start">Twitter: {{ thisUser.perfil.twitter }}<br>Instagram: {{ thisUser.perfil.twitter }}<br>Bio: {{ thisUser.perfil.bio }}</p>
                   </div>
               </button>
           </div>

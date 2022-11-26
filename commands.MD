@@ -12,3 +12,4 @@ admin@gmail.com
 admin
 admin
 y
+venv\Scripts\activate.bat

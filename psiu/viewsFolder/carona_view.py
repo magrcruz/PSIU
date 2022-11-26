@@ -69,12 +69,7 @@ def criar_carona(request):
 
 def view_carona(request, id):
     carona = Carona.objects.get(pk = id)
-    criador = getTestPerfil()
-    try:
-        criador = Perfil.objects.get(pk = carona.criador)
-    except:
-        print("Criador not found")
-    return render(request, 'psiu/info_carona.html',{'carona':carona,'contato':criador})
+    return render(request, 'psiu/info_carona.html',{'carona':carona,'contato':getContato(carona.criador)})
 
 def apagar_carona(request):
     return redirect(reverse('psiu:carona'))

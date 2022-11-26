@@ -73,12 +73,7 @@ def criar_ligas(request):
         
 def info_ligas_nao_oficiais(request, id):
     ligas = Ligas.objects.get(pk = id)
-    criador = getTestPerfil()
-    try:
-        criador = Perfil.objects.get(pk = ligas.criador)
-    except:
-        print("Criador not found")
-    return render(request, 'psiu/info_ligas_nao_oficiais.html',{'ligas':ligas,'contato':criador})
+    return render(request, 'psiu/info_ligas_nao_oficiais.html',{'ligas':ligas,'contato':getContato(ligas.criador)})
 
 def ligas_oficiais(request):
     return render(request, 'psiu/ligas_oficiais.html',{'title':'Ligas Oficiais'})

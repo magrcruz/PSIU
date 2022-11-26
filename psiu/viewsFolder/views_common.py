@@ -21,6 +21,20 @@ def getTestPerfil():
         "image":"https://cdn.discordapp.com/attachments/1004623388758777966/1019399649100050512/unknown.png",
     }
     return fakePerfil
+
+def getContato(myUser):
+    if not myUser: return None
+    perfil = myUser.perfil
+    contato = {
+        "id" : myUser.id,
+        "nomeUser": myUser.username,
+        "image" : perfil.fotoPerfil.url,
+        #"telefone" : None,
+        "instagram" : perfil.instagram,
+        #"direcao" : perfil.direcao,
+    }
+    return contato
+    
 class Icon:
     def __init__(self, imgName):
         self.route = 'static/psiu/'+ imgName#

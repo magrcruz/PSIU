@@ -1,3 +1,8 @@
+{% extends 'base.html' %}
+{% block image-page %}
+    <img src="https://cdn.discordapp.com/attachments/1004623388758777966/1019419982062436403/unknown.png" class="mx-auto d-block rounded-circle position-absolute top-100 start-50 translate-middle" height="100" width="100" style="margin-top:23px">
+{% endblock %}
+{% block content %}
 Backend pronto <br>
 {{ conhecer.id}}
 {{ conhecer.criador_id}}
@@ -6,3 +11,8 @@ Backend pronto <br>
 
 {{ conhecer.vagas}}
 {{ conhecer.adicionais}}
+
+{% endblock %}
+{% block contato %}
+{% include "includes/contatoCard.html" with contato=contato%}       
+{% endblock  %}

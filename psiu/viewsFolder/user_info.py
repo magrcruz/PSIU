@@ -1,6 +1,9 @@
 from .views_common import *
 
 def user_info(request, id):
+    thisUser = User.objects.filter(id=id)
+    if thisUser and len(thisUser): thisUser = thisUser[0]
+    else: thisUser = request.user
     atividades = {
         'estudos' : Estudos.objects.filter(participacaogrupoestudos__id_participante=id),
         'caronas' : Carona.objects.filter(criador_id=id),
@@ -9,4 +12,4 @@ def user_info(request, id):
         'conhecer' : Conhecer.objects.filter(criador_id=id),
     }
     
-    return render(request, 'psiu/user_info.html', {'atividades':atividades})
+    return render(request, 'psiu/user_info.html', {'thisUser':thisUser,'atividades':atividades})

@@ -68,13 +68,8 @@ def criar_pessoas(request):
 
 def view_conhecer(request, id):
     conhecer = Conhecer.objects.get(pk = id)
-    criador = getTestPerfil()
-    try:
-        criador = Perfil.objects.get(pk = conhecer.criador)
-    except:
-        print("Criador not found")
-    print(conhecer.__dict__)
-    return render(request, 'psiu/info_conhecer.html',{'conhecer':conhecer,'contato':criador})
+    return render(request, 'psiu/info_conhecer.html',{'conhecer':conhecer,'contato':getContato(conhecer.criador)
+})
 
 def apagar_conhecer(request):
     return redirect(reverse('psiu:conhecer'))
