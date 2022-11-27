@@ -33,9 +33,13 @@ def todos(request):
         perfilAmigo = Perfil.objects.filter(user=amigo)
        
         #img=amigo.img nome=amigo.nome descricao=amigo.descricao link1="link" link2="link"
+        sala = getattr(amizade,'sala')
+        if sala: sala = sala.name
+
         amigos.append(perfilAmigo.__dict__ |{
             "nome": getattr(amigo,'username'),
-            "bio": getattr(amigo.perfil,'bio')
+            "bio": getattr(amigo.perfil,'bio'),
+            "sala":sala
         })
         #print(amigos[-1])
     #return render(request,"base.html")
@@ -78,18 +82,20 @@ def aceitar(request, id):
     solicitude = Solicitude.objects.filter(pk = id)
     if solicitude: solicitude=solicitude[0]
     aux =  Solicitude._meta.get_field("user1").value_from_object(solicitude)[0].__dict__
-    solicitude.delete()
 
     idUser = aux["id"]
 
     print("Solicitud encontrada", idUser)
-    amizade = Amizade.objects.create()
+    sala = Room.objects.create()
+
+    amizade = Amizade.objects.create(sala=sala)
 
     amizade.amigo1.add(idUser)
     amizade.amigo2.add(request.user.id)
 
     amizade.save()
-    
+    solicitude.delete()
+
     return redirect(reverse('amigos:pendentes'))
 
 '''

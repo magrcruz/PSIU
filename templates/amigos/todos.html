@@ -10,7 +10,7 @@
 {% block content %}  
     {% for amigo in amigos%}
     {% url 'psiu:info_perfil' amigo.user_id as perfilUrl%}
-    {% url 'psiu:info_perfil' amigo.user_id as chatUrl%}
+    {% url 'psiuChat:room' amigo.sala as chatUrl%}
     {% include "amigos/includes/amigoOverview.html" with img=amigo.fotoPerfil nome=amigo.nome descricao=amigo.bio link1=chatUrl link2=perfilUrl icon1="bi-chat-left" icon2="bi-plus-square"%}
     {% endfor %}
 {% endblock %}
