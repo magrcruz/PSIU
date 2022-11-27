@@ -2,25 +2,16 @@ from .views_common import *
 from psiuChat.models import *
 
 def filtrar_ligas(request, ligas_list):
-    
     ligas = Ligas()
-
-    # there is a better way to do this with forms.py
-    form = ligasFilter(request.POST)
-    
-    if form.is_valid():
-        fields = ligas.get_readonly_fields(request)
-        filtro = {}
-        
-        for field in fields:
-            if field in form.cleaned_data:
-                filtro[field] = form.cleaned_data[field]
-
-    ligas_list = ligas_list.filter(atividade__startswith=form.cleaned_data["atividade"]or"")
-    ligas_list = ligas_list.filter(local__startswith=form.cleaned_data["local"]or"")
-    ligas_list = ligas_list.filter(vagas__startswith=form.cleaned_data["vagas"]or"")
-    ligas_list = ligas_list.filter(adicionais__startswith=form.cleaned_data["adicionais"]or"")
-
+    form = request.POST.dict()
+    fields = ligas.get_readonly_fields(request)
+    content = {} 
+    for field in fields:
+        if field in form:
+            content[field] = form.get(field)
+    ligas_list = ligas_list.filter(atividade__startswith=content["atividade"]or"")
+    ligas_list = ligas_list.filter(local__startswith=content["local"]or"")
+    ligas_list = ligas_list.filter(vagas__gt=int(content["vagas"]or 0))
 
     return ligas_list
 
@@ -43,7 +34,7 @@ def ligas_nao_oficiais(request):
     elif request.method == "POST":
         ligas_list = filtrar_ligas(request,ligas_list)
 
-    return render(request, 'psiu/ligas_nao_oficiais.html',{'title':'Ligas Acadêmicas Não Oficiais', 'ligas_nao_oficiais':ligas_list,'fitro_form':fitro_form})
+    return render(request, 'psiu/lista_ligas_nao_oficiais.html',{'title':'Ligas Acadêmicas Não Oficiais', 'ligas_nao_oficiais':ligas_list,'fitro_form':fitro_form})
 
 def criar_ligas(request):
     print(request)

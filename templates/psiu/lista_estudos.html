@@ -35,8 +35,8 @@
 
 <br>
 
-{% if grupo_estudos %}
-    {% for i in grupo_estudos %}
+{% if lista_grupo_estudos %}
+    {% for i in lista_grupo_estudos %}
         {% include "includes/estudoCard.html" with estudo=i%}       
     {% endfor %}
 {% else %}
@@ -57,11 +57,30 @@
           </button>
         </div>
         <div class="modal-body">
-          {{fitro_form}}
+          <div class="form-group">
+            <label for="">Matéria</label>
+            <input type="text" class="form-control" placeholder="" aria-describedby="basic-addon2" width="100" name="materia"  value="{{estudos_temp.materia}}">
+          </div>
+                    
+          <div class="form-group">
+              <label for="">Local</label>
+              <input type="text" class="form-control" placeholder="" aria-describedby="basic-addon2" width="100" name="local"  value="{{estudos_temp.local}}">
+          </div>
+          
+          <div class="form-group">
+              <label for="">Vagas</label>
+              <input type="number" class="form-control" placeholder="" aria-describedby="basic-addon2" width="100" name="vagas"  value="{{estudos_temp.vagas}}" min="0" max="16">
+          </div>
+          
+          <div class="form-group">
+              <label for="">Descrição</label>
+              <input type="text" class="form-control" placeholder="" aria-describedby="basic-addon2" width="100" name="adicionais"  value="{{estudos_temp.adicionais}}" >
+          </div>
+        
         </div>
         <div class="modal-footer">
-          <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
-          <button type="submit" class="btn btn-primary">Save changes</button>
+          <button type="button" class="btn btn-secondary" data-dismiss="modal">Fechar</button>
+          <button type="submit" class="btn btn-primary">Filtrar</button>
         </div>
       </div>
     </div>

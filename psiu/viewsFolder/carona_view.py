@@ -3,23 +3,17 @@ from psiuChat.models import *
 
 def filtrar_carona(request, carona_list):
     carona = Carona()
-
-    # there is a better way to do this with forms.py
-    form = caronaFilter(request.POST)
-    if form.is_valid():
-        fields = carona.get_readonly_fields(request)
-        filtro = {}
-        
-        for field in fields:
-            if field in form.cleaned_data:
-                filtro[field] = form.cleaned_data[field]
-
-    #carona_list = carona_list.filter(criador__startswith=form.cleaned_data["criador"])
-    carona_list = carona_list.filter(localSaida__startswith=form.cleaned_data["localSaida"]or"")
-    carona_list = carona_list.filter(localChegada__startswith=form.cleaned_data["localChegada"]or"")
-    #carona_list = carona_list.filter(dataHora__startswith=str(datetime.strptime(form.cleaned_data['dataHora'], '%Y-%m-%dT%H:%M'))or"")
-    carona_list = carona_list.filter(vagas__startswith=form.cleaned_data["vagas"]or"")
-    carona_list = carona_list.filter(adicionais__startswith=form.cleaned_data["adicionais"]or"")
+    form = request.POST.dict()
+    fields = carona.get_readonly_fields(request)
+    content = {} 
+    for field in fields:
+        if field in form:
+            content[field] = form.get(field)
+    
+    carona_list = carona_list.filter(localSaida__startswith=content["localSaida"]or"")
+    carona_list = carona_list.filter(localChegada__startswith=content["localChegada"]or"")
+    carona_list = carona_list.filter(vagas__gt=int(content["vagas"]or 0))
+    carona_list = carona_list.filter(adicionais__icontains=content["adicionais"]or"")
 
     return carona_list
 
@@ -40,7 +34,7 @@ def carona(request):
     elif request.method == "POST":
         carona_list = filtrar_carona(request,carona_list)
 
-    return render(request, 'psiu/carona.html',{'title':'Carona', 'carona_list':carona_list,'fitro_form':fitro_form})
+    return render(request, 'psiu/lista_carona.html',{'title':'Carona', 'carona_list':carona_list,'fitro_form':fitro_form})
 
 def criar_carona(request):
     print(request)

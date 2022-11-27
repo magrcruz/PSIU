@@ -3,23 +3,17 @@ from .views_common import *
 def filtrar_extra(request, extra_list):
     
     extra = Extra()
-
-    # there is a better way to do this with forms.py
-    form = extraFilter(request.POST)
-    if form.is_valid():
-        fields = extra.get_readonly_fields(request)
-        filtro = {}
-        
-        for field in fields:
-            if field in form.cleaned_data:
-                filtro[field] = form.cleaned_data[field]
-
-    extra_list = extra_list.filter(atividade__startswith=form.cleaned_data["atividade"]or"")
-    extra_list = extra_list.filter(localSaida__startswith=form.cleaned_data["localSaida"]or"")
-    extra_list = extra_list.filter(localChegada__startswith=form.cleaned_data["localChegada"]or"")
-    extra_list = extra_list.filter(vagas__startswith=form.cleaned_data["vagas"]or"")
-    extra_list = extra_list.filter(adicionais__startswith=form.cleaned_data["adicionais"]or"")
-
+    form = request.POST.dict()
+    fields = extra.get_readonly_fields(request)
+    content = {} 
+    for field in fields:
+        if field in form:
+            content[field] = form.get(field)
+    
+    extra_list = extra_list.filter(atividade__startswith=content["atividade"]or"")
+    extra_list = extra_list.filter(local__startswith=content["local"]or"")
+    extra_list = extra_list.filter(vagas__gt=int(content["vagas"]or 0))
+    extra_list = extra_list.filter(adicionais__startswith=content["adicionais"]or"")
 
     return extra_list
 
@@ -38,7 +32,7 @@ def extracurriculares(request):
     elif request.method == "POST":
         extra_list = filtrar_extra(request,extra_list)
 
-    return render(request, 'psiu/extracurriculares.html',{'title':'Atividades Extracurriculares', 'extracurriculares':extra_list,'fitro_form':fitro_form})
+    return render(request, 'psiu/lista_extracurriculares.html',{'title':'Atividades Extracurriculares', 'extracurriculares':extra_list,'fitro_form':fitro_form})
 
 def criar_extracurricular(request):
     print(request.user)

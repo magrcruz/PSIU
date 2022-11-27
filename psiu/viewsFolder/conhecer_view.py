@@ -3,24 +3,18 @@ from psiuChat.models import *
 
 def filtrar_conhecer(request, conhecer_list):
     conhecer = Conhecer()
+    form = request.POST.dict()
+    fields = conhecer.get_readonly_fields(request)
+    content = {} 
+    for field in fields:
+        if field in form:
+            content[field] = form.get(field)
+    
+    conhecer_list = conhecer_list.filter(interesses__startswith=content["interesses"]or"")
+    conhecer_list = conhecer_list.filter(local__startswith=content["local"]or"")
+    conhecer_list = conhecer_list.filter(vagas__gt=int(content["vagas"]or 0))
+    conhecer_list = conhecer_list.filter(adicionais__startswith=content["adicionais"]or"")
 
-    # there is a better way to do this with forms.py
-    '''form = conhecerFilter(request.POST)
-    if form.is_valid():
-        fields = conhecer.get_readonly_fields(request)
-        filtro = {}
-        
-        for field in fields:
-            if field in form.cleaned_data:
-                filtro[field] = form.cleaned_data[field]
-
-    #conhecer_list = conhecer_list.filter(criador__startswith=form.cleaned_data["criador"])
-    conhecer_list = conhecer_list.filter(localSaida__startswith=form.cleaned_data["localSaida"]or"")
-    conhecer_list = conhecer_list.filter(localChegada__startswith=form.cleaned_data["localChegada"]or"")
-    #conhecer_list = conhecer_list.filter(dataHora__startswith=str(datetime.strptime(form.cleaned_data['dataHora'], '%Y-%m-%dT%H:%M'))or"")
-    conhecer_list = conhecer_list.filter(vagas__startswith=form.cleaned_data["vagas"]or"")
-    conhecer_list = conhecer_list.filter(adicionais__startswith=form.cleaned_data["adicionais"]or"")
-'''
     return conhecer_list
 
 def conhecer_pessoas(request):
@@ -40,7 +34,7 @@ def conhecer_pessoas(request):
     elif request.method == "POST":
         conhecer_list = filtrar_conhecer(request,conhecer_list)
 
-    return render(request, 'psiu/conhecer_pessoas.html',{'title':'Conhecer', 'conhecer_list':conhecer_list,'fitro_form':None})
+    return render(request, 'psiu/lista_conhecer_pessoas.html',{'title':'Conhecer', 'conhecer_list':conhecer_list,'fitro_form':None})
 
 def criar_pessoas(request):
     if request.method == "GET":

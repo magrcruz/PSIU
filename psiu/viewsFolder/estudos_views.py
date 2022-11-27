@@ -78,20 +78,17 @@ def filtrar_estudos(request, estudos_list):
     estudos = Estudos()
 
     # there is a better way to do this with forms.py
-    form = estudosFilter(request.POST)
-    if form.is_valid():
-        fields = estudos.get_readonly_fields(request)
-        filtro = {}
-        
-        for field in fields:
-            if field in form.cleaned_data:
-                filtro[field] = form.cleaned_data[field]
+    form = request.POST.dict()
+    fields = estudos.get_readonly_fields(request)
+    content = {} 
+    for field in fields:
+        if field in form:
+            content[field] = form.get(field)
 
-    estudos_list = estudos_list.filter(materia__startswith=form.cleaned_data["materia"]or"")
-    estudos_list = estudos_list.filter(local__startswith=form.cleaned_data["local"]or"")
-    #estudos_list = estudos_list.filter(dataHora__startswith=str(datetime.strptime(form.cleaned_data['dataHora'], '%Y-%m-%dT%H:%M'))or"")
-    estudos_list = estudos_list.filter(vagas__startswith=form.cleaned_data["vagas"]or"")
-    estudos_list = estudos_list.filter(adicionais__startswith=form.cleaned_data["adicionais"]or"")
+    estudos_list = estudos_list.filter(materia__startswith=content["materia"]or"")
+    estudos_list = estudos_list.filter(local__startswith=content["local"]or"")
+    estudos_list = estudos_list.filter(vagas__gt=int(content["vagas"]or 0))
+    estudos_list = estudos_list.filter(adicionais__startswith=content["adicionais"]or"")
 
     return estudos_list
 
@@ -113,7 +110,7 @@ def grupo_estudos(request):
        #Filtrar grupo de estudos
         grupo_de_estudos = filtrar_estudos(request,grupo_de_estudos)
 
-    return render(request, 'psiu/estudos.html',{'title':'Grupo de estudos','grupo_estudos':grupo_de_estudos,'fitro_form':fitro_form})
+    return render(request, 'psiu/lista_estudos.html',{'title':'Grupo de estudos','lista_grupo_estudos':grupo_de_estudos,'fitro_form':fitro_form})
 
 def apagar_estudos(request, id):
     grupo = Estudos.objects.get(pk = id)
