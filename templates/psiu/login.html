@@ -15,9 +15,14 @@
 
 
     <form class="container" method="post">
+    {% if alerta %}
+    <div class="alert alert-danger alert-dismissible fade show" role="alert">
+        >> {{ alerta }}
+        <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+    </div>
+    {% endif %}
     {% csrf_token %}
         <!--{{login_form}}-->
-
 
         <div class="row">
             <div class="col">

@@ -1,6 +1,7 @@
 from .views_common import *
 
 def login_request(request):
+	alerta = None
 	if request.method == "POST":
 		form = AuthenticationForm(request, data=request.POST)
 		if form.is_valid():
@@ -16,4 +17,4 @@ def login_request(request):
 		else:
 			messages.error(request,"Invalid username or password.")
 	form = AuthenticationForm()
-	return render(request, "psiu/login.html", {"login_form":form})
+	return render(request, "psiu/login.html", {"login_form":form, "alerta":"Invalid username or password."})
