@@ -25,7 +25,7 @@ def carona(request):
         for carona in carona_list:
             if 'criador_id' in carona and carona['criador_id']!="NULL":
                 user = User.objects.get(pk=carona['criador_id'])
-                name = user.first_name
+                name = user.username
                 if name:
                     carona['nomeUser'] = name
                     continue

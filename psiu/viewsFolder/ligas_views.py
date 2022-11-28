@@ -25,7 +25,7 @@ def ligas_nao_oficiais(request):
                 user = User.objects.filter(pk=ligas['criador_id'])
                 if user: user=user[0]
                 else: continue
-                name = user.first_name
+                name = user.username
                 if name:
                     ligas['nomeUser'] = name
                     continue

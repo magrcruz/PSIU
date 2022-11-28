@@ -101,7 +101,7 @@ def grupo_estudos(request):
             grupo['nomeUser'] = "User not found"
             if 'criador_id' in grupo and grupo['criador_id']!="NULL":
                 user = User.objects.get(pk=grupo['criador_id'])
-                name = user.first_name
+                name = user.username
                 if name:
                     grupo['nomeUser'] = name
                     continue

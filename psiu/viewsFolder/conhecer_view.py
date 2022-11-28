@@ -25,7 +25,7 @@ def conhecer_pessoas(request):
         for conhecer in conhecer_list:
             if 'criador_id' in conhecer and conhecer['criador_id']!="NULL":
                 user = User.objects.get(pk=conhecer['criador_id'])
-                name = user.first_name
+                name = user.username
                 if name:
                     conhecer['nomeUser'] = name
                     continue

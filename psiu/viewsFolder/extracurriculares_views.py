@@ -25,7 +25,7 @@ def extracurriculares(request):
             extra['nomeUser'] = "User not found"
             if 'criador_id' in extra and extra['criador_id']!="NULL":
                 user = User.objects.get(pk=extra['criador_id'])
-                name = user.first_name
+                name = user.username
                 if name:
                     extra['nomeUser'] = name
 
