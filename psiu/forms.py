@@ -43,11 +43,14 @@ class ModificarPerfilForm(forms.ModelForm):
 class PerfilForm(forms.ModelForm):
     class Meta:
         model = Perfil
-        fields = ('fotoPerfil',)
+        fields = ('fotoPerfil','bio','instagram','twitter')
 
     def __init__(self, *args, **kwargs):
         super().__init__(*args, **kwargs)
         self.fields['fotoPerfil'].widget.attrs.update({"class": "form-control"})
+        self.fields['bio'].widget.attrs.update({"class": "form-control"})
+        self.fields['instagram'].widget.attrs.update({"class": "form-control"})
+        self.fields['twitter'].widget.attrs.update({"class": "form-control"})
 
 class caronaFilter(forms.ModelForm):
     class Meta:
