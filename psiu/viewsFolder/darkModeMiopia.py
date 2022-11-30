@@ -21,3 +21,14 @@ def miopiaMode_request(request):
         usuario.perfil.save()
 
     return redirect(reverse('psiu:modificar_perfil'))
+
+def corMode_request(request):        
+    usuario = request.user
+    if (usuario.perfil.corMode):
+        usuario.perfil.corMode = False
+        usuario.perfil.save()
+    else:
+        usuario.perfil.corMode = True
+        usuario.perfil.save()
+
+    return redirect(reverse('psiu:modificar_perfil'))
