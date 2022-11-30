@@ -18,6 +18,7 @@ urlpatterns = [
     path('salas/', views.salas, name='Sala de chat'),
     path('ligas_oficiais/', views.listaAtividades, name='ligas_oficiais'),
     path('modificar_perfil/', views.modificar_perfil, name='modificar_perfil'),
+    path('modificar_atividade/', views.modificar_atividade, name='modificar_atividade'),
     path('ajuda/', views.ajuda, name='ajuda'),
 
     path('carona/', views.listaAtividades, name='carona'),

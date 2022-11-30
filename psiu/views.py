@@ -30,6 +30,9 @@ def main(request):
 def modificar_perfil(request):
     return render(request, 'psiu/modificar_perfil.html')
 
+def modificar_atividade(request):
+    return render(request, 'psiu/modificar_atividade.html')
+
 def register_request(request):
     if request.method == "POST":
         form = NewUserForm(request.POST)
