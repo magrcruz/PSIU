@@ -35,6 +35,7 @@ urlpatterns = [
     path('criar_extracurricular/',views.criar_atividade, name='criar_extracurricular'),
     path('darkMode/', views.darkMode_request, name='darkMode'),
     path('miopiaMode/', views.miopiaMode_request, name='miopiaMode'),
+    path('corMode/', views.corMode_request, name='corMode'),
     
     #deletar
     path('apagar_carona/<id>',views.apagar_atividade, name='apagar_carona'),
