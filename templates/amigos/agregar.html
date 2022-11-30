@@ -8,16 +8,16 @@
 </nav>
 {% endblock %}
 {% block content %}
-<h5>Ingresa</h5>
+<h5>Ingressar</h5>
 <form method="post">
     {% csrf_token %}
 
     <div class="input-group mb-3">
         <input type="text" class="form-control" name="codigo" placeholder="Codigo" aria-label="Recipient's username" aria-describedby="button-addon2">
-        <button class="btn btn-outline-secondary" type="submit" id="button-addon2">Enviar Solicitud</button>
+        <button class="btn btn-outline-secondary" type="submit" id="button-addon2">Enviar Solicitação</button>
     </div>
 </form>
-<h5>Comparte</h5>
+<h5>Compartilhar</h5>
 <form >
     <div class="input-group mb-3">
         <input type="text" id="userId" class="form-control" value="{{userId}}" aria-describedby="button-addon2" disabled>

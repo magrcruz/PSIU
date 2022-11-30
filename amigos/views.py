@@ -77,7 +77,7 @@ def agregar(request):
         form = request.POST.dict()
         novaSolicitude.user1.add(request.user.id)
         novaSolicitude.user2.add(form.get('codigo'))
-        return render(request,"amigos/agregar.html",{"disableSearch":True,'userId':request.user.id,'alerta':"A solicitude foi enviada com suceso"})
+        return render(request,"amigos/agregar.html",{"disableSearch":True,'userId':request.user.id,'alerta':"A solicitação foi enviada com sucesso"})
     return render(request,"amigos/agregar.html",{"disableSearch":True,'userId':request.user.id})
 
 def aceitar(request, id):
@@ -88,7 +88,7 @@ def aceitar(request, id):
 
     idUser = aux["id"]
 
-    print("Solicitud encontrada", idUser)
+    print("Solicitação encontrada", idUser)
     sala = Room.objects.create()
 
     amizade = Amizade.objects.create(sala=sala)
