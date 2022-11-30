@@ -20,7 +20,7 @@
 <body>
 
 <p class="text-center">{{grupo.adicionais}}</p>
-<div class = "" style = "color: rgba(0,0,0,1)">
+<div class="" style="color: rgba(0,0,0,1)">
     <br>
     <center>
         <div class="card" style="width: 35rem;">
@@ -34,10 +34,13 @@
         </div>
     </center>
     <br>
-    <div class="row mb-3" style = "color: rgba(0,0,0,1)">
+    <div class="row mb-3" style="color: rgba(0,0,0,1)">
         <div class="col text-center">
             <a class="text-dark btn btn-primary" href="#void" onclick="redirectSala();" style="font-weight: bold">Chat do grupo</a>
         </div>
+    </div>
+    <div class="row mx-auto text-center">
+        <a href="{% url 'psiu:modificar_atividade' %}">Modificar Atividade</a>
     </div>
     <br>
     <h5>Participantes</h5>
@@ -72,9 +75,9 @@
                 <span class="visually-hidden">Next</span>
             </button>
         </div>
-       
+
     </div>
-            
+
     <script>
         var p = document.getElementsByClassName("participante");
         console.log("Se obtuvieron", p.length, "participantes")
@@ -82,11 +85,11 @@
         place.innerHtml = ""
         let active = true
         let newSlide = null;
-        let newRow  = null;
+        let newRow = null;
         let nParticipantes = p.length
-        for(let i=0;i<nParticipantes;i++){
-            console.log(i%2);
-            if(!(i%2)){
+        for (let i = 0; i < nParticipantes; i++) {
+            console.log(i % 2);
+            if (!(i % 2)) {
                 console.log("create new slide")
                 newSlide = document.createElement('div');
                 newSlide.classList.add("carousel-item");
