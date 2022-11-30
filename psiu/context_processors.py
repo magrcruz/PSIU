@@ -22,5 +22,6 @@ def perfilDarkMode(request):
 
         isDarkMode = usuario.perfil.darkMode
         isMiopiaMode = usuario.perfil.miopiaMode
-        return {'isDarkMode': isDarkMode, 'isMiopiaMode': isMiopiaMode}
+        isCorMode = usuario.perfil.corMode
+        return {'isDarkMode': isDarkMode, 'isMiopiaMode': isMiopiaMode, 'isCorMode': isCorMode}
     return {}

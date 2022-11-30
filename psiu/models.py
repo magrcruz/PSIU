@@ -65,6 +65,7 @@ class Perfil(models.Model):
   dataCriacao = models.DateTimeField(auto_now_add=True, blank=False)
   miopiaMode = models.BooleanField(default=False)
   dataModificacao = models.DateTimeField(auto_now_add=True, blank=False)
+  corMode = models.BooleanField(default=False)
 
   def get_readonly_fields(self, request, obj=None):
     return [f.name for f in self._meta.get_fields()]

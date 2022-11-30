@@ -1,9 +1,10 @@
 
 <button class="btn position-absolute top-0 start-0" type="button" data-bs-toggle="offcanvas" data-bs-target="#offcanvasExample" aria-controls="offcanvasExample">
-    <a id="home-link" class="btn btn-white" role="button"><img src="https://media.discordapp.net/attachments/1004623388758777966/1044246183733895308/unknown.png" height="30" width="30"></a>
+    <img src="https://media.discordapp.net/attachments/1004623388758777966/1044246183733895308/unknown.png" height="30" width="30">
 </button>
-<div class="offcanvas offcanvas-start" style="background-color: #6FA8FF;" tabindex="-1" id="offcanvasExample" aria-labelledby="offcanvasExampleLabel">
+<div class="offcanvas offcanvas-start" tabindex="-1" id="offcanvasExample" aria-labelledby="offcanvasExampleLabel">
     <div class="offcanvas-header">
+        <img src="https://cdn.discordapp.com/attachments/1004623388758777966/1047362170385608764/image.png" height="75" width="75">
         <h5 class="offcanvas-title" id="offcanvasExampleLabel">Psiu</h5>
         <button type="button" class="btn-close" data-bs-dismiss="offcanvas" aria-label="Close"></button>
     </div>
@@ -55,6 +56,14 @@
                 </div>
                 <div class="col mt-4">
                     Conhecer Pessoas
+                </div>
+            </div>
+            <div class="row mb-4">
+                <div class="col">
+                    <a id="modificar-perfil-link" class="btn btn-white" href="{% url 'amigos:todos' %}" role="button"><img src="https://media.discordapp.net/attachments/1004623388758777966/1047490966426243124/apoio-suporte.png" height="75" width="75"></a>
+                </div>
+                <div class="col mt-4">
+                    Amigos
                 </div>
             </div>
             <div class="row mb-4">
