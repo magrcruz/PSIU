@@ -39,8 +39,10 @@ def todos(request):
         amigos.append(perfilAmigo.__dict__ |{
             "nome": getattr(amigo,'username'),
             "bio": getattr(amigo.perfil,'bio'),
+            "fotoPerfil" : amigo.perfil.fotoPerfil.url,
             "sala":sala
         })
+        
         #print(amigos[-1])
     #return render(request,"base.html")
     return render(request,"amigos/todos.html", {"amigos": amigos,"disableSearch":False})
@@ -59,7 +61,8 @@ def pendentes(request):
         #img=amigo.img nome=amigo.nome descricao=amigo.descricao link1="link" link2="link"
         amigos.append(perfilAmigo.__dict__ |{
             "solicitude_id": getattr(amizade,"pk"),
-            "nome": getattr(amigo,'username')
+            "nome": getattr(amigo,'username'),
+            "img" : amigo.perfil.fotoPerfil.url,
         })
     #return render(request,"base.html")
     return render(request,"amigos/pendentes.html", {"amigos": amigos,"disableSearch":True})
