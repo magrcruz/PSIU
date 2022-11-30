@@ -189,13 +189,9 @@
 
 </body>
 {% if isCriador %}
-    <div class="col-sm-12 mb-2 text-center">
-        <a href="{% url 'psiu:modificar_atividade' %}" class="btn btn-primary">Modificar Atividade</a>
-    </div>
-
     <div class="row">
         <div class="col-sm-12 text-center">
-            <a href="" class="btn btn-secondary">Editar {{ minusculo }}</a>
+            <a href="{% url 'psiu:modificar_atividade' %}" class="btn btn-secondary">Editar {{ minusculo }}</a>
             <a href="../{{ apagar }}/{{ grupo.id }}" class="btn btn-danger">Apagar {{ minusculo }}</a>
         </div>
     </div>
