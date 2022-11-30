@@ -9,11 +9,14 @@
     <img src="https://media.discordapp.net/attachments/1004623388758777966/1019419758216617984/unknown.png" class="mx-auto d-block rounded-circle position-absolute top-100 start-50 translate-middle" height="100" width="100" style="margin-top:23px">
 {% elif tipo == 'conhecer' %}
     <img src="https://cdn.discordapp.com/attachments/1004623388758777966/1019419982062436403/unknown.png" class="mx-auto d-block rounded-circle position-absolute top-100 start-50 translate-middle" height="100" width="100" style="margin-top:23px">
+{% elif tipo == 'liga' %}
+    <img src="https://cdn.discordapp.com/attachments/1004623388758777966/1019419863707557938/unknown.png" class="mx-auto d-block rounded-circle position-absolute top-100 start-50 translate-middle" height="100" width="100" style="margin-top:23px">
 {% endif %}
 
 {% endblock %}
 
 {% block content %}
+<h5 class="text-center">{{ maiusculo }}</h5>
 
 <a href="../{{ criar }}">+ Adicionar {{ minusculo }}</a>
 

@@ -1,10 +1,10 @@
 <div class="row carona-card">
     <div class="d-grid gap-2 col">
-        <a href="{% url 'psiu:info_ligas_nao_oficiais' liga.id %}" class="btn btn-outline-secondary mb-4 ms-5 me-5" >
+        <a href="{% url 'psiu:info_liga' liga.id %}" class="btn btn-outline-secondary mb-4 ms-5 me-5" >
             <div class="card-body">
                 <div class="row">
                     <div class="col">
-                        <h5 class="card-title">{{liga.nomeLiga}}</h5>
+                        <h5 class="card-title">{{liga.nome}}</h5>
                         <p class="card-text">{{liga.atividade}}</p>
                     </div>
                     <div class="col">

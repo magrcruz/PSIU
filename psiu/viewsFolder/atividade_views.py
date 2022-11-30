@@ -88,8 +88,8 @@ def criar_atividade(request):
                 return redirect(reverse('psiu:extracurriculares'))
         if (tipoAtividade == 'conhecer'):
             return redirect(reverse('psiu:conhecer_pessoas'))
-        if (tipoAtividade == 'ligas'):
-            return redirect(reverse('psiu:liga'))
+        if (tipoAtividade == 'liga'):
+            return redirect(reverse('psiu:ligas'))
 
         return redirect(reverse('home'))
 
@@ -110,7 +110,7 @@ def filtrar_atividade(request, atividade_list,tipoAtividade):
     elif (tipoAtividade == 'extracurricular'):
         atividade_list = atividade_list.filter(atividade__startswith=content["atividade"]or"")
     elif (tipoAtividade == 'liga'):
-        atividade_list = atividade_list.filter(nomeLiga__startswith=content["nomeLiga"]or"")
+        atividade_list = atividade_list.filter(nome__startswith=content["nome"]or"")
 
     if (tipoAtividade == 'carona'):
         atividade_list = atividade_list.filter(localSaida__startswith=content["localSaida"]or"")
@@ -149,7 +149,6 @@ def listaAtividades(request):
                     continue
 
     elif request.method == "POST":
-       #Filtrar atividade
         atividades = filtrar_atividade(request,atividades,tipoAtividade)
 
     context = pegarContext(tipoAtividade)
@@ -175,7 +174,7 @@ def apagar_atividade(request, id):
     if (tipoAtividade == 'conhecer'):
         return redirect(reverse('psiu:conhecer_pessoas'))
     if (tipoAtividade == 'liga'):
-        return redirect(reverse('psiu:liga'))
+        return redirect(reverse('psiu:ligas'))
 
     return redirect(reverse('home'))
 
@@ -278,9 +277,9 @@ def pegarContext(tipoAtividade):
         context['principal'] = 'ligas'
         context['link_info'] = 'info_liga'
         context['criar'] = 'criar_liga'
-        context['maiusculo']='Liga'
-        context['minusculo']='liga'
-        context['plural']= 'ligas'
+        context['maiusculo']='Liga acadêmica'
+        context['minusculo']='liga acadêmica'
+        context['plural']= 'ligas acadêmicas'
         context['apagar']='apagar_liga'
         context['participar']='participar_liga'
         context['sair']='sair_liga'

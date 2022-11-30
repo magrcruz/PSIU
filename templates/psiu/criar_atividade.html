@@ -9,6 +9,8 @@
     <img src="https://media.discordapp.net/attachments/1004623388758777966/1019419758216617984/unknown.png" class="mx-auto d-block rounded-circle position-absolute top-100 start-50 translate-middle" height="100" width="100" style="margin-top:23px">
 {% elif tipo == 'conhecer' %}
     <img src="https://cdn.discordapp.com/attachments/1004623388758777966/1019419982062436403/unknown.png" class="mx-auto d-block rounded-circle position-absolute top-100 start-50 translate-middle" height="100" width="100" style="margin-top:23px">
+{% elif tipo == 'liga' %}
+    <img src="https://cdn.discordapp.com/attachments/1004623388758777966/1019419863707557938/unknown.png" class="mx-auto d-block rounded-circle position-absolute top-100 start-50 translate-middle" height="100" width="100" style="margin-top:23px">
 {% endif %}
 
 {% endblock %}
@@ -25,17 +27,12 @@
             <h4>Criando {{ minusculo }}</h4>
         </div>
 
-        <div class="form-group">
-            <label for="">Data e horário</label>
-            <input type="datetime-local" class="form-control" placeholder="" aria-describedby="basic-addon2" width="100" name="dataHora"  value="{{ dataHora }}">
-        </div>
-
         {% if tipo == "estudo" %}
             <div class="form-group">
                 <label for="">Matéria</label>
                 <input type="text" class="form-control" placeholder="" aria-describedby="basic-addon2" width="100" name="materia"  value="{{ materia }}">
             </div>
-        {% elif tipo == "extracurricular" %}
+        {% elif tipo == "extracurricular"%}
             <div class="form-group">
                 <label for="">Atividade</label>
                 <input type="text" class="form-control" placeholder="" aria-describedby="basic-addon2" width="100" name="atividade"  value="">
@@ -45,7 +42,23 @@
                 <label for="">Tópico</label>
                 <input type="text" class="form-control" placeholder="" aria-describedby="basic-addon2" width="100" name="interesses"  value="{{estudos_temp.interesses}}">
             </div>
+        {% elif tipo == "liga" %}
+            <div class="form-group">
+                <label for="">Nome da liga</label>
+                <input type="text" class="form-control" placeholder="" aria-describedby="basic-addon2" width="100" name="nome"  value="{{ nome }}">
+            </div>
+            <div class="form-group">
+                <label for="">Atividade</label>
+                <input type="text" class="form-control" placeholder="" aria-describedby="basic-addon2" width="100" name="atividade"  value="{{ligas_temp.atividade}}">
+            </div>
         {% endif %}
+
+        <div class="form-group">
+            <label for="">Data e horário</label>
+            <input type="datetime-local" class="form-control" placeholder="" aria-describedby="basic-addon2" width="100" name="dataHora"  value="{{ dataHora }}">
+        </div>
+
+
 
         {% if tipo != carona %}
             <div class="form-group">
