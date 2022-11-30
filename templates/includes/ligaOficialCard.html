@@ -1,16 +1,15 @@
-{% with myDefault="Não sei"%}
 <div class="row liga-card">
     <div class="d-grid gap-2 col">
-        <a href="" class="btn btn-outline-secondary mb-4 ms-5 me-5" >
+        <a href="{% url 'psiu:info_liga_oficial' liga.id %}" class="btn btn-outline-secondary mb-4 ms-5 me-5" >
             <div class="card-body">
                 <div class="row">
                     <div class="col">
-                        <h5 class="card-title">{{materia|default:myDefault}}</h5>
-                        <p class="card-text">{{encarregado|default:myDefault}}</p>
+                        <h5 class="card-title">{{liga.materia}}</h5>
+                        <p class="card-text">{{liga.nome}}</p>
                     </div>
                     <div class="col">
-                        <p class="card-text">{{frecuencia|default:myDefault}}</p>
-                        <p class="card-text">Vagas disponíveis: {{vagas|default:myDefault}}</p>
+                        <p class="card-text">{{liga.atividade}}</p>
+                        <p class="card-text">Vagas disponíveis: {{liga.vagas}}</p>
                     </div>
                 </div>
             </div>
@@ -18,4 +17,3 @@
     </div>
     <br>
 </div>
-{% endwith %}

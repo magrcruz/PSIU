@@ -18,7 +18,9 @@
 {% block content %}
 <h5 class="text-center">{{ maiusculo }}</h5>
 
-<a href="../{{ criar }}">+ Adicionar {{ minusculo }}</a>
+{% if tipo != "liga_oficial" %}
+    <a href="../{{ criar }}">+ Adicionar {{ minusculo }}</a>
+{% endif %}
 
 <!doctype html>
 <html lang = "pt-br">
@@ -69,6 +71,10 @@
     {% elif tipo == "liga" %}
         {% for i in lista %}
             {% include "includes/ligaCard.html" with liga=i%}  
+        {% endfor %}
+    {% elif tipo == "liga_oficial" %}
+        {% for i in lista %}
+            {% include "includes/ligaOficialCard.html" with liga=i%}  
         {% endfor %}
     {% endif %}
 {% else %}

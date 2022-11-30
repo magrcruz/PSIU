@@ -16,7 +16,7 @@ urlpatterns = [
     path('logout/', views.logout_request, name='logout'),
     path('modificar/', views.modificar_request, name='modificar'),
     path('salas/', views.salas, name='Sala de chat'),
-    path('ligas_oficiais/', views.ligas_oficiais, name='ligas_oficiais'),
+    path('ligas_oficiais/', views.listaAtividades, name='ligas_oficiais'),
     path('modificar_perfil/', views.modificar_perfil, name='modificar_perfil'),
     path('ajuda/', views.ajuda, name='ajuda'),
 
@@ -48,6 +48,7 @@ urlpatterns = [
     path('participar_extracurricular/<id>',views.participar_atividade, name='participar_extracurricular'),
     path('participar_conhecer/<id>',views.participar_atividade, name='participar_conhecer'),
     path('participar_liga/<id>',views.participar_atividade, name='participar_liga'),
+    path('participar_liga_oficial/<id>',views.participar_atividade, name='participar_liga_oficial'),
 
     #sair
     path('sair_carona/<id>',views.sair_atividade, name='sair_carona'),
@@ -55,11 +56,13 @@ urlpatterns = [
     path('sair_extracurricular/<id>',views.sair_atividade, name='sair_extracurricular'),
     path('sair_conhecer/<id>',views.sair_atividade, name='sair_conhecer'),
     path('sair_liga/<id>',views.sair_atividade, name='sair_liga'),
+    path('sair_liga_oficial/<id>',views.sair_atividade, name='sair_liga_oficial'),
 
     #views
     path('info_carona/<id>', views.info_atividade, name='view_carona'),
     path('info_estudos/<id>', views.info_atividade, name='info_estudos'),
     path('info_extracurricular/<id>', views.info_atividade, name='info_extracurricular'),
     path('info_liga/<id>', views.info_atividade, name='info_liga'),
+    path('info_liga_oficial/<id>',views.info_atividade, name='info_liga_oficial'),
     path('info_conhecer/<id>', views.info_atividade, name='info_conhecer'),
 ]

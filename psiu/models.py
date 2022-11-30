@@ -9,7 +9,7 @@ class Atividade(models.Model):
   sala = models.OneToOneField(Room, on_delete=models.CASCADE,null=True,blank=True)
   localSaida = models.CharField(max_length=30,null=True, blank=True)
   localChegada = models.CharField(max_length=30,null=True, blank=True)
-  dataHora = models.DateTimeField(auto_now_add=False, blank=True)#Just to prove it
+  dataHora = models.DateTimeField(auto_now_add=False, blank=True, null=True)#Just to prove it
   vagas = models.IntegerField(default=4,null=True)
   adicionais = models.CharField(max_length=254, blank=True, default='')
   dataModificacao = models.DateTimeField(auto_now_add=True, blank=False)

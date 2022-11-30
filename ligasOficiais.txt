@@ -1,0 +1,49 @@
+ENG1015 - L336,Felipe Lemos,4ª feira - 13-15H,15
+FIS1026 - L328,Rian Lima,6ª feira - 11-13H,15
+FIS1033 - L120,----------,6ª feira - 7-9H,15
+FIS1033 - L110,----------,6ª feira - 11-13H,15
+FIS1033 - L164,----------,6ª feira - 13-15H,15
+FIS1041 - L654,Beatriz Marques,5ª feira - 15-17H,15
+FIS1051 - L144,Luis Paulo Gonçalves,6ª feira - 11-13H,15
+FIS1051 - L418,Luis Paulo Gonçalves,3ª feira - 13-15H,15
+FIS1061 - L210,Igor Carneiro,3ª feira - 15-17H,15
+FIS1071 - L654,Beatriz Marques,5ª feira - 15-17H,15
+INF1007 - LABGRAD,Rafaela Maria,2ª feira - 15-17H,15
+INF1007 - LABGRAD,Juliana Pinheiro,5ª feira - 14-15H,15
+INF1007 - LABGRAD,Juliana Pinheiro,3ª feira - 14-15H,15
+INF1007 - LABGRAD,Felipe Benevolo,6ª feira - 9-11H,15
+INF1007 - LABGRAD,Mª Carolina Esteves,6ª feira - 13-15H,15
+INF1025 - LABGRAD,Tulio,2ª feira - 15H,15
+INF1025 - LABGRAD,João Pedro,5ª feira - 11-13H,15
+INF1025 - LABGRAD,Gabriel,5ª feira - 9-11H,15
+INF1025 - LABGRAD,Thibaud,6ª feira - 13-15H,15
+INF1025 - LABGRAD,Miguel,6ª feira - 11-13H,15
+INF1025 - LABGRAD,Tulio,6ª feira - 10H,15
+MAT1154 - L234,Gustavo Acary,3ª feira - 13-15H,15
+MAT1158 - L252,Brendo A Bazilio,4ª feira - 17-18H,15
+MAT1158 - L252,Brendo A Bazilio,5ª feira - 17-18H,15
+MAT1161 - L270,Kelvin e Natalia,5ª feira - 15-17H,15
+MAT1161 - L270,João Pedro,6ª feira - 11-13H,15
+MAT1161 - L252,Kelvin e João Pedro,4ª feira - 15-17H,15
+MAT1161 - L252,Miguel de Pinho Garcia,6ª feira - 9-11H,15
+MAT1161 - L318,Antonio e Miguel,6ª feira - 11-13H,15
+MAT1161 - L270,Miguel de Pinho Garcia,6ª feira - 13-15H,15
+MAT1161 - L318,Joaquim e Natalia,6ª feira - 13-15H,15
+MAT1162 - L456,Manuela Lacerda,2ª feira - 15-17H,15
+MAT1163 - L456,Rafael Toledano,6ª feira - 13-15H,15
+MAT1182 - L456,Manuela Lacerda,2ª feira - 15-17H,15
+MAT1202 - L118,Mateus de Jesus,4ª feira - 17-19H,15
+MAT1250 - L258,Yuri S Martins,6ª feira - 7-9H,15
+MAT1250 - L314,Livia Amaro,6ª feira - 13-14H,15
+MAT1250 - L318,Wanderson Bezerra,6ª feira - 9-11H,15
+MAT1250 - L314,Vitor Bezerra,6ª feira - 15-17H,15
+MAT1260 - L318,João Felipe,5ª feira - 15-17H,15
+MAT1260 - L314,Livia Amaro,6ª feira - 14-15H,15
+MAT1310 - L216,Miguel dos Anjos,5ª feira - 17-19H,15
+MAT1320 - ONLINE,Vinicius Oliveira,5ª feira - 19-20H,15
+MAT1320 - L520,Vinicius Oliveira,3ª feira - 11-13H,15
+QUI1740 - L310,Felipe Nagib,6ª feira - 15-17H,15
+QUI1741 - L154,Moyses L Sander,6ª feira - 9-11H,15
+QUI1972 - L274,Pedro Lucas,6ª feira - 7-9H,15
+QUI1972 - L238,David C Zeitune,6ª feira - 9-11H,15
+QUI1972 - L238,Lorena O Ballesta,6ª feira - 13-15H,15
