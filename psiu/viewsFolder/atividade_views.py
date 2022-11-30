@@ -240,11 +240,9 @@ def pegarTipoAtividade(request):
         return 'extracurricular'
     if ("conhecer" in tipo):
         return 'conhecer'
-    if ("ligas_oficia" in tipo):
-        print("Liga oficial")
+    if ("oficia" in tipo):
         return 'liga_oficial'
     if ("liga" in tipo):
-        print("Liga")
         return 'liga'
 
     return None

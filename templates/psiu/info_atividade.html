@@ -34,7 +34,6 @@
                     {% elif tipo == 'extracurricular' %}
                         <p class="card-text">Atividade: {{grupo.atividade}}</p>
                     {% endif %}
-
                     {% if tipo != 'liga_oficial' %}
                         <p class="card-text">Data e hora: {{grupo.dataHora}}</p>
                         <p class="card-text">Vagas restantes: {{ vagasRestantes }}</p>
@@ -172,7 +171,7 @@
         src="https://www.google.com/maps/embed/v1/place?key=AIzaSyBr3KJlyXb0GIW4J9oSxm6ZfKurj-LKVRA
             &q={{grupo.localChegada}}">
         </iframe>
-    {% elif tipo != 'liga' %}
+    {% elif tipo != 'liga_oficial' %}
         <iframe
             width="600"
             height="450"
