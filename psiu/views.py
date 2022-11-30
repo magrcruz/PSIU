@@ -10,7 +10,6 @@ from django.contrib.auth.decorators import login_required
 from django.utils.dateparse import parse_datetime
 from .viewsFolder.user_info import *
 from .viewsFolder.views_common import *
-from .viewsFolder.ligas_views import *
 from .viewsFolder.login import *
 from .viewsFolder.darkModeMiopia import *
 from .viewsFolder.atividade_views import *
@@ -93,3 +92,9 @@ def salas(request):
 
 def ajuda(request):
     return render(request, 'psiu/ajuda.html')
+
+def ligas_oficiais(request):
+    return render(request, 'psiu/ligas_oficiais.html',{'title':'Ligas Oficiais'})
+
+def ligas_academicas(request):
+    return render(request, 'psiu/ligas_academicas.html',{'title':'Ligas Academicas'})

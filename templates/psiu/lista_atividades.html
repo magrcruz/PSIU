@@ -63,6 +63,10 @@
         {% for i in lista %}
             {% include "includes/conhecerCard.html" with conhecer=i%}
         {% endfor %}
+    {% elif tipo == "liga" %}
+        {% for i in lista %}
+            {% include "includes/ligaCard.html" with liga=i%}  
+        {% endfor %}
     {% endif %}
 {% else %}
     Não foram encontrados {{ plural }}

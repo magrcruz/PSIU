@@ -88,7 +88,9 @@ def criar_atividade(request):
                 return redirect(reverse('psiu:extracurriculares'))
         if (tipoAtividade == 'conhecer'):
             return redirect(reverse('psiu:conhecer_pessoas'))
-        
+        if (tipoAtividade == 'ligas'):
+            return redirect(reverse('psiu:liga'))
+
         return redirect(reverse('home'))
 
 def filtrar_atividade(request, atividade_list,tipoAtividade):
@@ -105,15 +107,16 @@ def filtrar_atividade(request, atividade_list,tipoAtividade):
         atividade_list = atividade_list.filter(materia__startswith=content["materia"]or"")
     elif (tipoAtividade == 'conhecer'):
         atividade_list = atividade_list.filter(interesses__startswith=content["interesses"]or"")
+    elif (tipoAtividade == 'extracurricular'):
+        atividade_list = atividade_list.filter(atividade__startswith=content["atividade"]or"")
+    elif (tipoAtividade == 'liga'):
+        atividade_list = atividade_list.filter(nomeLiga__startswith=content["nomeLiga"]or"")
 
     if (tipoAtividade == 'carona'):
         atividade_list = atividade_list.filter(localSaida__startswith=content["localSaida"]or"")
         atividade_list = atividade_list.filter(localChegada__startswith=content["localChegada"]or"")
     else:
         atividade_list = atividade_list.filter(local__startswith=content["local"]or"")
-
-    if (tipoAtividade == 'extracurricular'):
-        atividade_list = atividade_list.filter(atividade__startswith=content["atividade"]or"")
 
     atividade_list = atividade_list.filter(vagas__gt=int(content["vagas"]or 0))
     atividade_list = atividade_list.filter(adicionais__startswith=content["adicionais"]or"")
@@ -131,6 +134,8 @@ def listaAtividades(request):
     elif (tipoAtividade == 'extracurricular'):
         filtro_form = extraFilter()
     elif (tipoAtividade == 'conhecer'):
+        filtro_form = estudosFilter()
+    elif (tipoAtividade == 'liga'):
         filtro_form = estudosFilter()
 
     if request.method == "GET":
@@ -169,6 +174,8 @@ def apagar_atividade(request, id):
         return redirect(reverse('psiu:extracurriculares'))
     if (tipoAtividade == 'conhecer'):
         return redirect(reverse('psiu:conhecer_pessoas'))
+    if (tipoAtividade == 'liga'):
+        return redirect(reverse('psiu:liga'))
 
     return redirect(reverse('home'))
 
@@ -217,6 +224,8 @@ def pegarTipoAtividade(request):
         return 'extracurricular'
     if ("conhecer" in tipo):
         return 'conhecer'
+    if ("liga" in tipo):
+        return 'liga'
 
     return None
 
@@ -265,5 +274,15 @@ def pegarContext(tipoAtividade):
         context['apagar']='apagar_conhecer'
         context['participar']='participar_conhecer'
         context['sair']='sair_conhecer'
+    elif (tipoAtividade == 'liga'):
+        context['principal'] = 'ligas'
+        context['link_info'] = 'info_liga'
+        context['criar'] = 'criar_liga'
+        context['maiusculo']='Liga'
+        context['minusculo']='liga'
+        context['plural']= 'ligas'
+        context['apagar']='apagar_liga'
+        context['participar']='participar_liga'
+        context['sair']='sair_liga'
 
     return context
