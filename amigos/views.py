@@ -112,26 +112,17 @@ For each friend:
 '''
 
 def getUserActivity(user):
-    id = user.id
-    activitiesNames = ["Carona","Atividade de conhecer","Grupo de Estudos","Atividad Extracurricular","Participacao","Liga Academica"]
-    activitiesObjects = {
-        "Carona" : Carona.objects.filter(criador_id = id)[:5],
-        "Atividade de conhecer": Conhecer.objects.filter(criador_id = id)[:5],
-        "Grupo de Estudos": Estudos.objects.filter(criador_id = id)[:5],
-        "Atividad Extracurricular": Extra.objects.filter(criador_id = id)[:5],
-        "Liga Academica": Ligas.objects.filter(criador_id = id)[:5],
-        "Participacao" : ParticipacaoGrupoEstudos.objects.filter(id_participante = id)[:5],
-    }
+    activitiesObjects = Atividade.objects.filter(criador_id = user.id)[:5]
     userActivities = []
-    for i in activitiesNames:
-        for j in activitiesObjects[i]:
-            userActivities.append(
-                {
-                    "tipo": i,
-                    "user":user.username,
-                    "data":getattr(j,'dataModificacao'),
-                }
-            )
+    for j in activitiesObjects:
+        userActivities.append(
+            {
+                "tipo": getattr(j,'tipo'),
+                "user":user.username,
+                "data":getattr(j,'dataModificacao'),
+            }
+        )
+ 
     return sorted(userActivities,key=lambda x:x["data"],reverse=True)[:5]
 #datetime.datetime
 
@@ -149,4 +140,5 @@ def get_friends_info(id):
         amigos.append(amigo)
     for i in amigos:
         atividades.extend(getUserActivity(i))
-    return atividades[:20]
+    
+    return sorted(atividades,key=lambda x:x["data"],reverse=True)[:20]

@@ -14,6 +14,7 @@ def login_request(request):
 				return redirect("home")
 			else:
 				messages.error(request,"Invalid username or password.")
+				return render(request, "psiu/login.html", {"login_form":form, "alerta":"Invalid username or password."})
 		else:
 			messages.error(request,"Invalid username or password.")
 			return render(request, "psiu/login.html", {"login_form":form, "alerta":"Invalid username or password."})
