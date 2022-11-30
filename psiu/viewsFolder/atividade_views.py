@@ -84,6 +84,11 @@ def criar_atividade(request):
             return redirect(reverse('psiu:grupo_estudos'))
         if (tipoAtividade == 'carona'):
             return redirect(reverse('psiu:carona'))
+        if (tipoAtividade == 'extracurricular'):
+                return redirect(reverse('psiu:extracurriculares'))
+        if (tipoAtividade == 'conhecer'):
+            return redirect(reverse('psiu:conhecer_pessoas'))
+        
         return redirect(reverse('home'))
 
 def filtrar_atividade(request, atividade_list,tipoAtividade):
@@ -98,6 +103,8 @@ def filtrar_atividade(request, atividade_list,tipoAtividade):
 
     if (tipoAtividade == 'estudo'):
         atividade_list = atividade_list.filter(materia__startswith=content["materia"]or"")
+    elif (tipoAtividade == 'conhecer'):
+        atividade_list = atividade_list.filter(interesses__startswith=content["interesses"]or"")
 
     if (tipoAtividade == 'carona'):
         atividade_list = atividade_list.filter(localSaida__startswith=content["localSaida"]or"")
@@ -122,7 +129,9 @@ def listaAtividades(request):
     elif (tipoAtividade == 'carona'):
         filtro_form = caronaFilter()
     elif (tipoAtividade == 'extracurricular'):
-        filtro_form = caronaFilter()
+        filtro_form = extraFilter()
+    elif (tipoAtividade == 'conhecer'):
+        filtro_form = estudosFilter()
 
     if request.method == "GET":
         for atividade in atividades:
@@ -156,6 +165,11 @@ def apagar_atividade(request, id):
             return redirect(reverse('psiu:grupo_estudos'))
     if (tipoAtividade == 'carona'):
         return redirect(reverse('psiu:carona'))
+    if (tipoAtividade == 'extracurricular'):
+        return redirect(reverse('psiu:extracurriculares'))
+    if (tipoAtividade == 'conhecer'):
+        return redirect(reverse('psiu:conhecer_pessoas'))
+
     return redirect(reverse('home'))
 
 
@@ -170,13 +184,8 @@ def participar_atividade(request, id):
         participante.save()
 
     tipoAtividade = pegarTipoAtividade(request)
-    if (tipoAtividade == 'carona'):
-        link = 'info_carona'
-    elif (tipoAtividade == 'estudo'):
-        link = 'info_estudos'
-    elif (tipoAtividade == 'extracurricular'):
-        link = 'info_extracurricular'
-
+    context = pegarContext(tipoAtividade)
+    link = context['link_info']
 
     return redirect('../../psiu/%s/%s'%(link,id))
 
@@ -190,11 +199,8 @@ def sair_atividade(request, id):
             participante = None
 
     tipoAtividade = pegarTipoAtividade(request)
-    if (tipoAtividade == 'carona'):
-        link = 'info_carona'
-    elif (tipoAtividade == 'estudo'):
-        link = 'info_estudos'
-
+    context = pegarContext(tipoAtividade)
+    link = context['link_info']
 
     return redirect('../../psiu/%s/%s'%(link,id))
 
@@ -209,6 +215,8 @@ def pegarTipoAtividade(request):
         return 'carona'
     if ("extracurricular" in tipo):
         return 'extracurricular'
+    if ("conhecer" in tipo):
+        return 'conhecer'
 
     return None
 
@@ -237,4 +245,25 @@ def pegarContext(tipoAtividade):
         context['apagar']='apagar_carona'
         context['participar']='participar_carona'
         context['sair']='sair_carona'
+    elif (tipoAtividade == 'extracurricular'):
+        context['principal'] = 'extracurriculares'
+        context['link_info'] = 'info_extracurricular'
+        context['criar'] = 'criar_extracurricular'
+        context['maiusculo']='Atividade extracurricular'
+        context['minusculo']='atividade extracurricular'
+        context['plural']= 'extracurriculares'
+        context['apagar']='apagar_extracurricular'
+        context['participar']='participar_extracurricular'
+        context['sair']='sair_extracurricular'
+    elif (tipoAtividade == 'conhecer'):
+        context['principal'] = 'conhecer_pessoas'
+        context['link_info'] = 'info_conhecer'
+        context['criar'] = 'criar_conhecer'
+        context['maiusculo']='Conhecer Pessoas'
+        context['minusculo']='atividade'
+        context['plural']= 'atividades'
+        context['apagar']='apagar_conhecer'
+        context['participar']='participar_conhecer'
+        context['sair']='sair_conhecer'
+
     return context

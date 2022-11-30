@@ -9,7 +9,7 @@ urlpatterns = [
     path('grupo_estudos/', views.listaAtividades, name='grupo_estudos'),
     path('extracurriculares/', views.listaAtividades, name='extracurriculares'),
     path('ligas_academicas/', views.ligas_academicas, name='ligas_academicas'),
-    path('conhecer_pessoas/', views.conhecer_pessoas, name='conhecer_pessoas'),
+    path('conhecer_pessoas/', views.listaAtividades, name='conhecer_pessoas'),
     path('criar/', views.register_request, name='criar'),
     path('criar_perfil/',views.perfil_request, name='criar_perfil'),
     path('login/', views.login_request, name='login'),
@@ -24,7 +24,7 @@ urlpatterns = [
     #criar
     path('criar_carona/',views.criar_atividade, name='criar_carona'),
     path('criar_estudos/',views.criar_atividade, name='criar_estudos'),
-    path('criar_pessoas/',views.criar_pessoas, name='criar_pessoas'),
+    path('criar_conhecer/',views.criar_atividade, name='criar_conhecer'),
     path('criar_ligas/',views.criar_ligas, name='criar_ligas'),
     path('criar_extracurricular/',views.criar_atividade, name='criar_extracurricular'),
     path('darkMode/', views.darkMode_request, name='darkMode'),
@@ -34,21 +34,25 @@ urlpatterns = [
     path('apagar_carona/<id>',views.apagar_atividade, name='apagar_carona'),
     path('apagar_estudos/<id>',views.apagar_atividade, name='apagar_estudos'),
     path('apagar_extracurricular/<id>',views.apagar_atividade, name='apagar_extracurricular'),
+    path('apagar_conhecer/<id>',views.apagar_atividade, name='apagar_conhecer'),
 
     #participar
     path('participar_carona/<id>',views.participar_atividade, name='participar_carona'),
     path('participar_estudos/<id>',views.participar_atividade, name='participar_estudos'),
     path('participar_extracurricular/<id>',views.participar_atividade, name='participar_extracurricular'),
+    path('participar_conhecer/<id>',views.participar_atividade, name='participar_conhecer'),
 
     #sair
     path('sair_carona/<id>',views.sair_atividade, name='sair_carona'),
     path('sair_estudos/<id>',views.sair_atividade, name='sair_estudos'),
     path('sair_extracurricular/<id>',views.sair_atividade, name='sair_extracurricular'),
+    path('sair_conhecer/<id>',views.sair_atividade, name='sair_conhecer'),
+
 
     #views
     path('info_carona/<id>', views.info_atividade, name='view_carona'),
     path('info_estudos/<id>', views.info_atividade, name='info_estudos'),
     path('info_extracurricular/<id>', views.info_atividade, name='info_extracurricular'),
     path('info_ligas_nao_oficiais/<id>', views.info_ligas_nao_oficiais, name='info_ligas_nao_oficiais'),
-    path('info_conhecer/<id>', views.info_conhecer, name='info_conhecer')
+    path('info_conhecer/<id>', views.info_atividade, name='info_conhecer')
 ]
