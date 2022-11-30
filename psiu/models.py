@@ -1,90 +1,36 @@
 from django.db import models
-from django.contrib.auth.models import AbstractUser, BaseUserManager
 from django.contrib.auth.models import User
 from django.db.models.signals import post_save
 from django.dispatch import receiver
 from psiuChat.models import Room
-from django.utils import timezone
 
 
-#Cada classe abaixo é uma "many to one relationship" com um usuario
-#Isso é, um usuario pode ter diversas caronas, mas a carona só pode ter um "criador"
-class Carona(models.Model):
+class Atividade(models.Model):
   criador = models.ForeignKey(User, on_delete=models.CASCADE,null=True)
+  sala = models.OneToOneField(Room, on_delete=models.CASCADE,null=True,blank=True)
   localSaida = models.CharField(max_length=30,null=True, blank=True)
   localChegada = models.CharField(max_length=30,null=True, blank=True)
   dataHora = models.DateTimeField(auto_now_add=False, blank=True)#Just to prove it
   vagas = models.IntegerField(default=4,null=True)
   adicionais = models.CharField(max_length=254, blank=True, default='')
-  sala = models.OneToOneField(Room, on_delete=models.CASCADE,null=True,blank=True)
   dataModificacao = models.DateTimeField(auto_now_add=True, blank=False)
-
-  def get_readonly_fields(self, request, obj=None):
-    return [f.name for f in self._meta.get_fields()]
-
-class Estudos(models.Model):
-  criador = models.ForeignKey(User, on_delete=models.CASCADE,default=1)
-  materia = models.CharField(max_length=10)
+  materia = models.CharField(max_length=10,blank=True)
   local = models.CharField(max_length=30,blank=True)
-  dataHora = models.DateTimeField(blank=True)
-  vagas = models.IntegerField(blank=True, default=-1)
-  adicionais = models.CharField(max_length=254, default='',blank=True)
-  sala = models.OneToOneField(Room, on_delete=models.CASCADE,null=True,blank=True)
-  dataModificacao = models.DateTimeField(auto_now_add=True, blank=False)
+  nome = models.CharField(max_length=30,blank=True)
+  atividade = models.CharField(max_length=30,blank=True)
+  interesses = models.CharField(max_length=30,blank=True)
+
+  tipo = models.CharField(max_length=15)
 
   def get_readonly_fields(self, request, obj=None):
     return [f.name for f in self._meta.get_fields()]
-  
-class ParticipacaoGrupoEstudos(models.Model):
+
+
+class ParticipacaoAtividade(models.Model):
   id_participante = models.ForeignKey(User, on_delete=models.CASCADE)
-  id_grupo = models.ForeignKey(Estudos, on_delete=models.CASCADE)
+  id_grupo = models.ForeignKey(Atividade, on_delete=models.CASCADE)
   rol = models.CharField(max_length=30,blank=True)
   dataModificacao = models.DateTimeField(auto_now_add=True, blank=False)
-
-class Extra(models.Model):
-  criador = models.ForeignKey(User, on_delete=models.CASCADE)
-  atividade = models.CharField(max_length=30)
-  local = models.CharField(max_length=30)
-  dataHora = models.DateTimeField()
-  vagas = models.IntegerField(blank=True, default=-1)
-  adicionais = models.CharField(max_length=254, blank=True, default='')
-  sala = models.OneToOneField(Room, on_delete=models.CASCADE,null=True,blank=True)
-  dataModificacao = models.DateTimeField(auto_now_add=True, blank=False)
-
-  def get_readonly_fields(self, request, obj=None):
-    return [f.name for f in self._meta.get_fields()]
-  
-class Conhecer(models.Model):
-  criador = models.ForeignKey(User, on_delete=models.CASCADE)
-  interesses = models.CharField(max_length=30)
-  local = models.CharField(max_length=30, blank=True, default='')
-  dataHora = models.DateTimeField(blank=True)
-  vagas = models.IntegerField(blank=True, default=-1)
-  adicionais = models.CharField(max_length=254, blank=True, default='')
-  sala = models.OneToOneField(Room, on_delete=models.CASCADE,null=True,blank=True)
-  dataModificacao = models.DateTimeField(auto_now_add=True, blank=False)
-
-  def get_readonly_fields(self, request, obj=None):
-    return [f.name for f in self._meta.get_fields()]
- 
-class ParticipacaoConhecer(models.Model):
-  id_participante = models.ForeignKey(User, on_delete=models.CASCADE)
-  id_grupo = models.ForeignKey(Estudos, on_delete=models.CASCADE)
-  rol = models.CharField(max_length=30,blank=True)
-  dataModificacao = models.DateTimeField(auto_now_add=True, blank=False)
-
-class Ligas(models.Model):
-  criador = models.ForeignKey(User, on_delete=models.CASCADE, null=True)
-  nomeLiga = models.CharField(max_length=30)
-  atividade = models.CharField(max_length=254, blank=True, default='')
-  local = models.CharField(max_length=254, blank=True, default='')
-  sala = models.OneToOneField(Room, on_delete=models.CASCADE,null=True,blank=True)
-  dataModificacao = models.DateTimeField(blank=False, default=timezone.now)
-  dataHora = models.DateTimeField(blank=True)
-  vagas = models.IntegerField(blank=True, default=-1)
-
-  def get_readonly_fields(self, request, obj=None):
-    return [f.name for f in self._meta.get_fields()]
 
 from django.contrib.auth.backends import ModelBackend, UserModel
 from django.db.models import Q

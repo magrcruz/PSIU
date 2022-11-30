@@ -8,8 +8,6 @@ from django.contrib.auth.forms import AuthenticationForm
 from django.contrib.auth import logout
 from django.contrib.auth.decorators import login_required
 from django.utils.dateparse import parse_datetime
-from .viewsFolder.carona_view import *
-from .viewsFolder.estudos_views import *
 from .viewsFolder.extracurriculares_views import *
 from .viewsFolder.user_info import *
 from .viewsFolder.views_common import *
@@ -17,6 +15,7 @@ from .viewsFolder.ligas_views import *
 from .viewsFolder.conhecer_view import *
 from .viewsFolder.login import *
 from .viewsFolder.darkModeMiopia import *
+from .viewsFolder.atividade_views import *
 
 # Create your views here.
 def home(request):

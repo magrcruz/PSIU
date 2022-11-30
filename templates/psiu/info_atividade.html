@@ -1,6 +1,15 @@
 {% extends 'base.html' %}
 {% block image-page %}
-<img src="https://media.discordapp.net/attachments/1004623388758777966/1019419539966013521/unknown.png" class="mx-auto d-block rounded-circle position-absolute top-100 start-50 translate-middle" height="100" width="100" style="margin-top:23px">
+
+{% if tipo == 'carona' %}
+    <img src="https://cdn.discordapp.com/attachments/1004623388758777966/1019419664142581821/unknown.png" class="mx-auto d-block rounded-circle position-absolute top-100 start-50 translate-middle" height="100" width="100" style="margin-top:23px">
+{% endif %}
+
+{% if tipo == 'estudo' %}
+    <img src="https://media.discordapp.net/attachments/1004623388758777966/1019419539966013521/unknown.png" class="mx-auto d-block rounded-circle position-absolute top-100 start-50 translate-middle" height="100" width="100" style="margin-top:23px">
+{% endif %}
+
+
 {% endblock %}
 {% block content %}
 <!doctype html>
@@ -105,10 +114,10 @@
 </script>
 
 {% if isParticipante == False %}
-    <a href="../participar_estudos/{{ grupo.id }}" >Participar do grupo</a>
+    <a href="../{{ participar }}/{{ grupo.id }}" >Participar da atividade</a>
 {% else %}
     {% if isCriador == False %}
-        <a href="../sair_estudos/{{ grupo.id }}" >Sair do grupo</a>
+        <a href="../{{ sair }}/{{ grupo.id }}" >Sair da atividade</a>
     {% endif %}
 {% endif %}
 
@@ -131,13 +140,12 @@
 </body>
 {% if isCriador %}
     <center>
-        <a href="">Editar grupo de estudos</a><br>
-        <a href="../apagar_estudos/{{ grupo.id }}">Apagar grupo de estudos</a>
+        <a href="">Editar {{ minusculo }}</a><br>
+        <a href="../{{ apagar }}/{{ grupo.id }}">Apagar {{ minusculo }}</a>
     </center>
 {% endif %}
 <br>
 {% endblock  %}
 {% block contato %}
-{% include "includes/contatoCard.html" with contato=contato%}  
 <br>     
 {% endblock  %}

@@ -5,9 +5,9 @@ app_name = 'psiu'
 urlpatterns = [
     path('', views.home, name='main'),
     path('user_info/<id>', views.user_info, name='user_info'),
-    path('carona/', views.carona, name='carona'),
-    path('grupo_estudos/', views.grupo_estudos, name='grupo_estudos'),
-    path('extracurriculares/', views.extracurriculares, name='extracurriculares'),
+    path('carona/', views.listaAtividades, name='carona'),
+    path('grupo_estudos/', views.listaAtividades, name='grupo_estudos'),
+    path('extracurriculares/', views.listaAtividades, name='extracurriculares'),
     path('ligas_academicas/', views.ligas_academicas, name='ligas_academicas'),
     path('conhecer_pessoas/', views.conhecer_pessoas, name='conhecer_pessoas'),
     path('criar/', views.register_request, name='criar'),
@@ -22,28 +22,33 @@ urlpatterns = [
     path('ajuda/', views.ajuda, name='ajuda'),
 
     #criar
-    path('criar_carona/',views.criar_carona, name='criar_carona'),
-    path('criar_estudos/',views.criar_estudos, name='criar_estudos'),
+    path('criar_carona/',views.criar_atividade, name='criar_carona'),
+    path('criar_estudos/',views.criar_atividade, name='criar_estudos'),
     path('criar_pessoas/',views.criar_pessoas, name='criar_pessoas'),
     path('criar_ligas/',views.criar_ligas, name='criar_ligas'),
-    path('criar_extracurricular/',views.criar_extracurricular, name='criar_extracurricular'),
+    path('criar_extracurricular/',views.criar_atividade, name='criar_extracurricular'),
     path('darkMode/', views.darkMode_request, name='darkMode'),
     path('miopiaMode/', views.miopiaMode_request, name='miopiaMode'),
     
     #deletar
-    path('apagar_carona/<id>',views.apagar_carona, name='apagar_carona'),
-    path('apagar_estudos/<id>',views.apagar_estudos, name='apagar_estudos'),
+    path('apagar_carona/<id>',views.apagar_atividade, name='apagar_carona'),
+    path('apagar_estudos/<id>',views.apagar_atividade, name='apagar_estudos'),
+    path('apagar_extracurricular/<id>',views.apagar_atividade, name='apagar_extracurricular'),
 
     #participar
-    path('participar_estudos/<id>',views.participar_estudos, name='participar_estudos'),
+    path('participar_carona/<id>',views.participar_atividade, name='participar_carona'),
+    path('participar_estudos/<id>',views.participar_atividade, name='participar_estudos'),
+    path('participar_extracurricular/<id>',views.participar_atividade, name='participar_extracurricular'),
 
     #sair
-    path('sair_estudos/<id>',views.sair_estudos, name='sair_estudos'),
+    path('sair_carona/<id>',views.sair_atividade, name='sair_carona'),
+    path('sair_estudos/<id>',views.sair_atividade, name='sair_estudos'),
+    path('sair_extracurricular/<id>',views.sair_atividade, name='sair_extracurricular'),
 
     #views
-    path('view_carona/<id>', views.view_carona, name='view_carona'),
-    path('info_estudos/<id>', views.info_estudos, name='info_estudos'),
-    path('info_extracurricular/<id>', views.info_extracurricular, name='info_extracurricular'),
+    path('info_carona/<id>', views.info_atividade, name='view_carona'),
+    path('info_estudos/<id>', views.info_atividade, name='info_estudos'),
+    path('info_extracurricular/<id>', views.info_atividade, name='info_extracurricular'),
     path('info_ligas_nao_oficiais/<id>', views.info_ligas_nao_oficiais, name='info_ligas_nao_oficiais'),
     path('info_conhecer/<id>', views.info_conhecer, name='info_conhecer')
 ]

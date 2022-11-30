@@ -51,7 +51,7 @@ class PerfilForm(forms.ModelForm):
 
 class caronaFilter(forms.ModelForm):
     class Meta:
-        model = Carona
+        model = Atividade
         fields = ('localSaida', 'localChegada', 'dataHora', 'vagas', 'adicionais')
     def __init__(self, *args, **kwargs):
         super().__init__(*args, **kwargs)
@@ -64,7 +64,7 @@ class caronaFilter(forms.ModelForm):
 
 class estudosFilter(forms.ModelForm):
     class Meta:
-        model = Estudos
+        model = Atividade
         fields = ('materia', 'local', 'dataHora', 'vagas', 'adicionais')
     def __init__(self, *args, **kwargs):
         super().__init__(*args, **kwargs)
@@ -77,7 +77,7 @@ class estudosFilter(forms.ModelForm):
 
 class extraFilter(forms.ModelForm):
     class Meta:
-        model = Extra
+        model = Atividade
         fields = ('atividade', 'local', 'dataHora', 'vagas', 'adicionais')
     def __init__(self, *args, **kwargs):
         super().__init__(*args, **kwargs)
@@ -89,7 +89,7 @@ class extraFilter(forms.ModelForm):
 
 class newParticipante(forms.ModelForm):
     class Meta:
-        model = ParticipacaoGrupoEstudos
+        model = ParticipacaoAtividade
         fields = ('id_participante', 'rol')
     def __init__(self, *args, **kwargs):
         super().__init__(*args, **kwargs)
@@ -98,8 +98,8 @@ class newParticipante(forms.ModelForm):
 
 class ligasFilter(forms.ModelForm):
     class Meta:
-        model = Ligas
-        fields = ('nomeLiga', 'atividade', 'local', 'dataHora', 'vagas')
+        model = Atividade
+        fields = ('nome', 'atividade', 'local', 'dataHora', 'vagas')
     def __init__(self, *args, **kwargs):
         super().__init__(*args, **kwargs)
         #self.fields['criador'].widget.attrs.update({"class": "form-control"})

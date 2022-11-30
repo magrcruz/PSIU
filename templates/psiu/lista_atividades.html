@@ -1,11 +1,21 @@
 {% extends 'base.html' %}
 {% block image-page %}
+
+{% if tipo == 'carona' %}
     <img src="https://cdn.discordapp.com/attachments/1004623388758777966/1019419664142581821/unknown.png" class="mx-auto d-block rounded-circle position-absolute top-100 start-50 translate-middle" height="100" width="100" style="margin-top:23px">
+{% endif %}
+
+{% if tipo == 'estudo' %}
+    <img src="https://media.discordapp.net/attachments/1004623388758777966/1019419539966013521/unknown.png" class="mx-auto d-block rounded-circle position-absolute top-100 start-50 translate-middle" height="100" width="100" style="margin-top:23px">
+{% endif %}
+
+
+
 {% endblock %}
+
 {% block content %}
 
-<a href="{% url 'psiu:criar_carona' %}">+ Adicionar carona</a>
-
+<a href="../{{ criar }}">+ Adicionar {{ minusculo }}</a>
 
 <!doctype html>
 <html lang = "pt-br">
@@ -35,13 +45,21 @@
 </div>
 
 <br>
-{% if carona_list %}
-    {% for i in carona_list %}
-        {% include "includes/caronaCard.html" with carona=i%}       
-    {% endfor %}
+
+{% if lista %}
+    {% if tipo == "estudo" %}
+        {% for i in lista %}
+            {% include "includes/estudoCard.html" with estudo=i%}       
+        {% endfor %}
+    {% elif tipo == "carona" %}
+        {% for i in lista %}
+            {% include "includes/caronaCard.html" with carona=i%}       
+        {% endfor %}
+    {% endif %}
 {% else %}
-    Não foram encontradas caronas.
-{% endif %}
+    Não foram encontrados {{ plural }}
+{% endif  %}
+
 
 <!--Modal for filtragem-->
 <form method="post">
@@ -56,7 +74,18 @@
           </button>
         </div>
         <div class="modal-body">
-          <div class="container text-left" style="color: rgba(0,0,0,1)">
+          {% if tipo == 'estudo' %}
+          <div class="form-group">
+            <label for="">Matéria</label>
+            <input type="text" class="form-control" placeholder="" aria-describedby="basic-addon2" width="100" name="materia"  value="{{estudos_temp.materia}}">
+            </div>
+                    
+          <div class="form-group">
+              <label for="">Local</label>
+              <input type="text" class="form-control" placeholder="" aria-describedby="basic-addon2" width="100" name="local"  value="{{estudos_temp.local}}">
+          </div>
+
+          {% elif tipo == 'carona' %}
             <div class="form-group">
                 <label for="">Lugar de saída</label>
                 <input type="text" class="form-control" placeholder="" aria-describedby="basic-addon2" width="100" name="localSaida"  value="{{carona_temp.localSaida}}">
@@ -66,21 +95,19 @@
                 <label for="">Lugar de chegada</label>
                 <input type="text" class="form-control" placeholder="" aria-describedby="basic-addon2" width="100" name="localChegada"  value="{{carona_temp.localChegada}}">
             </div>
-            
-            <div class="form-group">
-                <label for="">Vagas disponíveis</label>
-                <input type="number" class="form-control" placeholder="" aria-describedby="basic-addon2" width="100" name="vagas"  value="{{carona_temp.vagas}}" min="0" max="16">
-            </div>
-            
-            <div class="form-group">
-                <label for="">Descrição</label>
-                <input type="text" class="form-control" placeholder="" aria-describedby="basic-addon2" width="100" name="adicionais"  value="{{carona_temp.adicionais}}" >
-            </div>
-            
-            <br>
-            
-          </div>      
 
+          {% endif %}
+          
+          <div class="form-group">
+              <label for="">Vagas</label>
+              <input type="number" class="form-control" placeholder="" aria-describedby="basic-addon2" width="100" name="vagas"  value="{{estudos_temp.vagas}}" min="0" max="16">
+          </div>
+          
+          <div class="form-group">
+              <label for="">Descrição</label>
+              <input type="text" class="form-control" placeholder="" aria-describedby="basic-addon2" width="100" name="adicionais"  value="{{estudos_temp.adicionais}}" >
+          </div>
+        
         </div>
         <div class="modal-footer">
           <button type="button" class="btn btn-secondary" data-dismiss="modal">Fechar</button>
@@ -90,4 +117,5 @@
     </div>
 </div>
 </form>
+
 {% endblock  %}
