@@ -1,5 +1,4 @@
 from .views_common import *
-from django.http import HttpResponseRedirect
 
 # GRUPO DE ESTUDOS
 def info_atividade(request, id):
@@ -16,6 +15,7 @@ def info_atividade(request, id):
         atividade.save()
 
     atividade = Atividade.objects.get(pk = id)
+    qntParticipantes = ParticipacaoAtividade.objects.filter(id_grupo=atividade).count()
     participantes = list(ParticipacaoAtividade.objects.all().values().filter(id_grupo=id).values())
 
     isParticipante = False
@@ -40,6 +40,7 @@ def info_atividade(request, id):
     tipoAtividade = pegarTipoAtividade(request)
     context = pegarContext(tipoAtividade)
 
+    context['vagasRestantes'] = atividade.vagas - qntParticipantes
     context['grupo'] = atividade
     context['participantes'] = participantes
     context['form'] = formnewParticipante
@@ -140,7 +141,7 @@ def listaAtividades(request):
 
     if request.method == "GET":
         for atividade in atividades:
-            atividade['nomeUser'] = "User not found"
+            atividade['nomeUser'] = "Usuário não encontrado"
             if 'criador_id' in atividade and atividade['criador_id']!="NULL":
                 user = User.objects.get(pk=atividade['criador_id'])
                 name = user.username
@@ -180,7 +181,16 @@ def apagar_atividade(request, id):
 
 
 def participar_atividade(request, id):
+
+    tipoAtividade = pegarTipoAtividade(request)
+    context = pegarContext(tipoAtividade)
+    link = context['link_info']
+
     atividade = Atividade.objects.get(pk = id)
+    qntParticipantes = ParticipacaoAtividade.objects.filter(id_grupo=atividade).count()
+    if ((atividade.vagas - qntParticipantes) <= 0):
+        messages.error(request, 'Não foi possível participar pois o grupo já está cheio.')
+        return redirect('../../psiu/%s/%s'%(link,id))
 
     try:
         participante = ParticipacaoAtividade.objects.get(id_participante=request.user,id_grupo=atividade)

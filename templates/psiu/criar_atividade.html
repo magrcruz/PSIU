@@ -52,15 +52,15 @@
                 <input type="text" class="form-control" placeholder="" aria-describedby="basic-addon2" width="100" name="atividade"  value="{{ligas_temp.atividade}}">
             </div>
         {% endif %}
+        
+        {% if tipo != "liga" %}
+            <div class="form-group">
+                <label for="">Data e horário</label>
+                <input type="datetime-local" class="form-control" placeholder="" aria-describedby="basic-addon2" width="100" name="dataHora"  value="{{ dataHora }}">
+            </div>
+        {% endif %}
 
-        <div class="form-group">
-            <label for="">Data e horário</label>
-            <input type="datetime-local" class="form-control" placeholder="" aria-describedby="basic-addon2" width="100" name="dataHora"  value="{{ dataHora }}">
-        </div>
-
-
-
-        {% if tipo != carona %}
+        {% if tipo != "carona" %}
             <div class="form-group">
                 <label for="">Local</label>
                 <input type="text" class="form-control" placeholder="" aria-describedby="basic-addon2" width="100" name="local"  value="{{ local }}">
@@ -89,20 +89,10 @@
         
         <br>
         <div class="row">
-            <div class="col">
-            </div>
-            <div class="col">
-            </div>
-            <div class="col">
+            <div class="col-sm-12 text-center">
                 <a href="../{{ principal }}" type="reset" class="btn btn-secondary">Cancelar</a>
-            </div>
-            <div class="col">
                 <button type="submit" class="btn btn-primary">Criar</button>
-            </div>
-            <div class="col">
-            </div>
-            <div class="col">
-            </div>
+             </div>
         </div>
     </div>
 </form>

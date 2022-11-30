@@ -18,6 +18,7 @@
 <!doctype html>
 
 <body>
+
 <p class="text-center">{{grupo.adicionais}}</p>
 <div class = "" style = "color: rgba(0,0,0,1)">
     <br>
@@ -27,18 +28,15 @@
                 <center>
                     <p class="card-text">Esse grupo será focado na matéria de {{grupo.materia}}</p>
                     <p class="card-text">ele será realizado em {{grupo.dataHora}}</p>
-                    <p class="card-text">e possui {{grupo.vagas}} vagas disponíveis.</p>
+                    <p class="card-text">e possui {{ vagasRestantes }} vagas disponíveis.</p>
                 </center>
             </div>
         </div>
     </center>
     <br>
     <div class="row mb-3" style = "color: rgba(0,0,0,1)">
-        <h5>Chat</h5>
-        <div class="row">
-            <div  class="col">
-                <a class="text-dark" href="#void" onclick="redirectSala();" style="font-weight: bold">Entrar na sala</a>
-            </div>
+        <div class="col text-center">
+            <a class="text-dark btn btn-primary" href="#void" onclick="redirectSala();" style="font-weight: bold">Chat do grupo</a>
         </div>
     </div>
     <br>
@@ -116,11 +114,25 @@
     }
 </script>
 
+{% if messages %}
+<ul class="messages">
+    {% for message in messages %}
+    <li{% if message.tags %} class="{{ message.tags }} text-center"{% endif %}>{{ message }}</li>
+    {% endfor %}
+</ul>
+{% endif %}
+
 {% if isParticipante == False %}
-    <a href="../{{ participar }}/{{ grupo.id }}" >Participar da atividade</a>
+    {% if vagasRestantes > 0 %}
+        <div class="col text-center">
+            <a href="../{{ participar }}/{{ grupo.id }}" class="btn btn-primary">Participar da atividade</a>
+        </div>
+    {% endif %}
 {% else %}
     {% if isCriador == False %}
-        <a href="../{{ sair }}/{{ grupo.id }}" >Sair da atividade</a>
+        <div class="col text-center">
+            <a href="../{{ sair }}/{{ grupo.id }}" class="btn btn-danger">Sair da atividade</a>
+        </div>
     {% endif %}
 {% endif %}
 
@@ -143,9 +155,13 @@
 </body>
 {% if isCriador %}
     <center>
-        <a href="">Editar {{ minusculo }}</a><br>
-        <a href="../{{ apagar }}/{{ grupo.id }}">Apagar {{ minusculo }}</a>
     </center>
+    <div class="row">
+        <div class="col-sm-12 text-center">
+            <a href="" class="btn btn-secondary">Editar {{ minusculo }}</a>
+            <a href="../{{ apagar }}/{{ grupo.id }}" class="btn btn-danger">Apagar {{ minusculo }}</a>
+        </div>
+    </div>
 {% endif %}
 <br>
 {% endblock  %}
