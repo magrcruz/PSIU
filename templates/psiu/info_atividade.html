@@ -26,9 +26,19 @@
         <div class="card" style="width: 35rem;">
             <div class="card-body">
                 <center>
-                    <p class="card-text">Esse grupo será focado na matéria de {{grupo.materia}}</p>
-                    <p class="card-text">ele será realizado em {{grupo.dataHora}}</p>
-                    <p class="card-text">e possui {{ vagasRestantes }} vagas disponíveis.</p>
+                    {% if tipo == 'carona' %}
+                        <p class="card-text">Saindo de: {{grupo.localSaida}}</p>
+                        <p class="card-text">Chegando em: {{grupo.localSaida}}</p>
+                    {% elif tipo == 'estudo' %}
+                        <p class="card-text">Matéria: {{grupo.materia}}</p>
+                    {% elif tipo == 'extracurricular' %}
+                        <p class="card-text">Atividade: {{grupo.atividade}}</p>
+                    {% endif %}
+
+                    {% if tipo != 'liga_oficial' %}
+                        <p class="card-text">Data e hora: {{grupo.dataHora}}</p>
+                        <p class="card-text">Vagas restantes: {{ vagasRestantes }}</p>
+                    {% endif %}
                 </center>
             </div>
         </div>
@@ -38,9 +48,6 @@
         <div class="col text-center">
             <a class="text-dark btn btn-primary" href="#void" onclick="redirectSala();" style="font-weight: bold">Chat do grupo</a>
         </div>
-    </div>
-    <div class="row mx-auto text-center">
-        <a href="{% url 'psiu:modificar_atividade' %}">Modificar Atividade</a>
     </div>
     <br>
     <h5>Participantes</h5>
@@ -141,24 +148,52 @@
 
 <br>
 <center>
-    <iframe
-    width="600"
-    height="450"
-    style="border:0"
-    loading="lazy"
-    allowfullscreen
-    referrerpolicy="no-referrer-when-downgrade"
-    src="https://www.google.com/maps/embed/v1/place?key=AIzaSyBr3KJlyXb0GIW4J9oSxm6ZfKurj-LKVRA
-        &q={{grupo.local}}">
-    </iframe>
+    {% if tipo == 'carona' %}
+    <h5>Local de saída</h5>
+        <iframe
+        width="600"
+        height="450"
+        style="border:0"
+        loading="lazy"
+        allowfullscreen
+        referrerpolicy="no-referrer-when-downgrade"
+        src="https://www.google.com/maps/embed/v1/place?key=AIzaSyBr3KJlyXb0GIW4J9oSxm6ZfKurj-LKVRA
+            &q={{grupo.localSaida}}">
+        </iframe>
+
+        <h5 class="mt-4">Local de chegada</h5>
+        <iframe
+        width="600"
+        height="450"
+        style="border:0"
+        loading="lazy"
+        allowfullscreen
+        referrerpolicy="no-referrer-when-downgrade"
+        src="https://www.google.com/maps/embed/v1/place?key=AIzaSyBr3KJlyXb0GIW4J9oSxm6ZfKurj-LKVRA
+            &q={{grupo.localChegada}}">
+        </iframe>
+    {% elif tipo != 'liga' %}
+        <iframe
+            width="600"
+            height="450"
+            style="border:0"
+            loading="lazy"
+            allowfullscreen
+            referrerpolicy="no-referrer-when-downgrade"
+            src="https://www.google.com/maps/embed/v1/place?key=AIzaSyBr3KJlyXb0GIW4J9oSxm6ZfKurj-LKVRA
+                &q={{grupo.local}}">
+        </iframe>
+    {% endif %}
 </center>
 
 <div class="mt-5"></div>
 
 </body>
 {% if isCriador %}
-    <center>
-    </center>
+    <div class="col-sm-12 mb-2 text-center">
+        <a href="{% url 'psiu:modificar_atividade' %}" class="btn btn-primary">Modificar Atividade</a>
+    </div>
+
     <div class="row">
         <div class="col-sm-12 text-center">
             <a href="" class="btn btn-secondary">Editar {{ minusculo }}</a>

@@ -24,9 +24,9 @@
     {% endif %}
 
 </head>
-<body onload="mudarModo1(), mudarModo2(), mudarModo3()">
+<body onload="mudarModo1(), mudarModo2(), mudarModo3()"  style="background-color: #FFFFFF !important;">
     <!-- NAVBAR -->
-    <div style="background-color: #6FA8FF;" class="container-fluid p-4 text-black text-center">
+    <div class="container-fluid p-4 text-black text-center" id="divinha">
         {% include "includes/menuzinho.html" %}
         <img src="https://cdn.discordapp.com/attachments/1004623388758777966/1047362170385608764/image.png" height="75" width="75">
         <h1>
@@ -84,12 +84,14 @@
             }
 
             function mudarModo3() {
-                var modo = "{{isMiopiaMode}}"
+                var modo = "{{isCorMode}}"
                 if (modo == "True") {
-                    document.body.style.fontSize = "2rem"
+                    document.getElementById("divinha").style.backgroundColor = "#CC92F8"
+                    document.getElementById("offcanvasExample").style.backgroundColor = "#CC92F8"
                 }
                 else {
-                    document.body.style.fontSize = "1rem"
+                    document.getElementById("divinha").style.backgroundColor = "#6FA8FF"
+                    document.getElementById("offcanvasExample").style.backgroundColor = "#6FA8FF"
                 }
             }
         </script>

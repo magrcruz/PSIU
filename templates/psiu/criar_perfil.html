@@ -31,6 +31,33 @@
                         {{ profile_form.fotoPerfil }}
                     </div>
                 </div>
+                <div class="row">
+                    <div class="col mb-1">
+                        <div class="input-group mb-1">
+                            <span class="input-group-text" id="inputGroup-sizing-default" style="font-weight:bold">Bio</span>
+                            {% csrf_token %}
+                            {{ profile_form.bio }}
+                        </div>
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="col mb-1">
+                        <div class="input-group mb-1">
+                            <span class="input-group-text" id="inputGroup-sizing-default" style="font-weight:bold">Instagram</span>
+                            {% csrf_token %}
+                            {{ profile_form.instagram }}
+                        </div>
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="col mb-1">
+                        <div class="input-group mb-1">
+                            <span class="input-group-text" id="inputGroup-sizing-default" style="font-weight:bold">Twitter</span>
+                            {% csrf_token %}
+                            {{ profile_form.twitter }}
+                        </div>
+                    </div>
+                </div>
             </div>
             <div class="row">
                 <div class="col">
